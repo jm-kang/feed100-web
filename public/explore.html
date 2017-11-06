@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FEED100</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="assets/bower_components/flexslider/flexslider.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link rel='stylesheet' type="text/css" href="assets/dzsparallaxer/dzsparallaxer.css" />
+
+    <!--main css file-->
+    <link href="assets/css/style-explore.css" rel="stylesheet">
+    <link href="assets/css/style-nav.css" rel="stylesheet">
+    <link href="assets/css/style-footer.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <style>
+      .navbar-default .navbar-brand img {
+        margin-top: -7px;
+      }
+    </style>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body data-spy="scroll">
+    <!--preloader-->
+    <div id="preloader"></div>
+    <!--preloader-->
+    <!--page title-->
+    <nav class="navbar navbar-default" style="border-bottom: 1px solid #ddd;">
+    </nav>
+
+    <!--page title-->
+    <div class="dzsparallaxer auto-init" data-options='{   direction: "reverse"}' style="height: 300px;">
+
+        <div class="divimage dzsparallaxer--target " style="width: 101%; height: 600px;">
+        </div>
+        <div class=" parallax-text center-it text-center" style="width:100%">
+            <h2>모든 프로젝트</h2>
+        </div>
+    </div>
+    <!--page title-->
+
+
+    <div class="container main-container">
+        <div>
+            <div class="sidebar-widget margin-b-30" id="category-nav">
+                <ul id="filters" class="clearfix list-unstyled">
+                    <li><span class="filter active" data-filter=".app, .hardware, .game, .web">모두 보기</span></li>
+                    <li><span class="filter" data-filter=".hardware">하드웨어</span></li>
+                    <li>
+                      <span class="filter ready-hide" data-filter=".app">모바일 앱</span>
+                      <span class="filter ready-hide-o" data-filter=".app">앱</span>
+                    </li>
+                    <li>
+                      <span class="filter ready-hide" data-filter=".web">웹 서비스</span>
+                      <span class="filter ready-hide-o" data-filter=".web">웹</span>
+                    </li>
+                    <li><span class="filter" data-filter=".game">게임</span></li>
+                </ul>
+            </div>
+            <div class="margin-b-50">
+                <div id="itemlist" class="explore-item">
+                </div>
+                <!--blog row-->
+                <!--pagination-->
+                <div class="col-xs-12 loadMore-wrapper">
+                  <div class='container text-center'>
+                      <a id="loadMore" class="btn btn-border-blue btn-lg">더보기</a>
+                  </div>
+                </div>
+
+            </div>
+            <!--masonry col end-->
+        </div>
+        <!--row-->
+    </div>
+    <!--container-->
+
+    <div class="space-40"></div>
+    <!--footer start-->
+    <footer class="footer"></footer>
+    <!--footer end-->
+    <!--back to top-->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up"></i></a>
+    <!--back to top end-->
+    <!-- jQuery plugins-->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/bower_components/flexslider/jquery.flexslider-min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+
+    <script src="assets/dzsparallaxer/dzsparallaxer.js" type="text/javascript"></script>
+    <script src="assets/js/template-custom.js" type="text/javascript"></script>
+    <script src="assets/bower_components/masonry/dist/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.mixitup.min.js"></script>
+    <script src="/assets/js/nav.js"></script>
+    <script src="/assets/js/footer.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+          var offset = 0;
+          load(offset++);
+
+          $("#loadMore").click(function() {
+            $('#itemlist').mixItUp('destroy');
+            load(offset++);
+          });
+        });
+
+        function load(offset) {
+          $.ajax({
+            url:'/api/project-list/'+offset,
+            type:'get',
+            cache:false,
+            success:function(data){
+              var output = '';
+              for(var i=0; i<data.length; i++) {
+                output +=
+                '<div class="item ' + data[i].category + '" data-tag="' + data[i].category + '" value="' + data[i].pid + '">' +
+                    '<div class="post item-wrapper">' +
+                        '<div class="hovereffect">' +
+                        '<img src="' + data[i].projectImage + '" alt="" class="img-responsive">' +
+                            '<div class="overlay">' +
+                               '<span class="label ' + getClassByProgressState(data[i].progressState) + '">' + data[i].progressState + '</span>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="post-content">' +
+                            '<div class="container-fluid">' +
+                                '<p class="p-space">&emsp;</p>' +
+                                '<h3>' + data[i].projectTitle + '</h3>' +
+                                '<h6>by ' + data[i].companyName + '</h6>' +
+                            '</div>' +
+                            '<div class="space-10"></div>' +
+                            '<h6><i class="ion-social-usd"></i>&emsp; 보상 max&emsp;<strong>' + numberWithCommas(data[i].reward_gold) + '</strong></h6>' +
+                            '<h6 style="margin-bottom:7px;"><i class="ion-person-stalker"></i>&emsp;모집 인원&emsp;<strong>' + data[i].numOfApplicant + ' / ' + data[i].numOfRecruitment + '</strong><span class="pull-right value">' + (data[i].numOfApplicant/data[i].numOfRecruitment*100).toFixed(1) + '%</span></h6>' +
+                            '<div class="progress clearfix progress-small">' +
+                                '<div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:' +(data[i].numOfApplicant/data[i].numOfRecruitment*100).toFixed(1) + '%">' +
+                                '</div>' +
+                            '</div><!--progress bar-->' +
+
+                            '<hr>' +
+                            '<ul class="list-inline post-meta text-center">' +
+                                '<li><i class="ion-eye"></i>&emsp;' + data[i].views + ' <span class="tag">views</span></li>' +
+                                '<li><i class="ion-heart"></i>&emsp;' + data[i].likes + ' <span class="tag">likes</span></li>'
+                                ;
+                                if(data[i].category == "hardware") {
+                                    output += '<li><i class="ion-pricetag"></i>&emsp;HW</li>';
+                                } else {
+                                    output +='<li><i class="ion-pricetag"></i>&emsp;' + data[i].category + '</li>';
+                                }
+                                output +=
+                            '</ul>' +
+                        '</div>' +
+                        '<!--post content-->' +
+                    '</div>' +
+                    '<!--post-->' +
+                '</div>'
+                ;
+              }
+              $("#itemlist").append(output);
+              $('div.item').click(function() {
+                window.location.href = '/project/' + $(this).attr('value');
+              });
+              var filterList = {
+                init: function () {
+                  // MixItUp plugin
+                  // http://mixitup.io
+                  $('#itemlist').mixItUp({
+                    selectors: {
+                      target: '.item',
+                      filter: '.filter'
+                    },
+                    load: {
+                      filter: '.app, .hardware, .game, .web'
+                    }
+                  });
+                }
+              };
+              // Run the show!
+              filterList.init();
+
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
+          }
+
+          function getClassByProgressState(state) {
+            switch(state) {
+              case '대기중':
+                return 'label-info';
+              case '모집중':
+                return 'label-success';
+              case '선정중':
+                return 'label-warning';
+              case '진행중':
+                return 'label-danger';
+              case '종료':
+                return 'label-default';
+            }
+          }
+
+        }
+    </script>
+</body>
+
+</html>

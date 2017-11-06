@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="/dashboard_company/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard_company/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Morris -->
+    <link href="/dashboard_company/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+    <link href="/dashboard_company/css/animate.css" rel="stylesheet">
+    <link href="/dashboard_company/css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <div id="page-wrapper" class="gray-bg">
+
+            <div class="wrapper wrapper-content" style="padding-bottom: 50px;">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="widget style1 top1-bg">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-bolt fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <span> 종료까지 </span>
+                                    <h2 class="font-bold">D - 0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="widget style1 top2-bg">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <span> 테스터 </span>
+                                    <h2 class="font-bold">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="widget style1 top3-bg">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-question fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <span> 문의 </span>
+                                    <h2 class="font-bold">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="widget style1 top4-bg">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-paw fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <span> 토론장 </span>
+                                    <h2 class="font-bold">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div class="ibox float-e-margins">
+                        <div class="ibox-title" style="border:0;">
+                            <h5>보고서 현황</h5><span class="label label-default pull-right more"><a href="reports.html">더보기</a></span>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="container-fluid" id="reportState" style="margin-top:15px;">
+
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="social-feed-box">
+
+                            <div class="ibox-title" style="border:0;">
+                                <h5>테스트 미션</h5><span class="label label-default pull-right more"><a href="notices.html">더보기</a></span>
+                            </div>
+                            <div class="social-head">
+                                <a target="_blank" href="" id="noticeTitle">테스트 미션</a>
+                                <hr / style="margin-bottom:0; margin-top:10px;">
+                            </div>
+                            <div class="container-fluid" style="height:200px; overflow-y:scroll; padding:0; margin: 0 15px 30px 15px;">
+
+                                <div class="social-body" id="noticeContent" style="margin: 0px;">
+                                등록된 공지사항이 없습니다.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-feed-box" style="margin-bottom:10px;">
+                          <div class="ibox-title" style="border-top:0;">
+                              <h5>질문 게시판</h5><span class="label label-default pull-right more"><a href="questions.html">더보기</a></span>
+                          </div>
+                          <div class="container-fluid" style="height:300px; overflow-y:scroll; padding:0; margin: 0 15px 30px 15px;">
+                            <div class="faq-item" style="padding-top:0;">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="social-feed-box" style="margin-bottom:10px;">
+                          <div class="ibox-title" style="border-top:0;">
+                              <h5>기능 개선 토론장</h5><span class="label label-default pull-right more"><a href="forum.html">더보기</a></span>
+                          </div>
+                          <div class="container-fluid" style="height:300px; overflow-y:scroll; padding:0; margin: 0 15px 30px 15px;">
+                            <div class="faq-item" style="padding-top:0;">
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="ibox float-e-margins">
+                                <div class="ibox-title" style="border:0;">
+                                    <h5>보상</h5>
+                                </div>
+                                  <div class="ibox-content" style="padding-bottom:1px;">
+                                      <table class="table table-stripped small m-t-md">
+                                          <tbody class="reward-tbody">
+                                            <tr class="tr-top">
+                                                <td class="no-borders">
+                                                    <i class="fa fa-trophy trophy-gold"></i>
+                                                </td>
+                                                <td class="no-borders" id="reward_gold" style="text-align:right">
+                                                    <p></p>
+                                                    <strong></strong>
+                                                </td>
+                                            </tr>
+                                            <tr class="tr-top">
+                                                <td>
+                                                    <i class="fa fa-trophy trophy-silver"></i>
+                                                </td>
+                                                <td id="reward_silver" style="text-align:right">
+                                                    <p></p>
+                                                    <strong></strong>
+                                                </td>
+                                            </tr>
+                                            <tr class="tr-top">
+                                                <td>
+                                                    <i class="fa fa-trophy trophy-bronze"></i>
+                                                </td>
+                                                <td id="reward_bronze" style="text-align:right">
+                                                    <p></p>
+                                                    <strong></strong>
+                                                </td>
+                                            </tr>
+                                            <tr class="tr-top">
+                                                <td>
+                                                    <span class="reward-rank">일반</span>
+                                                </td>
+                                                <td id="reward_normal" style="text-align:right">
+                                                    <p></p>
+                                                    <strong></strong>
+                                                </td>
+                                            </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="ibox float-e-margins">
+                                <div class="ibox-title" style="border:0;">
+                                    <h5>진행 상황</h5><span class="label label-default pull-right more"><a href="calendar.html">더보기</a></span>
+                                </div>
+                                  <div class="ibox-content" style="padding-bottom:1px; height:283px;">
+                                      <table class="table table-stripped small m-t-md">
+                                          <tbody class="progress-tbody" style="font-size:8px;">
+                                          <tr>
+                                              <td class="no-borders" style="padding-right: 0px;">
+                                                  <span class="reward-rank wating_bg">대기중</span>
+                                              </td>
+                                              <td class="no-borders" id="waiting" style="text-align:right;">
+
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td style="padding-right: 0px;">
+                                                  <span class="reward-rank recruitment_bg">모집중</span>
+                                              </td>
+                                              <td id="recruiting" style="text-align:right;">
+
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td style="padding-right: 0px;">
+                                                  <span class="reward-rank selection_bg">선정중</span>
+                                              </td>
+                                              <td id="selecting" style="text-align:right;">
+
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td style="padding-right: 0px;">
+                                                  <span class="reward-rank proceeding_bg">진행중</span>
+                                              </td>
+                                              <td id="proceeding" style="text-align:right;">
+
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td style="padding-right: 0px;">
+                                                  <span class="reward-rank end_bg">종료일</span>
+                                              </td>
+                                              <td id="endDate" style="text-align:right;">
+
+                                              </td>
+                                          </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="ibox float-e-margins" style="margin-top:5px;">
+                          <div class="ibox-title" style="border:0;">
+                              <h5>테스터 목록</h5><span class="label label-default pull-right more"><a href="testers.html">더보기</a></span>
+                          </div>
+                          <div class="ibox-content">
+                              <div class="container-fluid" style="padding:0; margin-bottom:5px; overflow-y:scroll; height:665px;">
+                                  <div class="users-list">
+
+                                  </div>
+                              </div>
+                              <div class="container-fluid small-text"><p style="padding:0;" class="pull-right" id="testerNumber"></p></div>
+                          </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal inmodal fade" id="modalProfile" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                  <div class="row">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <div class="col-xs-6">
+                      <div class="col-xs-12 text-center p-t-xxl">
+                        <div style="margin: auto; width: 108px; height: 108px; border-radius: 120px; padding-top: 4px; background-color: #e1e1e1; margin-bottom: 0; line-height: 96px;">
+                            <div style="position: relative; margin: 0 auto; width: 100px; height: 100px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">
+                                <img alt="image" style="width: 100%;">
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 text-center">
+                          <h5></h5>
+                          <h3></h3>
+                          <h4 class="m-b" style="font-size:12px; font-weight:300">정확도 : 0%</h4>
+                          <h5></h5>
+                          <div class="col-xs-4 text-right">
+                              <i class="fa fa-trophy trophy-gold"></i>
+                          </div>
+                          <div class="col-xs-4">
+                              <i class="fa fa-trophy trophy-silver"></i>
+                          </div>
+                          <div class="col-xs-4 text-left">
+                              <i class="fa fa-trophy trophy-bronze"></i>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 b-l">
+                      <div class="client-detail">
+                        <div class="row m-b-sm">
+
+                            <div class="col-xs-12">
+                                <strong>
+                              About me
+                          </strong>
+
+                                <p>
+
+                                </p>
+                            </div>
+                        </div>
+
+                          <strong>기본 정보</strong>
+
+                          <ul class="list-group clear-list">
+                              <li class="list-group-item fist-item">
+                                  <span class="pull-right"> </span>
+                                  <i class="fa fa-caret-right condition-checked"></i>&ensp;이&emsp;름
+                              </li>
+                              <li class="list-group-item">
+                                  <span class="pull-right"> </span>
+                                  <i class="fa fa-caret-right  condition-checked"></i>&ensp;성&emsp;별
+                              </li>
+                              <li class="list-group-item">
+                                  <span class="pull-right"> </span>
+                                  <i class="fa fa-caret-right condition-checked"></i>&ensp;나&emsp;이
+                              </li>
+                              <li class="list-group-item">
+                                  <span class="pull-right"> </span>
+                                  <i class="fa fa-caret-right condition-checked"></i>&ensp;지&emsp;역
+                              </li>
+                              <li class="list-group-item">
+                                  <span class="pull-right"> </span>
+                                  <i class="fa fa-caret-right condition-checked"></i>&ensp;직&emsp;업
+                              </li>
+                              <li class="list-group-item">
+                                  <span class="pull-right"> </span>
+                                  <i class="fa fa-caret-right condition-checked"></i>&ensp;관심 분야
+                              </li>
+                              <li class="list-group-item">
+                                  <span class="pull-right"> </span>
+                                  <i class="fa fa-caret-right condition-checked"></i>&ensp;핸드폰 번호
+                              </li>
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <strong>추가 정보</strong>
+                  <ul class="list-group clear-list">
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="/dashboard_company/js/jquery-3.1.1.min.js"></script>
+    <script src="/dashboard_company/js/bootstrap.min.js"></script>
+    <script src="/dashboard_company/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/dashboard_company/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="/dashboard_company/js/nav.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/dashboard_company/js/inspinia.js"></script>
+    <script src="/dashboard_company/js/plugins/pace/pace.min.js"></script>
+
+    <!-- Morris -->
+    <script src="/dashboard_company/js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="/dashboard_company/js/plugins/morris/morris.js"></script>
+
+    <script src="/dashboard_company/js/plugins/timeago/jquery.timeago.js"></script>
+    <script src="/dashboard_company/js/plugins/timeago/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
+
+    <script>
+        $(document).ready(function() {
+          var params = document.location.href.split("dashboard_company/dashboard/");
+          var pid = params[1].split('#')[0];
+          var conditions = '';
+
+          $('a[href="reports.html"]').attr('href', '/dashboard_company/reports/'+pid);
+          $('a[href="testers.html"]').attr('href', '/dashboard_company/testers/'+pid);
+          $('a[href="calendar.html"]').attr('href', '/dashboard_company/calendar/'+pid);
+          $('a[href="notices.html"]').attr('href', '/dashboard_company/notices/'+pid);
+          $('a[href="questions.html"]').attr('href', '/dashboard_company/questions/'+pid);
+          $('a[href="forum.html"]').attr('href', '/dashboard_company/forum/'+pid);
+
+          $.ajax({
+            url:'/api/projects/'+pid,
+            type:'get',
+            cache:false,
+            async:false,
+            success:function(data){
+              if(data[0] == null) {
+                alert('잘못된 접근입니다.');
+                location.replace('/');
+              }
+              else {
+                conditions = JSON.parse(data[0].conditions);
+
+                $('#reward_gold p').html(data[0].goldCount + '명');
+                $('#reward_silver p').html(data[0].silverCount + '명');
+                $('#reward_bronze p').html(data[0].bronzeCount + '명');
+                $('#reward_normal p').html(data[0].normalCount + '명');
+                $('#reward_gold strong').html(numberWithCommas(data[0].reward_gold));
+                $('#reward_silver strong').html(numberWithCommas(data[0].reward_silver));
+                $('#reward_bronze strong').html(numberWithCommas(data[0].reward_bronze));
+                $('#reward_normal strong').html(numberWithCommas(data[0].reward_normal));
+
+                var startDateArray = data[0].startDateArray;
+                $('#waiting').html(getPeriod(startDateArray[0], startDateArray[1]));
+                $('#recruiting').html(getPeriod(startDateArray[1], startDateArray[2]));
+                $('#selecting').html(getPeriod(startDateArray[2], startDateArray[3]));
+                $('#proceeding').html(getPeriod(startDateArray[3], startDateArray[4]));
+                $('#endDate').html(getFormatDate(new Date(startDateArray[4])).slice(2));
+
+                $('.proceeding_color').html(data[0].progressState);
+                progressStateHighlight(data[0].progressState);
+
+                var diffDay = Math.ceil((new Date(startDateArray[4]) - new Date())/1000/60/60/24);
+                $('h2.font-bold').eq(0).html('D ' + ((diffDay >= 0) ? '- ' : '+ ') + '' + Math.abs(diffDay));
+                $('h2.font-bold').eq(1).html(data[0].numOfApplicant);
+
+                var j = 0;
+                for(var i=0; i<data[0].reportCount; i++) {
+                  var reports = JSON.parse(data[0].reports);
+                  var period = JSON.parse(data[0].period);
+                  var percent = (data[0].numOfApplicant == 0) ? 0 : ((reports[i].submitCount / data[0].numOfApplicant) * 100).toFixed(0);
+                  var proceedingReport = data[0].proceedingReport;
+
+                  $('#reportState').append(
+                    '<div>' +
+                        '<span>' + ((proceedingReport == reports[i].title) ? '<strong>' : '') + reports[i].title + ((proceedingReport == reports[i].title) ? '</strong>' : '') + '</span>' +
+                        '<span class="m-l-md small-text" style="font-weight: normal">(' + getPeriod(period[3].reports[j].startDate, period[3].reports[j+1].startDate) + ')</span>' +
+                        '<small class="pull-right">' + reports[i].submitCount + ' / ' + data[0].numOfApplicant + ' (' + percent + '%)</small>' +
+                    '</div>' +
+                    '<div class="progress progress-small ' + ((proceedingReport == reports[i].title) ? 'progress-striped active' : '') + '">' +
+                        '<div style="width: ' + percent + '%;" class="progress-bar ' + ((proceedingReport == reports[i].title) ? 'progress-bar-success' : '') + '"></div>' +
+                    '</div>' +
+                    '<div class="check-wrapper">' +
+                        '<span>' + ((proceedingReport == reports[i].title.split(' ')[0] + ' 점검') ? '<strong>' : '') + reports[i].title.split(' ')[0] + ' 점검&emsp;' + ((proceedingReport == reports[i].title.split(' ')[0] + ' 점검') ? '</strong>' : '') + '</span>' +
+                        '<span class="m-l-md small-text" style="font-weight: normal">(' + getFormatDate(new Date(period[3].reports[j+1].startDate)) + ')</span>' +
+                    '</div>'
+                  );
+                  j = j + 2;
+                }
+                $('#noticeTitle').html(data[0].testLink);
+                if(data[0].testLink.match('http://') || data[0].testLink.match('https://')) {
+                  $('#noticeTitle').attr('href', data[0].testLink);
+                }
+                else {
+                  $('#noticeTitle').attr('href', 'http://' + data[0].testLink);
+                }
+                $('#noticeContent').html(data[0].testContent);
+              }
+
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          $.ajax({
+            url:'/api/tester-list/'+pid,
+            type:'get',
+            cache:false,
+            success:function(data){
+              for(var i=0; i<data.length; i++) {
+                $('.users-list').append(
+                  '<div class="chat-user" id="tester-list' + i + '">' +
+                      '<div class="pull-left" style="margin: auto; width: 39px; height: 39px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 33px;">' +
+                          '<div style="position: relative; margin: 0 auto; width: 35px; height: 35px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                              '<img src="' + data[i].profileImage + '" alt="" style="width: 100%;">' +
+                          '</div>' +
+                      '</div>' +
+                      '<div class="chat-user-name">' +
+                          '<a style="margin-left: 15px;">' + data[i].nickname + '</a>' +
+                      '</div>' +
+                  '</div>'
+                );
+
+                $('div.chat-user#tester-list' + i + ' a').click(function() {
+                  var id = $(this).parent('div.chat-user-name').parent().attr('id').split('tester-list')[1];
+                  $('#modalProfile img').attr('src', data[id].profileImage);
+                  $('#modalProfile h5').eq(0).html('Lv' + data[id].level + ' ' + data[id].levelName);
+                  $('#modalProfile h3').html(data[id].nickname);
+                  $('#modalProfile h5').eq(1).html('프로젝트 참여 횟수 : ' + data[id].testCount);
+                  $('#modalProfile h4.m-b').html('정확도 : ' + data[id].accuracyRate + '%');
+                  $('#modalProfile .trophy-gold').html('&ensp;' + data[id].goldCount);
+                  $('#modalProfile .trophy-silver').html('&ensp;' + data[id].silverCount);
+                  $('#modalProfile .trophy-bronze').html('&ensp;' + data[id].bronzeCount);
+                  $('#modalProfile .modal-body p').html(data[id].introduction);
+                  $('#modalProfile .list-group-item span').eq(0).html(data[id].name);
+                  $('#modalProfile .list-group-item span').eq(1).html(data[id].gender);
+                  $('#modalProfile .list-group-item span').eq(2).html(data[id].age);
+                  $('#modalProfile .list-group-item span').eq(3).html(data[id].region);
+                  $('#modalProfile .list-group-item span').eq(4).html(data[id].job);
+                  $('#modalProfile .list-group-item span').eq(5).html(data[id].interestFields);
+                  $('#modalProfile .list-group-item span').eq(6).html(data[id].phoneNumber);
+                  $('#modalProfile div.modal-footer ul').html('');
+                  for(var i=0; i<conditions.questions.length; i++) {
+                    var questionAnswer = JSON.parse(data[id].questionAnswer);
+                    $('#modalProfile div.modal-footer ul').append(
+                      '<li class="list-group-item fist-item">' +
+                          '<i class="fa fa-caret-right condition-checked"></i>&ensp;Q' + (i+1) + '. ' + conditions.questions[i].question +
+                          '<div class="conAns container-flex">A. ' + questionAnswer[i].answer + '</div>' +
+                      '</li>'
+                    );
+                  }
+                  $('#modalProfile').modal();
+                });
+
+              }
+              $('#testerNumber').html(data.length + '명');
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          $.ajax({
+            url:'/api/dashboardQuestions/'+pid,
+            type:'get',
+            cache:false,
+            success:function(data){
+              for(var i=0; i<data.length; i++) {
+                $('.faq-item').eq(0).append(
+                  '<div class="row">' +
+                      '<div class="social-avatar">' +
+                          '<div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">' +
+                              '<div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                  '<img alt="image" src="' + data[i].profileImage + '" style="width: 100%;">' +
+                              '</div>' +
+                          '</div>' +
+                          '<div class="media-body" id="question-list' + i + '" style="padding: 15px;">' +
+                                  '<a>' + data[i].nickname + '</a>' +
+                              '<small class="text-muted">' + getFullFormatDate(new Date(data[i].registerDate)) + '</small>' +
+                          '</div>' +
+                      '</div>' +
+                      '<div class="social-body">' +
+                          data[i].question +
+                      '</div>' +
+                  '</div>'
+                );
+
+                $('div.media-body#question-list' + i + ' a').click(function() {
+                  var id = $(this).parent('div.media-body').attr('id').split('question-list')[1];
+                  $('#modalProfile img').attr('src', data[id].profileImage);
+                  $('#modalProfile h5').eq(0).html('Lv' + data[id].level + ' ' + data[id].levelName);
+                  $('#modalProfile h3').html(data[id].nickname);
+                  $('#modalProfile h5').eq(1).html('프로젝트 참여 횟수 : ' + data[id].testCount);
+                  $('#modalProfile h4.m-b').html('정확도 : ' + data[id].accuracyRate + '%');
+                  $('#modalProfile .trophy-gold').html('&ensp;' + data[id].goldCount);
+                  $('#modalProfile .trophy-silver').html('&ensp;' + data[id].silverCount);
+                  $('#modalProfile .trophy-bronze').html('&ensp;' + data[id].bronzeCount);
+                  $('#modalProfile .modal-body p').html(data[id].introduction);
+                  $('#modalProfile .list-group-item span').eq(0).html(data[id].name);
+                  $('#modalProfile .list-group-item span').eq(1).html(data[id].gender);
+                  $('#modalProfile .list-group-item span').eq(2).html(data[id].age);
+                  $('#modalProfile .list-group-item span').eq(3).html(data[id].region);
+                  $('#modalProfile .list-group-item span').eq(4).html(data[id].job);
+                  $('#modalProfile .list-group-item span').eq(5).html(data[id].interestFields);
+                  $('#modalProfile .list-group-item span').eq(6).html(data[id].phoneNumber);
+                  $('#modalProfile div.modal-footer ul').html('');
+                  for(var i=0; i<conditions.questions.length; i++) {
+                    var questionAnswer = JSON.parse(data[id].questionAnswer);
+                    $('#modalProfile div.modal-footer ul').append(
+                      '<li class="list-group-item fist-item">' +
+                          '<i class="fa fa-caret-right condition-checked"></i>&ensp;Q' + (i+1) + '. ' + conditions.questions[i].question +
+                          '<div class="conAns container-flex">A. ' + questionAnswer[i].answer + '</div>' +
+                      '</li>'
+                    );
+                  }
+                  $('#modalProfile').modal();
+                });
+
+
+              }
+              $('h2.font-bold').eq(2).html(data.length);
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          $.ajax({
+            url:'/api/dashboardForum/'+pid,
+            type:'get',
+            cache:false,
+            success:function(data){
+              for(var i=0; i<data.length; i++) {
+                $('.faq-item').eq(1).append(
+                  '<div class="row">' +
+                      '<div class="social-avatar">' +
+                          '<div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">' +
+                              '<div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                  '<img alt="image" src="' + data[i].profileImage + '" style="width: 100%;">' +
+                              '</div>' +
+                          '</div>' +
+                          '<div class="media-body" id="forum-list' + i + '" style="padding-left: 15px;">' +
+                              '<div class="social-title">' +
+                                  '<h3>' + data[i].title + '</h3>' +
+                              '</div>' +
+                              '<a>' + data[i].nickname + '</a>' +
+                              '<small class="text-muted">' + getFullFormatDate(new Date(data[i].registerDate)) + '</small>' +
+                          '</div>' +
+                      '</div>' +
+                      '<div class="social-body">' +
+                          data[i].content +
+                      '</div>' +
+                  '</div>'
+                );
+
+                $('div.media-body#forum-list' + i + ' a').click(function() {
+                  var id = $(this).parent('div.media-body').attr('id').split('forum-list')[1];
+                  $('#modalProfile img').attr('src', data[id].profileImage);
+                  $('#modalProfile h5').eq(0).html('Lv' + data[id].level + ' ' + data[id].levelName);
+                  $('#modalProfile h3').html(data[id].nickname);
+                  $('#modalProfile h5').eq(1).html('프로젝트 참여 횟수 : ' + data[id].testCount);
+                  $('#modalProfile h4.m-b').html('정확도 : ' + data[id].accuracyRate + '%');
+                  $('#modalProfile .trophy-gold').html('&ensp;' + data[id].goldCount);
+                  $('#modalProfile .trophy-silver').html('&ensp;' + data[id].silverCount);
+                  $('#modalProfile .trophy-bronze').html('&ensp;' + data[id].bronzeCount);
+                  $('#modalProfile .modal-body p').html(data[id].introduction);
+                  $('#modalProfile .list-group-item span').eq(0).html(data[id].name);
+                  $('#modalProfile .list-group-item span').eq(1).html(data[id].gender);
+                  $('#modalProfile .list-group-item span').eq(2).html(data[id].age);
+                  $('#modalProfile .list-group-item span').eq(3).html(data[id].region);
+                  $('#modalProfile .list-group-item span').eq(4).html(data[id].job);
+                  $('#modalProfile .list-group-item span').eq(5).html(data[id].interestFields);
+                  $('#modalProfile .list-group-item span').eq(6).html(data[id].phoneNumber);
+                  $('#modalProfile div.modal-footer ul').html('');
+                  for(var i=0; i<conditions.questions.length; i++) {
+                    var questionAnswer = JSON.parse(data[id].questionAnswer);
+                    $('#modalProfile div.modal-footer ul').append(
+                      '<li class="list-group-item fist-item">' +
+                          '<i class="fa fa-caret-right condition-checked"></i>&ensp;Q' + (i+1) + '. ' + conditions.questions[i].question +
+                          '<div class="conAns container-flex">A. ' + questionAnswer[i].answer + '</div>' +
+                      '</li>'
+                    );
+                  }
+                  $('#modalProfile').modal();
+                });
+
+              }
+              $('h2.font-bold').eq(3).html(data.length);
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+
+          function getFormatDate(date) {
+            	var year = date.getFullYear(); //yyyy
+            	var month = (1 + date.getMonth()); //M
+            	month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+            	var day = date.getDate(); //d
+            	day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+            	return year + '-' + month + '-' + day;
+          }
+
+          function getFullFormatDate(date) {
+              var year = date.getFullYear(); //yyyy
+              var month = (1 + date.getMonth()); //M
+              month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+              var day = date.getDate(); //d
+              day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+              var hour = date.getHours();
+              hour = hour >= 10 ? hour: '0' + hour;
+              var minute = date.getMinutes();
+              minute = minute >= 10 ? minute : '0' + minute; //minute 두자리로 저장
+              var second = date.getSeconds();
+              second = second >= 10 ? second : '0' + second;
+              return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+          }
+
+          function addDays(date, days) {
+              var result = new Date(date);
+              result.setDate(result.getDate() + days);
+              return getFormatDate(result);
+          }
+
+          function getPeriod(startDate, nextStartDate) {
+              return getFormatDate(new Date(startDate)).slice(2) + ' ~ ' + addDays(nextStartDate, -1).slice(2);
+          }
+
+          function progressStateHighlight(state) {
+              switch(state) {
+                case '대기중':
+                  $("#waiting").parent().addClass('active');
+                  break;
+                case '모집중':
+                  $("#recruiting").parent().addClass('active');
+                  break;
+                case '선정중':
+                  $("#selecting").parent().addClass('active');
+                  break;
+                case '진행중':
+                  $("#proceeding").parent().addClass('active');
+                  break;
+                case '종료':
+                  $("#endDate").parent().addClass('active');
+                  break;
+                default:
+                  break;
+              }
+          }
+
+          function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원';
+          }
+
+        });
+
+    </script>
+</body>
+
+</html>

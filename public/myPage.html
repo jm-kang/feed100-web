@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FEED100</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+
+    <!-- datapicker -->
+    <link href="assets/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="assets/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' type="text/css" href="assets/dzsparallaxer/dzsparallaxer.css" />
+    <link href="assets/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet">
+
+    <!--main css file-->
+    <link href="assets/css/style-myPage.css" rel="stylesheet">
+    <link href="assets/css/style-nav.css" rel="stylesheet">
+    <link href="assets/css/style-footer.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+  <!--preloader-->
+  <div id="preloader"></div>
+  <!--preloader-->
+  <!--  navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+  </nav>
+  <!--page title-->
+  <div class="dzsparallaxer auto-init" data-options='{   direction: "reverse"}' style="height: 500px;">
+
+      <div class="divimage dzsparallaxer--target " style="width: 101%; height: 600px; background-image: url(assets/images/bg-mypage-10.jpg)">
+      </div>
+      <div class=" parallax-text center-it text-center">
+        <div class="container-fluid profile-menu">
+          <div class="profile">
+            <div class="image-box">
+                <div class="image-upload">
+                    <label for="ex_filename">
+                      <div id="circle">
+                        <img id="profileImage" style="width:100%;" alt="image"/>
+                      </div>
+                    </label>
+                    <input type="file" id="ex_filename" class="upload-hidden" ame="ex_filename" accept="image/*">
+                </div>
+                <div class="name-box">
+                  <h5 class="level-wrapper"><span>Lv. <span id="level">1</span></span><span aria-hidden="true" data-toggle="modal" data-target="#myModal" style="cursor:pointer; font-size:13px; color:#344d5e; margin-left:8px;">수정</span></h5>
+                  <h5 class="name"></h5>
+                </div>
+            </div>
+
+            <div class="profile-summary">
+              <div class="progress-wrapper">
+                <div class="container-fluid exp-wrapper"><small class="pull-left">경험치</small><small class="pull-right exp"></small></div>
+                <div class="progress clearfix progress-small">
+                    <div class="progress-bar " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:70%"></div>
+                </div>
+              </div>
+              <div class="point-box" data-toggle="tooltip" data-placement="bottom" title="FEED100 포인트">
+                  <i class="fa fa-krw">
+
+                  </i><span class="fpoint"><strong></strong>&nbsp;원</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!--page title-->
+  <!--end navigation-->
+  <section id="myPage" class="container-fluid">
+
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class="active" id="infoList">
+                  <a class="ready-hide" data-toggle="tab" href="#tab">기본 정보</a>
+                  <a class="ready-hide-o" data-toggle="tab" href="#tab">기본<br />정보</a>
+                </li>
+                <li class="">
+                  <a class="ready-hide" data-toggle="tab" href="#tab-0">진행중인 프로젝트&ensp;</a>
+                  <a class="ready-hide-o" data-toggle="tab" href="#tab-0">진행중인<br />프로젝트</a>
+                  <span class="proceed-badge">0</span>
+                </li>
+                <li class="" id="activityList">
+                  <a class="ready-hide" data-toggle="tab" href="#tab-1">활동 내역</a>
+                  <a class="ready-hide-o" data-toggle="tab" href="#tab-1">활동<br />내역</a>
+                  <span class="reward-badge">0</span>
+                </li>
+                <li class="">
+                  <a class="ready-hide" data-toggle="tab" href="#tab-2">팔로우 현황</a>
+                  <a class="ready-hide-o" data-toggle="tab" href="#tab-2">팔로우<br />현황</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab" class="tab-pane active">
+                    <div class="panel-body">
+                      <div class="menu">
+                          <div class="col-xs-12">
+                            <div class="cureer container-fluid">
+                              <h3 class="margin-b-30">프로젝트 이력<a class="link-reward" aria-hidden="true" data-toggle="modal" data-target="#modalReward"><i class="fa fa-angle-right" style="margin-right:5px;"></i>보상내역 확인하기</a></h3>
+                              <div class="participation">
+                                <span>프로젝트 참여 횟수</span>
+                                <span id="testCount"></span>
+                              </div>
+
+                              <div class="container-fluid">
+                                <div class="col-xs-4"><span class="trophy-wrapper"><i class="fa fa-trophy trophy-gold"></i>&emsp;</span></div>
+                                <div class="col-xs-4"><span class="trophy-wrapper"><i class="fa fa-trophy trophy-silver"></i>&emsp;</span></div>
+                                <div class="col-xs-4"><span class="trophy-wrapper"><i class="fa fa-trophy trophy-bronze"></i>&emsp;</span></div>
+                              </div>
+                            </div>
+
+                            <div class="about-box">
+                                <h3 class="margin-b-30">기본 정보<i class="fa fa-cog" aria-hidden="true" data-toggle="modal" data-target="#myModal" style="cursor:pointer;"><small style="padding-left:3px; top:-2.7px; position:relative; font-weight:600;">수정하기</small></i></h3>
+                                <div class="col-sm-6">
+                                  <ul class="info-box1">
+                                    <li class="about-list">
+                                      <h5>닉네임</h5>
+                                      <div class="container-fluid" id="profileNickname">
+
+                                      </div>
+                                    </li>
+                                    <li class="about-list">
+                                      <h5>이&emsp;름</h5>
+                                      <div class="container-fluid" id="profileName">
+
+                                      </div>
+                                    </li>
+                                    <li class="about-list">
+                                      <h5>성&emsp;별</h5>
+                                      <div class="container-fluid" id="profileGender">
+
+                                      </div>
+                                    </li>
+                                    <li class="about-list">
+                                      <h5>나&emsp;이</h5>
+                                      <div class="container-fluid" id="profileAge">
+                                      </div>
+                                    </li>
+                                    <li class="about-list">
+                                      <h5>휴대폰 번호</h5>
+                                      <div class="container-fluid" id="profilePhonenum">
+
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                  <ul class="info-box2">
+                                    <li class="about-list">
+                                      <h5>자기소개</h5>
+                                      <div class="container-fluid" id="profileIntroduce">
+
+                                      </div>
+                                    </li>
+                                    <li class="about-list">
+                                      <h5>관심분야</h5>
+                                      <div class="container-fluid" id="profileInterests">
+
+                                      </div>
+                                    </li>
+                                    <li class="about-list">
+                                      <h5>직&emsp;업</h5>
+                                      <div class="container-fluid" id="profileJob">
+
+                                      </div>
+                                    </li>
+                                    <li class="about-list">
+                                      <h5>지&emsp;역</h5>
+                                      <div class="container-fluid" id="profileLocation">
+
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div id="tab-0" class="tab-pane">
+                    <div class="panel-body">
+                      <div class="col-xs-12">
+                        <h3 class="margin-b-30" id="proceedingProject">진행중인 프로젝트<span class="proceed-badge badge-danger">0</span></a></h3>
+                      </div>
+                    </div>
+                </div>
+
+                <div id="tab-1" class="tab-pane">
+                    <div class="panel-body">
+                      <div class="container-fluid stat-box">
+                          <div class="col-xs-4 stat-wrapper">
+                            <div class="condition-name ready-hide">모집 및 선정</div>
+                            <div class="condition-name ready-hide-o">모집 및<br />선정</div>
+                            <div class="text-wrapper">
+                              <i class="fa fa-file-text-o ready-hide" aria-hidden="true"></i>
+                              <span class="stat">0</span>
+                            </div>
+                          </div>
+                          <div class="col-xs-4 stat-wrapper">
+                            <span class="condition-name ready-hide">진행중인 프로젝트</span>
+                            <span class="condition-name ready-hide-o">진행중인<br />프로젝트</span>
+                            <div class="text-wrapper">
+                              <i class="fa fa-bar-chart ready-hide" aria-hidden="true"></i>
+                              <span class="stat">0</span>
+                            </div>
+                          </div>
+                          <div class="col-xs-4 stat-wrapper">
+                            <span class="condition-name ready-hide">보상 및 종료</span>
+                            <span class="condition-name ready-hide-o">보상 및<br />종료</span>
+                            <div class="text-wrapper">
+                              <i class="fa fa-gift ready-hide" aria-hidden="true"></i>
+                              <span class="stat">0</span>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12">
+                        <div class="space-40"></div>
+                        <h3 class="margin-b-30">활동 내역</h3>
+                        <div class="participation margin-b-20">
+                          <span>프로젝트 참여 횟수</span>
+                          <span id="testCount2"></span>
+                        </div>
+                        <div class="project-list">
+                            <table class="table table-hover">
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tab-2" class="tab-pane">
+                    <div class="panel-body">
+                        <h3 class="margin-b-30">팔로우 현황</h3>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+  </section>
+  <div class="space-20"></div>
+
+
+
+
+  <!--footer start-->
+  <footer class="footer"></footer>
+  <!--footer end-->
+  <!--back to top-->
+  <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up"></i></a>
+  <!--back to top end-->
+
+  <div class="modal inmodal fade" id="modalQuestion" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="condition-wrapper" style="padding-top:0px;">
+            <div style="font-size: 12px; text-align: center;">
+              축하합니다. 우수 보고서로 선정되어 기업이 남긴 마지막 질문입니다.
+              <p>해당 질문에 대해 답변하시면 보상을 받을 수 있습니다.</p>
+            </div>
+            <h4></h4>
+            <input type="text" placeholder="" class="form-control" id="modalAnswer">
+          </div>
+          <button type="button" class="btn btn-block btn-join btn-noborder">등록하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal inmodal fade" id="modalReward" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="condition-wrapper" style="padding-top:0px;">
+            <h3 class="margin-b-20" style="margin-left:0;">보상내역</h3>
+            <div class="reward-list container-fluid" class="padding:0;">
+
+              <!-- 보상 아이템 -->
+
+              <!-- 보상 아이템 끝 -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content animated bounceInLeft">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">프로필 수정</h4>
+                  <small class="font-bold">자신을 잘 표현해보세요.</small>
+              </div>
+              <div class="modal-body">
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        <div class="form-group"><label class="col-sm-3 control-label">닉네임</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="m-profileNickname"></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">이름</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="m-profileName"></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">성별</label>
+                            <div class="col-sm-9"><select class="form-control m-b" name="account" id="m-profileGender">
+                                <option>성별 선택</option>
+                                <option>남자</option>
+                                <option>여자</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">나이</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="m-profileAge"></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">직업</label>
+                            <div class="col-sm-9"><select class="form-control m-b" name="account" id="m-profileJob">
+                                <option>직업 선택</option>
+                                <option>직장인</option>
+                                <option>학생</option>
+                                <option>전업주부</option>
+                                <option>기타</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">지역</label>
+
+                            <div class="col-sm-9">
+                              <select class="form-control m-b" name="sido1" id="m-profileLocation"></select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label" style="padding-top:0;">관심분야 <br/>
+                            <small class="text-navy">다중 선택 가능</small></label>
+                            <div class="col-sm-9 checkboxClass" id="m-profileInterests">
+                                <div><label> <input type="checkbox" value="하드웨어"> 하드웨어 </label></div>
+                                <div><label> <input type="checkbox" value="웹 서비스"> 웹 서비스 </label></div>
+                                <div><label> <input type="checkbox" value="모바일 어플리케이션"> 모바일 어플리케이션 </label></div>
+                                <div><label> <input type="checkbox" value="게임"> 게임 </label></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-3 control-label">휴대폰 번호</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="m-profilePhoneNum"></div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-3 control-label">자기소개</label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="m-profileIntroduce"> <span class="help-block m-b-none" style="text-align:left"><small>자기 자신을 잘 표현할 수록 프로젝트 선정 가능성이 커집니다.</small></span></div>
+                        </div>
+
+
+                    </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-block btn-lg btn-noborder" id="modify">수정하기</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <!-- jQuery plugins-->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/jquery-migrate.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/bower_components/flexslider/jquery.flexslider-min.js"></script>
+    <script src="assets/dzsparallaxer/dzsparallaxer.js" type="text/javascript"></script>
+    <script src="assets/js/template-custom.js" type="text/javascript"></script>
+
+    <!-- Data picker -->
+    <script src="assets/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+    <script src="/assets/js/nav.js"></script>
+    <script src="/assets/js/footer.js"></script>
+
+    <script>
+        $('document').ready(function() {
+          $('[data-toggle="tooltip"]').tooltip();
+          var fileTarget = $('.upload-hidden');
+          fileTarget.on('change', function() { // 값이 변경되면
+              var filename = '';
+              var upload_hidden = $(this);
+
+              if (window.FileReader) { // modern browser
+                  var filename = $(this)[0].files[0].name;
+              } else { // old IE
+                  var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+              }
+
+              var u = URL.createObjectURL(this.files[0]);
+              var img = new Image;
+              img.src = u;
+
+              img.onload = function() {
+                if (upload_hidden[0].files && upload_hidden[0].files[0]) {
+                  var formData = new FormData();
+                  formData.append('ex_filename', upload_hidden[0].files[0]);
+                  $.ajax({
+                    url:'/api/upload/images',
+                    type:'post',
+                    cache:false,
+                    processData: false,  // file전송시 필수
+                    contentType: false,  // file전송시 필수
+                    data:formData,
+                    success:function(data){
+                      var profileImage = data;
+                      $.ajax({
+                        url:'/api/profileImage',
+                        type:'post',
+                        cache:false,
+                        data:{profileImage: profileImage},
+                        success:function(data) {
+                          $('#profileImage').attr('src', profileImage);
+                          window.location.reload();
+                        },
+                        error:function(data) {
+                          alert('오류가 발생했습니다.');
+                        }
+                      });
+                    },
+                    error:function(data){
+                      alert('오류가 발생했습니다.');
+                    }
+                  });
+                }
+              };
+          });
+
+
+          var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
+
+          // 시/도 선택 박스 초기화
+          $("select[name^=sido]").each(function() {
+            $selsido = $(this);
+            $.each(eval(area0), function() {
+              $selsido.append("<option value='"+this+"'>"+this+"</option>");
+            });
+          });
+
+          $.ajax({
+            url:'/api/users',
+            type:'get',
+            cache:false,
+            success:function(data){
+              $('#profileImage').attr('src', data[0].profileImage);
+              $('h5.name').html(data[0].nickname);
+              $('#level').html(data[0].level + ' ' + data[0].levelName);
+              var percent = (data[0].experiencePoint / data[0].requiredExperiencePoint * 100).toFixed(1) + '%';
+              $('.exp').html(percent + ' (' + data[0].experiencePoint + ' / ' + data[0].requiredExperiencePoint + ')');
+              $('.progress-bar').css('width', percent);
+              $('.fpoint').children().html(numberWithCommas(data[0].point));
+              $('#testCount').html(data[0].testCount + '회');
+              $('#testCount2').html(data[0].testCount + '회');
+              $('.trophy-gold').parent().append(data[0].goldCount);
+              $('.trophy-silver').parent().append(data[0].silverCount);
+              $('.trophy-bronze').parent().append(data[0].bronzeCount);
+              $('#profileNickname').html(data[0].nickname);
+              $('#profileName').html(data[0].name);
+              $('#profileAge').html(data[0].age);
+              $('#profileGender').html(data[0].gender);
+              $('#profilePhonenum').html(data[0].phoneNumber);
+              $('#profileIntroduce').html(data[0].introduction);
+              $('#profileInterests').html(data[0].interestFields);
+              $('#profileJob').html(data[0].job);
+              $('#profileLocation').html(data[0].region);
+
+              if(data[0].testCount == 0) {
+                $('.reward-list').html(
+                  '<div class="container-fluid no-proceed text-center" style="margin-top:50px;">' +
+                      '<h5><i class="fa fa-exclamation" aria-hidden="true"></i>아직 보상받기를 안 하셨나요? 활동내역에서 활동이 끝난 프로젝트를 보상받아 보세요!</h5>' +
+                      '<a  data-toggle="tab" href="#tab-1" class="btn btn-lg btn-border-blue" onClick="linkActivityList()"; style="margin-top:20px; position:relative;margin-bottom:20px" data-dismiss="modal">활동내역으로 이동하기</a>' +
+                  '</div>'
+                );
+              };
+
+              // 프로필 수정 모달
+              $('#m-profileNickname').val(convertHtmlToSystemSource(data[0].nickname));
+              $('#m-profileName').val(convertHtmlToSystemSource(data[0].name));
+              if(data[0].gender) {
+                $('#m-profileGender').val(data[0].gender).attr('selected', true);
+              }
+              else {
+                $('#m-profileGender').val('성별 선택').attr('selected', true);
+              }
+              $('#m-profileAge').val(convertHtmlToSystemSource(data[0].age));
+              if(data[0].job) {
+                $('#m-profileJob').val(data[0].job).attr('selected', true);
+              }
+              else {
+                $('#m-profileJob').val('직업 선택').attr('selected', true);
+              }
+              if(data[0].region) {
+                $('#m-profileLocation').val(data[0].region).attr('selected', true);
+              }
+              else {
+                $('#m-profileLocation').val('시/도 선택').attr('selected', true);
+              }
+              if(data[0].phoneNumber) {
+                  $('#m-profilePhoneNum').val(data[0].phoneNumber.replace(/\-/g,''));
+              }
+              else {
+                $('#m-profilePhoneNum').val('');
+              }
+
+              var interestArray = (data[0].interestFields) ? (data[0].interestFields).split(', ') : [];
+              for(var i=0; i<interestArray.length; i++) {
+                $('#m-profileInterests input[value="'+interestArray[i]+'"]').attr('checked', true);
+              }
+              $('#m-profileIntroduce').val(convertHtmlToSystemSource(data[0].introduction));
+
+              $('#myModal').on('hidden.bs.modal', function () {
+                $('#m-profileNickname').val(convertHtmlToSystemSource(data[0].nickname));
+                $('#m-profileName').val(convertHtmlToSystemSource(data[0].name));
+                if(data[0].gender) {
+                  $('#m-profileGender').val(data[0].gender).attr('selected', true);
+                }
+                else {
+                  $('#m-profileGender').val('성별 선택').attr('selected', true);
+                }
+                $('#m-profileAge').val(convertHtmlToSystemSource(data[0].age));
+                if(data[0].job) {
+                  $('#m-profileJob').val(data[0].job).attr('selected', true);
+                }
+                else {
+                  $('#m-profileJob').val('직업 선택').attr('selected', true);
+                }
+                if(data[0].region) {
+                  $('#m-profileLocation').val(data[0].region).attr('selected', true);
+                }
+                else {
+                  $('#m-profileLocation').val('시/도 선택').attr('selected', true);
+                }
+                if(data[0].phoneNumber) {
+                    $('#m-profilePhoneNum').val(data[0].phoneNumber.replace(/\-/g,''));
+                }
+                else {
+                  $('#m-profilePhoneNum').val('');
+                }
+
+                var interestArray = (data[0].interestFields) ? (data[0].interestFields).split(', ') : [];
+                for(var i=0; i<interestArray.length; i++) {
+                  $('#m-profileInterests input[value="'+interestArray[i]+'"]').attr('checked', true);
+                }
+                $('#m-profileIntroduce').val(convertHtmlToSystemSource(data[0].introduction));
+              });
+
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          $.ajax({
+            url:'/api/test-history',
+            type:'get',
+            cache:false,
+            success:function(data){
+              $('.reward-badge').html(data.length);
+              for(var i=0; i<data.length; i++) {
+                if(data[i].progressState == '진행중') {
+                  $('#proceedingProject').after(
+                    '<div class="col-sm-4" style="margin-top: 10px;">' +
+                        '<div class="person-col">' +
+                            '<img src="' + data[i].projectImage + '" alt="" class="img-responsive">' +
+                            '<a href="/project/' + data[i].pid + '">' +
+                                '<div class="person-overlay">' +
+                                    '<div class="person-inner">' +
+                                        '<h4 class="text-uppercase">' + data[i].projectTitle + '</h4>' +
+                                        '<span>by ' + data[i].companyName + '</span>' +
+                                    '</div>' +
+                                '</div><!--person overlay end-->' +
+                            '</a>' +
+                        '</div><!--person col end-->' +
+                    '</div><!--col-->'
+                    );
+                }
+                $('.project-list tbody').append(
+                  '<tr>' +
+                    '<td class="project-img ready-hide">' +
+                        '<img alt="image" class="img-rounded" src="' + data[i].projectImage + '">' +
+                    '</td>' +
+                      '<td class="project-title">' +
+                          '<a href="/project/' + data[i].pid + '">' + data[i].projectTitle + '</a>' +
+                          '<br/>' +
+                          '<small>by ' + data[i].companyName + '</small>' +
+                      '</td>' +
+                      '<td class="project-completion ready-hide">' +
+                              '<small>모집인원: ' + (data[i].numOfApplicant/data[i].numOfRecruitment*100).toFixed(1) + '% (' + data[i].numOfApplicant  + ' / ' + data[i].numOfRecruitment + ')' + '</small>' +
+                              '<div class="progress clearfix progress-small">' +
+                                  '<div class="progress-bar " role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:' + (data[i].numOfApplicant/data[i].numOfRecruitment*100).toFixed(1) + '%"></div>' +
+                              '</div>' +
+                      '</td>' +
+                      '<td class="project-actions ready-hide">' +
+                          '보상금 <small>max</small>' +
+                          '<h5>' + numberWithCommas(data[i].reward_gold) + ' <small>원</small></h5>' +
+                      '</td>' +
+                      '<td class="project-status">' +
+                          '<span class="label ' + getClassByProgressState(data[i].progressState) + '">' + data[i].progressState + '</span>' +
+                      '</td>' +
+                  '</tr>'
+                );
+                if(data[i].progressState == '모집중' || data[i].progressState == '선정중') {
+                  $('.stat').eq(0).html(Number($('.stat').eq(0).html())+1);
+                }
+                if(data[i].progressState == '진행중') {
+                  $('.stat').eq(1).html(Number($('.stat').eq(1).html())+1);
+                  $('.proceed-badge').html(Number($('.proceed-badge').html())+1);
+                }
+                if(data[i].progressState == '종료' && data[i].rewardDate == null) {
+                  $('.stat').eq(2).html(Number($('.stat').eq(2).html())+1);
+                  $('.project-status').eq(-1).html('<span class="label label-default gift" id="reward-list' + i + '">보상 받기</span>');
+                  $('.project-status').eq(-1).find('span.label.label-default.gift#reward-list' + i).click(function() {
+                    var id = $(this).attr('id').split('reward-list')[1];
+                    var tid = data[id].tid;
+                    var reportQuestion = JSON.parse(data[id].reportQuestion);
+                    var reportCount = data[id].reportCount;
+                    if(reportQuestion[reportCount-1].question) {
+                      $('#modalQuestion .modal-body h4').html('Q .' + reportQuestion[reportCount-1].question);
+                      $('#modalQuestion').modal();
+                      $('#modalQuestion .modal-body button').unbind('click');
+                      $('#modalQuestion .modal-body button').click(function() {
+                        if($('#modalQuestion .modal-body input').val() == '') {
+                          alert('내용을 입력하고 다시 시도해주세요.');
+                        }
+                        else {
+                          reportQuestion[reportCount-1].answer = convertSystemSourceToHtml($('#modalQuestion .modal-body input').val());
+                          $('#modalQuestion').modal('hide');
+                          $.ajax({
+                            url:'/api/reportQuestionAnswer/'+tid,
+                            type:'post',
+                            cache:false,
+                            data:{reportQuestion : JSON.stringify(reportQuestion)},
+                            success:function(data) {
+                              $.ajax({
+                                url:'/api/reward/'+tid,
+                                type:'post',
+                                cache:false,
+                                success:function(data){
+                                  $('tbody').append(
+                                    '<div class="modal inmodal" id="giftModal" tabindex="-1" role="dialog" aria-hidden="true">' +
+                                        '<div class="modal-dialog">' +
+                                        '<div class="modal-content animated tada">' +
+                                                '<div class="modal-header">' +
+                                                    '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' +
+                                                    '<img src="assets/images/trophy-' + data.trophy + '.png" alt="">' +
+                                                '</div>' +
+                                                '<div class="modal-body">' +
+                                                  '<div class="ibox-content">' +
+                                                    '<h1>축하합니다!</h1>' +
+                                                    '<h2>참가하신 프로젝트에서 <strong>' + data.score + '점(' + data.ranking + '등)</strong>을 받아 <strong style="color:#FECF0F">' + getTrophyToKorean(data.trophy) + '</strong>을 수상했습니다!</h2>' +
+                                                    '<h3>보상으로 <strong style="color:#EA9AA5">경험치 + ' + data.experiencePoint + 'exp</strong>와 <strong style="color:#4AA6F9">' + numberWithCommas(data.point) + ' 포인트</strong>를 지급해드렸습니다!</h3>' +
+                                                  '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>'
+                                  );
+                                  $('#giftModal').modal();
+                                  $('#giftModal').on('hidden.bs.modal', function () {
+                                    window.location.reload();
+                                  });
+                                },
+                                error:function(data){
+                                  alert('오류가 발생했습니다.');
+                                }
+                              });
+                            },
+                            error:function(data) {
+                              alert('오류가 발생했습니다.');
+                            }
+                          });
+                        }
+                      });
+                    }
+                    else {
+                      $.ajax({
+                        url:'/api/reward/'+tid,
+                        type:'post',
+                        cache:false,
+                        success:function(data){
+                          $('tbody').append(
+                            '<div class="modal inmodal" id="giftModal" tabindex="-1" role="dialog" aria-hidden="true">' +
+                                '<div class="modal-dialog">' +
+                                '<div class="modal-content animated tada">' +
+                                        '<div class="modal-header">' +
+                                            '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' +
+                                            '<img src="assets/images/trophy-' + data.trophy + '.png" alt="">' +
+                                        '</div>' +
+                                        '<div class="modal-body">' +
+                                          '<div class="ibox-content">' +
+                                            '<h1>축하합니다!</h1>' +
+                                            '<h2>참가하신 프로젝트에서 <strong>' + data.score + '점(' + data.ranking + '등)</strong>을 받아 <strong style="color:#FECF0F">' + getTrophyToKorean(data.trophy) + '</strong>을 수상했습니다!</h2>' +
+                                            '<h3>보상으로 <strong style="color:#EA9AA5">경험치 + ' + data.experiencePoint + 'exp</strong>와 <strong style="color:#4AA6F9">' + numberWithCommas(data.point) + ' 포인트</strong>를 지급해드렸습니다!</h3>' +
+                                          '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>'
+                          );
+                          $('#giftModal').modal();
+                          $('#giftModal').on('hidden.bs.modal', function () {
+                            window.location.reload();
+                          });
+                        },
+                        error:function(data){
+                          alert('오류가 발생했습니다.');
+                        }
+                      });
+                    }
+
+                  });
+                }
+                if(data[i].progressState == '종료' && data[i].rewardDate) {
+                  $('.stat').eq(2).html(Number($('.stat').eq(2).html())+1);
+                  $('.reward-list').append(
+                  '<div class="reward-item container-fluid col-xs-12 col-ssm-6 col-sm-12">' +
+                    '<div class="col-sm-12 reward-project reward-question container-fluid" style="padding:0;">' +
+                        '<div class="col-sm-3 project-img text-center">' +
+                          '<img src="' + data[i].projectImage + '" alt="">' +
+                        '</div>' +
+                        '<div class="col-sm-4 reward-name">' +
+                          '<h4><a href="/project/' + data[i].pid + '">' + data[i].projectTitle + '</a></h4>' +
+                          '<small>by <strong>' + data[i].companyName + '</strong></small>' +
+                        '</div>' +
+                        '<div class="col-sm-3 reward-date text-center">' +
+                          '<span><small><strong>보상받은 날짜</strong></small></span><br/>' +
+                          '<i class="fa fa-clock-o"></i>&ensp;' + getFormatDate(new Date(data[i].rewardDate)) +
+                        '</div>' +
+                        '<div class="col-xs-2 text-center ready-hide" style="border-left:1px solid #fff; padding:0;">' +
+                          '<span><small><strong>등수</strong></small></span><br/>' +
+                          '<span class="fa-stack fa-lg trophy-' + data[i].trophy + '-wrapper">' +
+                              '<i class="fa fa-trophy trophy-' + data[i].trophy + ' fa-stack-2x "></i>' +
+                              '<i class="fa fa-stack-1x">' + data[i].ranking + '</i>' +
+                          '</span>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-sm-12">' +
+                        '<div class="reward-answer container-fluid">' +
+                          '<div class="col-sm-6">' +
+                            '<ul class="info-box1">' +
+                              '<li class="about-list">' +
+                                '점&ensp;수' +
+                                '<span class="pull-right">' + data[i].score + '</span>' +
+                              '</li>' +
+                              '<li class="about-list">' +
+                                '등&ensp;수' +
+                                '<span class="pull-right">' + data[i].ranking + '</span>' +
+                              '</li>' +
+                              '<li class="about-list">' +
+                                '수&ensp;상' +
+                                '<span class="pull-right">' + getTrophyToKorean(data[i].trophy) + '</span>' +
+                              '</li>' +
+                            '</ul>' +
+                          '</div>' +
+                          '<div class="col-sm-6">' +
+                            '<ul class="info-box2">' +
+                              '<li class="about-list">' +
+                                '경험치' +
+                                '<span class="pull-right">' + data[i].experiencePoint + '&nbsp;exp</span>' +
+                              '</li>' +
+                              '<li class="about-list">' +
+                                '포인트' +
+                                '<span class="pull-right">' + numberWithCommas(data[i].point) + '&nbsp;포인트' +
+                              '</li>' +
+                            '</ul>' +
+                          '</div>' +
+                        '</div>' +
+                    '</div>' +
+                  '</div>'
+                  );
+                }
+              }
+              if(Number($('.proceed-badge').text()) == 0) {
+                $('#proceedingProject').after(
+                  '<div class="container-fluid no-proceed text-center">' +
+                      '<h5><i class="fa fa-exclamation" aria-hidden="true"></i>아직 진행중인 프로젝트가 없습니다. 프로젝트 둘러보기를 통해 새로운 프로젝트에 참여해보세요.</h5>' +
+                      '<a href="/explore.html" class="btn btn-lg btn-border-blue" style="margin-top:20px; position:relative">프로젝트 둘러보러 가기</a>' +
+                  '</div>'
+                );
+
+                if(data.length == 0) {
+                  $('.project-list').html(
+                    '<div class="container-fluid no-proceed text-center" style="margin-top:50px;">' +
+                        '<h5><i class="fa fa-exclamation" aria-hidden="true"></i>이제 시작하셨나요? 프로젝트 둘러보기를 페이지를 통해 참여하고 싶은 프로젝트를 신청해보세요!</h5>' +
+                        '<a href="/explore.html" class="btn btn-lg btn-border-blue" style="margin-top:20px; position:relative">프로젝트 둘러보러 가기</a>' +
+                    '</div>'
+                  );
+                }
+              }
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          // 질문 모달 답 포커스 잡는 함수
+          $('#modalQuestion').on('shown.bs.modal', function () {
+              $('#modalAnswer').focus();
+          });
+
+        });
+
+        $.ajax({
+          url:'/api/follows',
+          type:'get',
+          cache:false,
+          success:function(data){
+            for(var i=0; i<data.length; i++) {
+              $('#tab-2 .panel-body').append(
+                '<div class="col-sm-4" style="margin-top: 10px;">' +
+                    '<div class="person-col">' +
+                        '<div class="hovereffect">' +
+                          '<img src="' + data[i].projectImage + '" alt="" class="img-responsive">' +
+                          '<div class="overlay">' +
+                             '<span class="label ' + getClassByProgressState(data[i].progressState) + '">' + data[i].progressState + '</span>' +
+                          '</div>' +
+                        '</div>' +
+                        '<a href="/project/' + data[i].pid + '">' +
+                            '<div class="person-overlay">' +
+                                '<div class="person-inner">' +
+                                    '<h4 class="text-uppercase">' + data[i].projectTitle + '</h4>' +
+                                    '<span>by ' + data[i].companyName + '</span>' +
+                                '</div>' +
+                            '</div><!--person overlay end-->' +
+                        '</a>' +
+                    '</div><!--person col end-->' +
+                '</div><!--col-->'
+              );
+            }
+            if(data.length == 0) {
+              $('#tab-2 .panel-body').append(
+                '<div class="container-fluid no-proceed text-center">' +
+                    '<h5><i class="fa fa-exclamation" aria-hidden="true"></i>이런! 아직 프로젝트를 만나보지 못하셨나요? 프로젝트 둘러보기를 통해 원하시는 프로젝트를 팔로우해보세요!</h5>' +
+                    '<a href="/explore.html" class="btn btn-lg btn-border-blue" style="margin-top:20px; position:relative">프로젝트 둘러보러 가기</a>' +
+                '</div>'
+              );
+            }
+          },
+          error:function(data){
+            alert('오류가 발생했습니다.');
+          }
+        });
+
+        $('#modify').click(function() {
+          if(validate()) {
+            var nickname = convertSystemSourceToHtml($('#m-profileNickname').val());
+            var name = convertSystemSourceToHtml($('#m-profileName').val());
+            var gender = ($('#m-profileGender option:selected').text() == '성별 선택') ? '' : $('#m-profileGender option:selected').text();
+            var age = convertSystemSourceToHtml($('#m-profileAge').val());
+            var job = ($('#m-profileJob option:selected').text() == '직업 선택') ? '' : $('#m-profileJob option:selected').text();
+            var region = ($('#m-profileLocation option:selected').text() == '시/도 선택') ? '' : $('#m-profileLocation option:selected').text();
+            var phoneNumber = $('#m-profilePhoneNum').val().replace(/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?([0-9]{3,4})-?([0-9]{4})$/, "$1-$2-$3");
+            var interestFields = '';
+            for(var i=0; i<$('#m-profileInterests input').length; i++) {
+              if($('#m-profileInterests input').eq(i).attr('checked') == 'checked') {
+                if(interestFields == '') {
+                  interestFields = $('#m-profileInterests input').eq(i).val();
+                }
+                else {
+                  interestFields = interestFields + ', ' + $('#m-profileInterests input').eq(i).val();
+                }
+              }
+            }
+            var introduction = convertSystemSourceToHtml($('#m-profileIntroduce').val());
+
+            $.ajax({
+              url:'/api/modify-about',
+              type:'post',
+              cache:false,
+              data: {
+                nickname: nickname,
+                name: name,
+                gender: gender,
+                age: age,
+                job: job,
+                region: region,
+                phoneNumber: phoneNumber,
+                interestFields: interestFields,
+                introduction: introduction,
+              },
+              success:function(data){
+                if(data == '수정') {
+                  alert('수정되었습니다.');
+                  window.location.reload();
+                }
+                else {
+                  alert(data);
+                }
+              },
+              error:function(data){
+                alert('오류가 발생했습니다.');
+              }
+            });
+          }
+        });
+
+        function validate() {
+          var phoneNumberRegExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})([0-9]{3,4})([0-9]{4})$/;
+          var numberRegExp = /^[0-9]*$/;
+
+          console.log($('#m-profileNickname').val().length);
+
+          if($('#m-profileNickname').val() == '') {
+            alert('닉네임을 입력해주세요.');
+            return false;
+          }
+          else if($('#m-profileNickname').val().length < 2 || $('#m-profileNickname').val().length > 6) {
+            alert('닉네임은 2글자 이상, 6글자 이내로 입력해주세요.');
+            return false;
+          }
+          if($('#m-profileName').val() == '') {
+            alert('이름을 입력해주세요.');
+            return false;
+          }
+          if($('#m-profileGender option:selected').text() == '성별 선택') {
+            alert('성별을 선택해주세요.');
+            return false;
+          }
+          if($('#m-profileAge').val() == '') {
+            alert('나이를 입력해주세요.');
+            return false;
+          }
+          else if(!$('#m-profileAge').val().match(numberRegExp)) {
+            alert('나이는 숫자로 입력해주세요.');
+            return false;
+          }
+          if($('#m-profileJob option:selected').text() == '직업 선택') {
+            alert('직업을 선택해주세요.');
+            return false;
+          }
+          if($('#m-profileLocation option:selected').text() == '시/도 선택') {
+            alert('지역을 선택해주세요.');
+            return false;
+          }
+          if($('#m-profilePhoneNum').val() == '') {
+            alert('휴대폰 번호를 입력해주세요.');
+            return false;
+          }
+          else if(!$('#m-profilePhoneNum').val().match(phoneNumberRegExp)){
+            alert('올바른 전화번호 형식이 아닙니다. -를 제외하고 입력해주세요.');
+            return false;
+          }
+          if($('#m-profileIntroduce').val() == '') {
+            alert('자기소개 항목을 입력해주세요.');
+            return false;
+          }
+          return true;
+        }
+
+        function numberWithCommas(x) {
+          return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function getClassByProgressState(state) {
+          switch(state) {
+            case '대기중':
+              return 'label-info';
+            case '모집중':
+              return 'label-success';
+            case '선정중':
+              return 'label-warning';
+            case '진행중':
+              return 'label-danger';
+            case '종료':
+              return 'label-default';
+          }
+        }
+
+        function getTrophyToKorean(trophy) {
+          switch(trophy) {
+            case 'gold':
+              return '금상';
+            case 'silver':
+              return '은상';
+            case 'bronze':
+              return '동상';
+            default:
+              return '일반상';
+          }
+        }
+
+        function getFormatDate(date) {
+            var year = date.getFullYear(); //yyyy
+            var month = (1 + date.getMonth()); //M
+            month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+            var day = date.getDate(); //d
+            day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+            return year + '-' + month + '-' + day;
+        }
+
+        function linkActivityList() {
+          $('#infoList').removeClass('active');
+          $('#activityList').addClass('active');
+        }
+
+        function convertSystemSourceToHtml(str){
+          str = str.replace(/&/g,"&amp;");
+          str = str.replace(/</g,"&lt;");
+          str = str.replace(/>/g,"&gt;");
+          str = str.replace(/\"/g,"&quot;");
+          str = str.replace(/\'/g,"&#39;");
+          str = str.replace(/\n/g,"<br />");
+          return str;
+        }
+
+        function convertHtmlToSystemSource(str){
+          str = str.replace(/&amp;/g,"&");
+          str = str.replace(/&lt;/g,"<");
+          str = str.replace(/&gt;/g,">");
+          str = str.replace(/&quot;/g,"\"");
+          str = str.replace(/&#39;/g,"\'");
+          str = str.replace(/<br \/>/g,"\n");
+          return str;
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FEED100</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+
+    <!-- datapicker -->
+    <link href="assets/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="assets/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' type="text/css" href="assets/dzsparallaxer/dzsparallaxer.css" />
+    <link href="assets/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet">
+
+    <!--main css file-->
+    <link href="assets/css/style-myPage.css" rel="stylesheet">
+    <link href="assets/css/style-nav.css" rel="stylesheet">
+    <link href="assets/css/style-footer.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+    <!--preloader-->
+    <div id="preloader"></div>
+    <!--preloader-->
+    <!--  navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+    </nav>
+    <!--page title-->
+    <div class="dzsparallaxer auto-init" data-options='{   direction: "reverse"}' style="height: 450px;">
+
+        <div class="divimage dzsparallaxer--target " style="width: 101%; height: 600px; background-image: url(assets/images/bg-mypage-10.jpg)">
+        </div>
+        <div class=" parallax-text center-it text-center" style="margin-top:10px;">
+          <div class="container-fluid profile-menu">
+            <div class="c-profile profile">
+              <div class="image-box">
+                  <div class="image-upload">
+                      <label for="ex_filename">
+                        <div id="circle">
+                          <img id="profileImage" style="width:100%;" alt="image"/>
+                        </div>
+                      </label>
+                      <input type="file" id="ex_filename" class="upload-hidden" ame="ex_filename" accept="image/*">
+                  </div>
+                  <div class="space-20"></div>
+                  <div class="name-box">
+                    <h6 style="color:#4a464a;">- COMPANY -</h6>
+                    <h5 class="name"></h5>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!--page title-->
+    <!--end navigation-->
+    <section id="myPage" class="container-fluid company-container">
+
+          <div class="tabs-container">
+              <ul class="nav nav-tabs">
+                  <li class="active" id="infoList">
+                    <a class="ready-hide" data-toggle="tab" href="#tab">진행중인 프로젝트</a>
+                    <a class="ready-hide-o" data-toggle="tab" href="#tab">진행중인<br />프로젝트</a>
+                    <span class="proceed-badge">0</span>
+                  </li>
+                  <li class="">
+                    <a class="ready-hide" data-toggle="tab" href="#tab-0">활동 내역</a>
+                    <a class="ready-hide-o" data-toggle="tab" href="#tab-0">활동<br />내역</a>
+                    <span class="reward-badge" style="right: 35%;">0</span>
+                  </li>
+              </ul>
+              <div class="tab-content">
+                  <div id="tab" class="tab-pane active">
+                    <div class="panel-body">
+                      <div class="col-xs-12">
+                        <h3 class="margin-b-30" id="proceedingProject">진행중인 프로젝트<span class="proceed-badge badge-danger" style="margin-left:13px;">0</span></a></h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tab-0" class="tab-pane">
+                      <div class="panel-body">
+                        <div class="col-xs-12">
+                          <h3 class="margin-b-30">활동 내역</h3>
+                          <div class="participation margin-b-30">
+                            <span>총 프로젝트</span>
+                            <span id="testCount"></span>
+                          </div>
+                          <div class="project-list">
+                              <ul>
+                                <li class="about-list">
+                                  <h4 class="margin-b-20">결제 대기중<span class="badge badge-primary">0</span></h4>
+                                  <div class="container-fluid">
+                                    <h6 class="text-center"><i class="fa fa-exclamation" style="color: #cb4f59; margin-right:8px;" aria-hidden="true"></i>결제 대기중인 프로젝트가 없습니다.</h6>
+                                  </div>
+                                  <div class="space-40"></div>
+                                </li>
+                                <li class="about-list">
+                                  <h4 class="margin-b-20">대기중<span class="badge badge-info">0</span></h4>
+                                  <div class="container-fluid">
+                                    <h6 class="text-center"><i class="fa fa-exclamation" style="color: #cb4f59; margin-right:8px;" aria-hidden="true"></i>대기중인 프로젝트가 없습니다.</h6>
+                                  </div>
+                                  <div class="space-40"></div>
+                                </li>
+                                <li class="about-list">
+                                  <h4 class="margin-b-20">모집중<span class="badge badge-success">0</span></h4>
+                                  <div class="container-fluid">
+                                    <h6 class="text-center"><i class="fa fa-exclamation" style="color: #cb4f59; margin-right:8px;" aria-hidden="true"></i>모집중인 프로젝트가 없습니다.</h6>
+                                  </div>
+                                  <div class="space-40"></div>
+                                </li>
+                                <li class="about-list">
+                                  <h4 class="margin-b-20">선정중<span class="badge badge-warning">0</span></h4>
+                                  <div class="container-fluid">
+                                    <h6 class="text-center"><i class="fa fa-exclamation" style="color: #cb4f59; margin-right:8px;" aria-hidden="true"></i>선정중인 프로젝트가 없습니다.</h6>
+                                  </div>
+                                  <div class="space-40"></div>
+                                </li>
+                                <li class="about-list">
+                                  <h4 class="margin-b-20">진행중<span class="badge badge-danger">0</span></h4>
+                                  <div class="container-fluid">
+                                    <h6 class="text-center"><i class="fa fa-exclamation" style="color: #cb4f59; margin-right:8px;" aria-hidden="true"></i>진행중인 프로젝트가 없습니다.</h6>
+                                  </div>
+                                  <div class="space-40"></div>
+                                </li>
+                                <li class="about-list">
+                                  <h4 class="margin-b-20">종료<span class="badge badge-default">0</span></h4>
+                                  <div class="container-fluid">
+                                    <h6 class="text-center"><i class="fa fa-exclamation" style="color: #cb4f59; margin-right:8px;" aria-hidden="true"></i>종료된 프로젝트가 없습니다.</h6>
+                                  </div>
+                                  <div class="space-40"></div>
+                                </li>
+                              </ul>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+    </section>
+    <div class="space-20"></div>
+
+
+
+
+    <!--footer start-->
+    <footer class="footer"></footer>
+    <!--footer end-->
+    <!--back to top-->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up"></i></a>
+    <!--back to top end-->
+
+
+
+    <!-- jQuery plugins-->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/jquery-migrate.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/bower_components/flexslider/jquery.flexslider-min.js"></script>
+    <script src="assets/dzsparallaxer/dzsparallaxer.js" type="text/javascript"></script>
+    <script src="assets/js/template-custom.js" type="text/javascript"></script>
+
+    <!-- Data picker -->
+    <script src="assets/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+    <script src="/assets/js/nav.js"></script>
+    <script src="/assets/js/footer.js"></script>
+
+    <script type="text/javascript">
+        $('document').ready(function() {
+          $('[data-toggle="tooltip"]').tooltip();
+          var fileTarget = $('.upload-hidden');
+          fileTarget.on('change', function() { // 값이 변경되면
+              var filename = '';
+              var upload_hidden = $(this);
+
+              if (window.FileReader) { // modern browser
+                  var filename = $(this)[0].files[0].name;
+              } else { // old IE
+                  var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+              }
+
+              var u = URL.createObjectURL(this.files[0]);
+              var img = new Image;
+              img.src = u;
+
+              img.onload = function() {
+                if (upload_hidden[0].files && upload_hidden[0].files[0]) {
+                  var formData = new FormData();
+                  formData.append('ex_filename', upload_hidden[0].files[0]);
+                  $.ajax({
+                    url:'/api/upload/images',
+                    type:'post',
+                    processData: false,  // file전송시 필수
+                    contentType: false,  // file전송시 필수
+                    data:formData,
+                    success:function(data){
+                      var profileImage = data;
+                      $.ajax({
+                        url:'/api/profileImage',
+                        type:'post',
+                        data:{profileImage: profileImage},
+                        success:function(data) {
+                          $('#profileImage').attr('src', profileImage);
+                          window.location.reload();
+                        },
+                        error:function(data) {
+                          alert('오류가 발생했습니다.');
+                        }
+                      });
+                    },
+                    error:function(data){
+                      alert('오류가 발생했습니다.');
+                    }
+                  });
+                }
+              };
+          });
+
+
+          var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
+
+          // 시/도 선택 박스 초기화
+          $("select[name^=sido]").each(function() {
+            $selsido = $(this);
+            $.each(eval(area0), function() {
+              $selsido.append("<option value='"+this+"'>"+this+"</option>");
+            });
+          });
+
+
+          $.ajax({
+            url:'/api/companies',
+            type:'get',
+            success:function(data){
+              $('#profileImage').attr('src', data[0].profileImage);
+              $('h5.name').html(data[0].companyName);
+              // $('#profileIntroduce').html(data[0].introduction);
+
+              // 프로필 수정 모달
+              // $('#m-profileIntroduce').val(data[0].introduction);
+              // $('#myModal').on('hidden.bs.modal', function () {
+              //   $('#m-profileIntroduce').val(data[0].introduction);
+              // });
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          $.ajax({
+            url:'/api/projects',
+            type:'get',
+            success:function(data){
+              $('.reward-badge').html(data.length);
+              $('#testCount').html(data.length + '개');
+              for(var i=0;i <data.length; i++) {
+                var idx = 0;
+                switch(data[i].progressState) {
+                  case '결제대기중':
+                    idx = 0;
+                    break;
+                  case '대기중':
+                    idx = 1;
+                    break;
+                  case '모집중':
+                    idx = 2;
+                    break;
+                  case '선정중':
+                    idx = 3;
+                    break;
+                  case '진행중':
+                    idx = 4;
+                    break;
+                  case '종료':
+                    idx = 5;
+                    break;
+                }
+                $('.badge').eq(idx).html(Number($('.badge').eq(idx).html())+1);
+                if(Number($('.badge').eq(idx).html()) == 1) {
+                    $('.badge').eq(idx).parent().siblings('.container-fluid').html(
+                      '<div class="col-xs-12 col-ssm-6 col-sm-6 col-md-4 container-fluid" style="padding:3px;">' +
+                          '<div class="person-col">' +
+                              '<img src="' + data[i].projectImage + '" alt="" class="img-responsive">' +
+                              '<a style="cursor:default;">' +
+                                  '<div class="person-overlay">' +
+                                      '<div class="person-inner">' +
+                                          '<h4 class="text-uppercase">' + data[i].projectTitle + '</h4>' +
+                                          '<div class="container-fluid link-wrapper" style="padding:0">' +
+                                              '<a href="/project/' + data[i].pid + '" class="btn btn-sm btn-white-border col-xs-6" style="margin-top:10px; width:49%; position:relative; margin-right:1px">프로젝트 보기</a>' +
+                                              '<a href="/dashboard_company/dashboard/' + data[i].pid + '" class="btn btn-sm btn-white-border col-xs-6" style="margin-top:10px; width:49%; position:relative; margin-left:1px">대시보드 보기</a>' +
+                                          '</div>' +
+                                      '</div>' +
+                                  '</div>' +
+                                  '<!--person overlay end-->' +
+                              '</a>' +
+                          '</div>' +
+                          '<!--person col end-->' +
+                      '</div>'
+
+                      );
+                  }
+                if(Number($('.badge').eq(idx).html()) > 1) {
+                    $('.badge').eq(idx).parent().siblings('.container-fluid').append(
+                      '<div class="col-xs-12 col-ssm-6 col-sm-6 col-md-4 container-fluid" style="padding:3px;">' +
+                          '<div class="person-col">' +
+                              '<img src="' + data[i].projectImage + '" alt="" class="img-responsive">' +
+                              '<a style="cursor:default;">' +
+                                  '<div class="person-overlay">' +
+                                      '<div class="person-inner">' +
+                                          '<h4 class="text-uppercase">' + data[i].projectTitle + '</h4>' +
+                                          '<div class="container-fluid link-wrapper" style="padding:0">' +
+                                              '<a href="/project/' + data[i].pid + '" class="btn btn-sm btn-white-border col-xs-6" style="margin-top:10px; width:49%; position:relative; margin-right:1px">프로젝트 보기</a>' +
+                                              '<a href="/dashboard_company/dashboard/' + data[i].pid + '" class="btn btn-sm btn-white-border col-xs-6" style="margin-top:10px; width:49%; position:relative; margin-left:1px">대시보드 보기</a>' +
+                                          '</div>' +
+                                      '</div>' +
+                                  '</div>' +
+                                  '<!--person overlay end-->' +
+                              '</a>' +
+                          '</div>' +
+                          '<!--person col end-->' +
+                      '</div>'
+
+                      );
+                  }
+
+                  if(data[i].progressState != '종료' && data[i].progressState != '결제대기중') {
+                    $('.proceed-badge').html(Number($('.proceed-badge').html())+1);
+                    $('#proceedingProject').parent().append(
+                      '<div class="col-xs-12 col-ssm-6 col-sm-6 col-md-4" style="margin-top: 10px;">' +
+                          '<div class="person-col">' +
+                              '<div class="hovereffect">' +
+                                '<img src="' + data[i].projectImage + '" alt="" class="img-responsive">' +
+                                '<div class="overlay">' +
+                                   '<span class="label ' + getClassByProgressState(data[i].progressState) + '">' + data[i].progressState + '</span>' +
+                                '</div>' +
+                              '</div>' +
+                              '<a href="/project/' + data[i].pid + '">' +
+                                  '<div class="person-overlay">' +
+                                      '<div class="person-inner">' +
+                                          '<h4 class="text-uppercase">' + data[i].projectTitle + '</h4>' +
+                                          '<a href="/project/' + data[i].pid + '" class="btn btn-sm btn-white-border col-xs-6" style="margin-top:10px; width:49%; position:relative; margin-right:1px">프로젝트 보기</a>' +
+                                          '<a href="/dashboard_company/dashboard/' + data[i].pid + '" class="btn btn-sm btn-white-border col-xs-6" style="margin-top:10px; width:49%; position:relative; margin-left:1px">대시보드 보기</a>' +
+                                      '</div>' +
+                                  '</div><!--person overlay end-->' +
+                              '</a>' +
+                          '</div><!--person col end-->' +
+                      '</div><!--col-->'
+                      );
+                  }
+              }
+              if(Number($('.proceed-badge').text())==0) {
+                $('#proceedingProject').after(
+                  '<div class="container-fluid no-proceed text-center">' +
+                      '<h5 style="margin-top:30px;"><i class="fa fa-exclamation" aria-hidden="true"></i>아직 진행중인 프로젝트가 없습니다. 프로젝트를 등록하기 페이지를 통해 새로운 프로젝트를 시작해보세요.</h5>' +
+                      '<a href="/start_project.html" class="btn btn-lg btn-border-blue" style="margin-top:20px; position:relative">프로젝트 등록하기</a>' +
+                  '</div>'
+                );
+              }
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          function getClassByProgressState(state) {
+            switch(state) {
+              case '대기중':
+                return 'label-info';
+              case '모집중':
+                return 'label-success';
+              case '선정중':
+                return 'label-warning';
+              case '진행중':
+                return 'label-danger';
+              case '종료':
+                return 'label-default';
+            }
+          }
+
+
+          // $('#modify').click(function() {
+          //   var introduction = $('#m-profileIntroduce').val();
+          //
+          //   $.ajax({
+          //     url:'/api/modify-about',
+          //     type:'post',
+          //     data: {
+          //       introduction: introduction,
+          //     },
+          //     success:function(data){
+          //       alert('수정되었습니다.');
+          //       window.location.reload();
+          //     },
+          //     error:function(data){
+          //       alert('오류가 발생했습니다.');
+          //     }
+          //   });
+          // });
+
+      });
+
+
+    </script>
+</body>
+
+</html>

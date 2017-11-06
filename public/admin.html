@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+</head>
+
+<body>
+
+    <div>
+      <button id="progressStateButton" style="float:right;">전체 진행상황 업데이트</button>
+    </div>
+
+    <div class="container">
+
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+      $.ajax({
+        url:'/cron/admin/projects',
+        type:'get',
+        cache:false,
+        success:function(data) {
+          console.log(new Date());
+          output = '';
+          for(var i=0; i<data.length; i++) {
+            var period = JSON.parse(data[i].period);
+            for(var j=0; j<period.length; j++) {
+              if(period[j].startDate != '') {
+                period[j].startDate = getFullFormatDate(new Date(period[j].startDate));
+              }
+            }
+            for(var j=0; j<period[3].reports.length; j++) {
+              if(period[3].reports[j].startDate != '') {
+                period[3].reports[j].startDate = getFullFormatDate(new Date(period[3].reports[j].startDate));
+              }
+            }
+            data[i].period = JSON.stringify(period);
+
+            $('div.container').append(
+              '<div id="' + data[i].pid + '">' +
+                data[i].pid + ' / ' + data[i].projectTitle + ' / ' + data[i].companyName + ' / ' + data[i].progressState +
+                '<p>시작일 : ' + getFullFormatDate(new Date(data[i].startDate)) + '</p>' +
+                '<p>' + data[i].period + '</p>' +
+                '<p><button class="resetUpdateDate" value="' + data[i].pid + '">마지막 업데이트 날짜 초기화</button></p>' +
+                '<input type="text" value="0"></input><button class="startDateModify" value="' + data[i].pid + '">시작일 수정</button>' +
+              '</div>' +
+              '<br><br><br><br>'
+            );
+            $('div#' + data[i].pid + ' button.resetUpdateDate').click(function() {
+              var pid = $(this).attr('value');
+              var pwd = prompt('pid : ' + pid + ' 업데이트 날짜를 초기화하시겠습니까?');
+              if(pwd) {
+                $.ajax({
+                  url:'/cron/resetUpdateDate/'+pwd+'/'+pid,
+                  type:'get',
+                  cache:false,
+                  success:function(data) {
+                    if(data == '누구세요') {
+                      alert(data);
+                    }
+                    else {
+                      alert('성공적으로 변경되었습니다.');
+                      window.location.reload();
+                    }
+                  },
+                  error:function(data) {
+                    alert('오류가 발생했습니다.');
+                  }
+                });
+              }
+            });
+            $('div#' + data[i].pid + ' button.startDateModify').click(function() {
+              var offset = $(this).siblings('input').val();
+              var pid = $(this).attr('value');
+              var pwd = prompt('변경 후 시작일 : ' + getFullFormatSharpDate(addDays(new Date(), Number(offset))));
+              if(pwd) {
+                $.ajax({
+                  url:'/cron/startProject/'+pwd+'/'+pid+'/'+offset,
+                  type:'get',
+                  cache:false,
+                  success:function(data) {
+                    if(data == '누구세요') {
+                      alert(data);
+                    }
+                    else {
+                      alert('성공적으로 변경되었습니다.');
+                      window.location.reload();
+                    }
+                  },
+                  error:function(data) {
+                    alert('오류가 발생했습니다.');
+                  }
+                });
+              }
+            });
+          }
+        },
+        error:function(data) {
+          alert('오류가 발생했습니다.');
+        }
+      });
+
+      $('#progressStateButton').click(function() {
+        var pwd = prompt('진행상황을 정말 업데이트하시겠습니까?');
+        if(pwd) {
+          window.open('/cron/updateProgress/'+pwd, '_blank');
+          window.location.reload();
+        }
+      });
+    });
+
+    function getFullFormatDate(date) {
+        var year = date.getFullYear(); //yyyy
+        var month = (1 + date.getMonth()); //M
+        month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+        var day = date.getDate(); //d
+        day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+        var hour = date.getHours();
+        hour = hour >= 10 ? hour: '0' + hour;
+        var minute = date.getMinutes();
+        minute = minute >= 10 ? minute : '0' + minute; //minute 두자리로 저장
+        var second = date.getSeconds();
+        second = second >= 10 ? second : '0' + second;
+        return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+    }
+
+    function getFullFormatSharpDate(date) {
+        var year = date.getFullYear(); //yyyy
+        var month = (1 + date.getMonth()); //M
+        month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+        var day = date.getDate(); //d
+        day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+        return year + '-' + month + '-' + day + ' ' + '00:00:00';
+    }
+
+    function addDays(date, days) {
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+    }
+
+    </script>
+
+</body>
+
+</html>

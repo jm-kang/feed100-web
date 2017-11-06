@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="/dashboard_company/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard_company/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/dashboard_company/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="/dashboard_company/css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="/dashboard_company/css/plugins/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print'>
+
+    <link href="/dashboard_company/css/animate.css" rel="stylesheet">
+    <link href="/dashboard_company/css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <style type="text/css">
+    .fc-time
+    {
+      display: none;
+    }
+    .fc-right
+    {
+      display: none;
+    }
+    .fc-content{
+      text-align: center;
+    }
+    .fc-title{
+      font-weight: bold;
+    }
+    </style>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <div id="page-wrapper" class="gray-bg">
+    <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-8">
+        <h2>캘린더</h2>
+        <ol class="breadcrumb">
+
+            <li class="active">
+                <strong>진행상황 및 기간을 확인해주세요.</strong>
+            </li>
+        </ol>
+    </div>
+    </div>
+    <div class="wrapper wrapper-content">
+    <div class="row animated fadeInDown">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="/dashboard_company/js/plugins/fullcalendar/moment.min.js"></script>
+    <script src="/dashboard_company/js/jquery-3.1.1.min.js"></script>
+    <script src="/dashboard_company/js/bootstrap.min.js"></script>
+    <script src="/dashboard_company/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/dashboard_company/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="/dashboard_company/js/nav.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/dashboard_company/js/inspinia.js"></script>
+    <script src="/dashboard_company/js/plugins/pace/pace.min.js"></script>
+
+    <!-- jQuery UI  -->
+    <script src="/dashboard_company/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="/dashboard_company/js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Full Calendar -->
+    <script src="/dashboard_company/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+
+    <script src="/dashboard_company/js/plugins/timeago/jquery.timeago.js"></script>
+    <script src="/dashboard_company/js/plugins/timeago/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
+
+    <script>
+
+    $(document).ready(function() {
+        var params = document.location.href.split("dashboard_company/calendar/");
+        var pid = params[1].split('#')[0];
+
+        $.ajax({
+          url:'/api/projects/'+pid,
+          type:'get',
+          cache:false,
+          success:function(data){
+            if(data[0] == null) {
+              alert('잘못된 접근입니다.');
+              location.replace('/');
+            }
+            else {
+              $('.proceeding_color').html(data[0].progressState);
+              var startDateArray = data[0].startDateArray;
+              var events = [
+                  {
+                      title: '대기 기간',
+                      start: new Date(startDateArray[0]),
+                      end: new Date(startDateArray[1]),
+                      backgroundColor: '#5bc0de',
+                      borderColor: '#5bc0de'
+                  },
+                  {
+                      title: '모집 기간',
+                      start: new Date(startDateArray[1]),
+                      end: new Date(startDateArray[2]),
+                      backgroundColor: '#5cb85c',
+                      borderColor: '#5cb85c'
+                  },
+                  {
+                      title: '선정 기간',
+                      start: new Date(startDateArray[2]),
+                      end: new Date(startDateArray[3]),
+                      backgroundColor: '#f0ad4e',
+                      borderColor: '#f0ad4e'
+                  },
+                  {
+                      title: '진행 기간',
+                      start: new Date(startDateArray[3]),
+                      end: new Date(startDateArray[4]),
+                      backgroundColor: '#d9534f',
+                      borderColor: '#d9534f'
+                  },
+                  {
+                      title: '종료',
+                      start: new Date(startDateArray[4]),
+                      end: new Date(startDateArray[4]),
+                      backgroundColor: '#777',
+                      borderColor: '#777'
+                  },
+              ]
+              var period = JSON.parse(data[0].period);
+              for(var i=0; i<period[3].reports.length; i++) {
+                var color = (0xd9534f - 0x0f0000 * (i+1)).toString(16);
+                events.push(
+                  {
+                      title: period[3].reports[i].progress,
+                      start: new Date(period[3].reports[i].startDate),
+                      end: addDays(period[3].reports[i].startDate, period[3].reports[i].period),
+                      backgroundColor: '#' + color,
+                      borderColor: '#' + color
+                  }
+                );
+              }
+
+              /* initialize the calendar
+               -----------------------------------------------------------------*/
+
+              $('#calendar').fullCalendar({
+                  header: {
+                      left: 'prev,next today',
+                      center: 'title'
+                  },
+                  editable: false,
+                  droppable: false, // this allows things to be dropped onto the calendar
+
+                  events: events
+              });
+
+            }
+
+          },
+          error:function(data){
+            alert('오류가 발생했습니다.');
+          }
+        });
+
+
+      $('.i-checks').iCheck({
+          checkboxClass: 'icheckbox_square-green',
+          radioClass: 'iradio_square-green'
+      });
+
+      /* initialize the external events
+       -----------------------------------------------------------------*/
+
+
+      $('#external-events div.external-event').each(function() {
+
+          // store data so the calendar knows to render an event upon drop
+          $(this).data('event', {
+              title: $.trim($(this).text()), // use the element's text as the event title
+              stick: true // maintain when user navigates (see docs on the renderEvent method)
+          });
+
+          // make the event draggable using jQuery UI
+          $(this).draggable({
+              zIndex: 1111999,
+              revert: true,      // will cause the event to go back to its
+              revertDuration: 0  //  original position after the drag
+          });
+
+      });
+
+      function addDays(date, days) {
+          var result = new Date(date);
+          result.setDate(result.getDate() + days);
+          return result;
+      }
+
+    });
+    </script>
+</body>
+
+</html>

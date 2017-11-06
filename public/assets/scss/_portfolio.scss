@@ -1,0 +1,103 @@
+
+/* 
+Portfolio styles
+*/
+
+.work-header{
+    padding-top: 100px;
+    padding-bottom:80px;
+    background: $skin-color;
+    .center-title{
+        color:#fff;
+        text-align: center;
+    }
+    .center-border{
+        margin: 0 auto;
+        margin-bottom:15px;
+        &:before{
+            background: #fff;
+        }
+    }
+    p{
+        color:#eee;
+    }
+}
+.cbp-l-filters-work {
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    margin-top: 40px;
+}
+.cbp-l-filters-work .cbp-filter-item,.cbp-l-filters-work .cbp-filter-counter{
+    background-color: transparent;
+    color:#333;
+    font-family: $default-font;
+    font-size: 13px;
+    font-weight: 400;
+}
+.cbp-popup-singlePage .cbp-popup-navigation-wrap{
+    background-color: $skin-color;
+}
+.cbp-l-filters-work .cbp-filter-item:hover {
+    color:  $skin-color;
+    background: transparent;
+}
+.cbp-l-filters-work .cbp-filter-item.cbp-filter-item-active {
+     color: $skin-color;
+    background: transparent;
+    cursor: default;
+}
+.cbp-popup-wrap{
+    z-index: 9999;
+}
+.cbp-l-grid-work-title{
+       font-family: $title-font;
+       font-weight: 400;
+       letter-spacing: 4px;
+}
+.cbp-l-grid-work .cbp-item-wrapper{
+    border: 0px;
+    @include box-shadow(none);
+}
+.cbp-l-loadMore-button .cbp-l-loadMore-link{
+ color: $skin-color;  
+ border-color: $skin-color;
+ font-family: $title-font;
+ font-weight: 600;
+ &:hover,&:focus{
+     color:#fff;
+     background-color: $skin-color;
+ }
+}
+.cbp-l-project-desc-text{
+     font-family: $default-font;
+    font-size: 1.5rem;
+    line-height: 2.7rem;
+}
+.cbp-l-project-desc-title span, .cbp-l-project-details-title span,.cbp-l-project-details-list>li, .cbp-l-project-details-list>div,.cbp-l-project-related-title,.cbp-l-project-details-visit{
+    font-family: $title-font;
+    font-weight: 500;
+}
+.cbp-l-project-details-visit{
+    font-weight: 600;
+    background-color:$skin-color;
+}
+.cbp-l-project-desc-title{
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.cbp-l-project-title{
+      font-weight: 600;
+    font-family: $title-font;
+}
+.cbp-l-project-subtitle{
+     font-family: $default-font; 
+         font-size: 1.5rem;
+}
+.cbp-popup-singlePage .cbp-popup-navigation-wrap {
+    z-index:99999;
+    position:fixed!important;
+    top:0; 
+    left:0;
+    width:100%; 
+}

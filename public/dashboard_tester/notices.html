@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="/dashboard_tester/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard_tester/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/dashboard_tester/css/animate.css" rel="stylesheet">
+    <link href="/dashboard_tester/css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <div id="page-wrapper" class="gray-bg">
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>공지사항</h2>
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <strong>공지사항을 참고하여 테스트를 진행해주세요.</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="wrapper wrapper-content animated fadeInRight notices">
+
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <div class="text-center p-lg">
+                                <h2>아래 버튼을 클릭해서 링크로 이동할 수 있습니다.</h2>
+                                <a title="Create new cluster" class="btn btn-primary btn-sm" style="margin-bottom: 20px;" target="_blank"><span class="bold">링크이동</span></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+    <!-- Mainly scripts -->
+    <script src="/dashboard_tester/js/jquery-3.1.1.min.js"></script>
+    <script src="/dashboard_tester/js/bootstrap.min.js"></script>
+    <script src="/dashboard_tester/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/dashboard_tester/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="/dashboard_tester/js/nav.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/dashboard_tester/js/inspinia.js"></script>
+    <script src="/dashboard_tester/js/plugins/pace/pace.min.js"></script>
+
+    <script src="/dashboard_tester/js/plugins/timeago/jquery.timeago.js"></script>
+    <script src="/dashboard_tester/js/plugins/timeago/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
+
+    <script>
+      $(document).ready(function() {
+        var params = document.location.href.split("dashboard_tester/notices/");
+        var pid = params[1].split('#')[0];
+
+        $.ajax({
+          url:'/api/projects/'+pid,
+          type:'get',
+          cache:false,
+          success:function(data){
+            if(data[0] == null) {
+              alert('잘못된 접근입니다.');
+              location.replace('/');
+            }
+            else {
+              $('.proceeding_color').html(data[0].progressState);
+              if(data[0].testLink.match('http://') || data[0].testLink.match('https://')) {
+                $('div.text-center.p-lg a').attr('href', data[0].testLink);
+              }
+              else {
+                $('div.text-center.p-lg a').attr('href', 'http://' + data[0].testLink);
+              }
+
+              $('div.text-center.p-lg').append(data[0].testContent);
+            }
+          },
+          error:function(data){
+            alert('오류가 발생했습니다.');
+          }
+        });
+
+        $.ajax({
+          url:'/api/dashboardNotices/'+pid,
+          type:'get',
+          cache:false,
+          success:function(data){
+            for(var i=0; i<data.length; i++) {
+              $('.notices').append(
+                '<div class="faq-item" data-toggle="collapse" href="#faq' + i + '" style="cursor: pointer;">' +
+                    '<div class="row">' +
+                        '<div class="col-md-9">' +
+                            '<a class="faq-question">' + data[i].title + '</a>' +
+
+                        '</div>' +
+                        '<div class="col-md-3 notices-date">' +
+                            '<small style="float:right;"><i class="fa fa-clock-o"></i> ' + getFullFormatDate(new Date(data[i].registerDate)) + '</small>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="row">' +
+                        '<div class="col-lg-12">' +
+                            '<div id="faq' + i + '" class="panel-collapse collapse ">' +
+                                '<div class="faq-answer">' +
+                                    '<p>' +
+                                        data[i].content +
+                                    '</p>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>'
+              );
+              $('div.faq-answer a').click(function(e) {
+                e.stopPropagation();
+              });
+
+            }
+          },
+          error:function(data){
+            alert('오류가 발생했습니다.');
+          }
+        });
+
+        function getFullFormatDate(date) {
+            var year = date.getFullYear(); //yyyy
+            var month = (1 + date.getMonth()); //M
+            month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+            var day = date.getDate(); //d
+            day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+            var hour = date.getHours();
+            hour = hour >= 10 ? hour: '0' + hour;
+            var minute = date.getMinutes();
+            minute = minute >= 10 ? minute : '0' + minute; //minute 두자리로 저장
+            var second = date.getSeconds();
+            second = second >= 10 ? second : '0' + second;
+            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+        }
+
+      });
+    </script>
+</body>
+
+</html>

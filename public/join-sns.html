@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="assets/css/style-dashBoard.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown" style="padding-top: 150px;">
+        <div>
+            <a href="/">
+                <img src="assets/images/logo.png" alt="" style="width: 100%;">
+            </a>
+
+            <div class="m-t">
+                <div class="form-group">
+                  <input type="email" class="form-control" name="username" placeholder="이메일" required="">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="nickname" placeholder="닉네임" required="">
+                </div>
+                <div class="form-group">
+                  <div class="checkbox i-checks"><label> <input type="checkbox" name="policyCheck" required=""><i></i> Agree the terms and policy </label></div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">회원가입</button>
+                <input type="hidden" name="provider" required="required">
+                <input type="hidden" name="id" required="required">
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+      $.ajax({
+        url:'/sess',
+        type:'get',
+        cache:false,
+        success:function(data){
+          if(!data.SNS_info) {
+            alert("정상적인 경로로 접근해주세요.");
+            window.location.replace("/");
+          }
+          else {
+            if(data.SNS_info.provider === "facebook") {
+              $("[name='username']").val(data.SNS_info._json.email);
+              $("[name='provider']").val(data.SNS_info.provider);
+              $("[name='id']").val(data.SNS_info.id);
+              // $("[name='profileImage']").val(data.SNS_info._json.picture.data.url);
+              // $("[name='profileImage']").attr("src", data.SNS_info._json.picture.data.url);
+            }
+            else if(data.SNS_info.provider === "google") {
+              $("[name='username']").val(data.SNS_info._json.emails[0].value);
+              $("[name='provider']").val(data.SNS_info.provider);
+              $("[name='id']").val(data.SNS_info.id);
+              // $("[name='profileImage']").val(data.SNS_info._json.image.url);
+              // $("[name='profileImage']").attr("src", data.SNS_info._json.image.url);
+            }
+
+          }
+        },
+        error:function(data){
+          alert('오류가 발생했습니다.');
+        }
+      });
+
+      $('div button.btn').click(function() {
+        join();
+      });
+      $('input').keypress(function(e) {
+        if(e.keyCode == 13){
+          join();
+        }
+      });
+
+      function join() {
+        if(validate()) {
+          $.ajax({
+            url:'/auth/join-sns',
+            type:'post',
+            cache:false,
+            data:{
+              username: $('input').eq(0).val(),
+              nickname: convertSystemSourceToHtml($('input').eq(1).val()),
+              provider: $('input').eq(3).val(),
+              id: $('input').eq(4).val()
+            },
+            success:function(data) {
+              if(data == '로그인') {
+                window.location.replace('/');
+              }
+              else {
+                alert(data);
+              }
+            },
+            error:function(data) {
+              alert('오류가 발생했습니다.');
+            }
+          });
+        }
+      }
+
+      function validate() {
+        var emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+        if($('input').eq(0).val() == '') {
+          $('input').eq(0).focus();
+          alert('이메일 주소를 입력해주세요.');
+          return false;
+        }
+        else if(!$('input').eq(0).val().match(emailRegExp)){
+          $('input').eq(0).focus();
+          alert('올바른 이메일 형식이 아닙니다.');
+          return false;
+        }
+        if($('input').eq(1).val() == '') {
+          $('input').eq(1).focus();
+          alert('닉네임을 입력해주세요.');
+          return false;
+        }
+        else if($('input').eq(1).val().length < 2 || $('input').eq(1).val().length > 6) {
+          $('input').eq(1).focus();
+          alert('닉네임은 2글자 이상, 6글자 이내로 입력해주세요.');
+          return false;
+        }
+        if(!$('input').eq(2).is(':checked')) {
+          $('input').eq(2).focus();
+          alert('이용약관에 동의해주세요.');
+          return false;
+        }
+        if($('input').eq(3).val() == '') {
+          alert('오류가 발생했습니다.');
+          return false;
+        }
+        if($('input').eq(4).val() == '') {
+          alert('오류가 발생헀습니다.');
+          return false;
+        }
+        return true;
+      }
+
+      function convertSystemSourceToHtml(str){
+        str = str.replace(/&/g,"&amp;");
+        str = str.replace(/</g,"&lt;");
+        str = str.replace(/>/g,"&gt;");
+        str = str.replace(/\"/g,"&quot;");
+        str = str.replace(/\'/g,"&#39;");
+        str = str.replace(/\n/g,"<br />");
+        return str;
+      }
+
+    });
+    </script>
+
+</body>
+
+</html>

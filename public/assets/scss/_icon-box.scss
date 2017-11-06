@@ -1,0 +1,56 @@
+/*
+icon-boxes
+*/
+
+.services-list{
+    i{
+        float: left;
+        margin-right: 20px;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        font-size: 35px;
+        
+    }
+    .content{
+        overflow: hidden;
+    }
+    li{
+        padding: 30px 15px;
+        @include transition(all 0.3s);
+        h4{
+            font-weight: 400;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+        &:hover{
+            background-color: $skin-color;
+            border-color: $skin-color;
+            color:#fff;
+            h4{
+                color:#fff;
+            }
+        }
+    }
+}
+.process-box{
+    h2{
+        font-weight: 300;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+    }
+}
+@media(min-width:768px){
+    .services-list li:nth-child(1){
+    border-right: 1px solid #eee;
+}
+.services-list li:nth-child(3),.services-list li:nth-child(5){
+    border-right: 1px solid #eee;
+}
+.services-list li:nth-child(1),.services-list li:nth-child(2),.services-list li:nth-child(3),.services-list li:nth-child(4){
+    border-bottom: 1px solid #eee;
+}
+}

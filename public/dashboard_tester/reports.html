@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="/dashboard_tester/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard_tester/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/dashboard_tester/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="/dashboard_tester/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+
+    <!-- checkbox -->
+    <link href="/dashboard_tester/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="/dashboard_tester/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <link href="/dashboard_tester/css/animate.css" rel="stylesheet">
+    <link href="/dashboard_tester/css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <div id="page-wrapper" class="gray-bg">
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>보고서</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>테스트 후 기간 내에 보고서를 작성해주세요.</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="container-fluid" id="reportState" style="margin-top:15px;">
+
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+
+                            </ul>
+                            <div class="tab-content">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="/dashboard_tester/js/jquery-3.1.1.min.js"></script>
+    <script src="/dashboard_tester/js/bootstrap.min.js"></script>
+    <script src="/dashboard_tester/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/dashboard_tester/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="/dashboard_tester/js/nav.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/dashboard_tester/js/inspinia.js"></script>
+    <script src="/dashboard_tester/js/plugins/pace/pace.min.js"></script>
+
+    <!-- SUMMERNOTE -->
+    <script src="/dashboard_tester/js/plugins/summernote/summernote.min.js"></script>
+
+    <!-- Data picker -->
+    <script src="/dashboard_tester/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+    <!-- include summernote-ko-KR -->
+    <script src="/dashboard_tester/js/plugins/summernote/lang/summernote-ko-KR.js"></script>
+
+    <script src="/dashboard_tester/js/plugins/timeago/jquery.timeago.js"></script>
+    <script src="/dashboard_tester/js/plugins/timeago/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
+
+    <script>
+        $(document).ready(function () {
+          var params = document.location.href.split("dashboard_tester/reports/");
+          var pid = params[1].split('#')[0];
+          var proceedingReport = '';
+          var proceedingReportSplit = '';
+
+          $.ajax({
+            url:'/api/projects/'+pid,
+            type:'get',
+            cache:false,
+            cache:false,
+            async:false,
+            success:function(data){
+              if(data[0] == null) {
+                alert('잘못된 접근입니다.');
+                location.replace('/');
+              }
+              else {
+                $('.proceeding_color').html(data[0].progressState);
+                var j=0;
+                proceedingReport = data[0].proceedingReport;
+                proceedingReportSplit = proceedingReport.split('차 ')[0];
+                for(var i=0; i<data[0].reportCount; i++) {
+                  var reports = JSON.parse(data[0].reports);
+                  var period = JSON.parse(data[0].period);
+                  var percent = ((reports[i].submitCount / data[0].numOfApplicant) * 100).toFixed(0);
+
+                  $('#reportState').append(
+                    '<div>' +
+                        '<span>' + ((proceedingReport == reports[i].title) ? '<strong>' : '') + reports[i].title + ((proceedingReport == reports[i].title) ? '</strong>' : '') + '</span>' +
+                        '<span class="m-l-md small-text" style="font-weight: normal">(' + getPeriod(period[3].reports[j].startDate, period[3].reports[j+1].startDate) + ')</span>' +
+                        '<small class="pull-right">' + reports[i].submitCount + ' / ' + data[0].numOfApplicant + ' (' + percent + '%)</small>' +
+                    '</div>' +
+                    '<div class="progress progress-small ' + ((proceedingReport == reports[i].title) ? 'progress-striped active' : '') + '">' +
+                        '<div style="width: ' + percent + '%;" class="progress-bar ' + ((proceedingReport == reports[i].title) ? 'progress-bar-success' : '') + '"></div>' +
+                    '</div>' +
+                    '<div class="check-wrapper">' +
+                        '<span>' + ((proceedingReport == reports[i].title.split(' ')[0] + ' 점검') ? '<strong>' : '') + reports[i].title.split(' ')[0] + ' 점검&emsp;' + ((proceedingReport == reports[i].title.split(' ')[0] + ' 점검') ? '</strong>' : '') + '</span>' +
+                        '<span class="m-l-md small-text" style="font-weight: normal">(' + getFormatDate(new Date(period[3].reports[j+1].startDate)) + ')</span>' +
+                    '</div>'
+                  );
+                  j = j + 2;
+                }
+              }
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          $.ajax({
+            url:'/api/test-history/'+pid,
+            type:'get',
+            cache:false,
+            async:false,
+            success:function(data){
+              if(data[0] == null) {
+                alert('잘못된 접근입니다.');
+                location.replace('/');
+              }
+              else {
+                var report = JSON.parse(data[0].reports);
+                var _report = JSON.parse(data[0].report);
+                var reportQuestion = JSON.parse(data[0].reportQuestion);
+                for(var i=0; i<data[0].reportCount; i++) {
+                  //지난 보고서 (쓴 경우, 안 쓴 경우)
+                  if((i+1) < proceedingReportSplit || ((i+1) == proceedingReportSplit && proceedingReport.split(' ')[1] == '점검')) {
+                    $('.nav-tabs').append('<li class="' + (((i+1) == proceedingReportSplit) ? 'active' : '') + '"><a data-toggle="tab" href="#tab-' + i + '"> ' + (i+1) + '차 보고서</a></li>');
+                    var output =
+                    '<div id="tab-' + i + '" class="tab-pane ' + (((i+1) == proceedingReportSplit) ? 'active' : '') + '">' +
+                        '<div class="panel-body">'
+                    ;
+                    for(var j=0; j<report[i].questions.length; j++) {
+                      if(report[i].questions[j].category == 'objective') {
+                        output +=
+                        '<div class="container-fluid">' +
+                            '<h3>Q' + (i+1) + '-' + (j+1) + '. ' + report[i].questions[j].question + '</h3>' +
+                            '<div class="col-sm-6">'
+                        ;
+                        for(var k=0; k<report[i].questions[j].options.length; k++) {
+                          output +=
+                          '<div class="radio">' +
+                              '<input type="radio" name="radio' + i + j + '" id="radio' + i + '' + j + '' + k + '" ' + ((isWrite((i+1)+'차 보고서') && _report[i].questions[j].answer == (k+1)) ? 'checked' : '') + ' disabled>' +
+                              '<label for="radio' + i + '' + j + '' + k + '">' +
+                                  report[i].questions[j].options[k].option +
+                              '</label>' +
+                          '</div>'
+                          ;
+                        }
+                        output +=
+                          '</div>' +
+                        '</div>'
+                        ;
+                      }
+                      else if(report[i].questions[j].category == 'subjective') {
+                        var _subjectiveTemp = '';
+                        for(var _i = 0; _i < report[i].questions[j].question.length; _i++) {
+                          _subjectiveTemp += '<p>' + (_i+1) + '. ' + report[i].questions[j].question[_i] + '</p>';
+                        }
+                        output +=
+                        '<div class="container-fluid">' +
+                            '<h3>Q' + (i+1) + '-' + (j+1) + '. 주관식' + '</h3>' +
+                            _subjectiveTemp +
+                            '<div class="container-fluid subjective-answer">' +
+                              ((isWrite((i+1)+'차 보고서')) ? _report[i].questions[j].answer : '') +
+                            '</div>' +
+                        '</div>'
+                        ;
+                      }
+                    }
+                    // 질문 받았을 때
+                    if(i != 0 && reportQuestion[i-1].question) {
+                      output +=
+                      '<div class="container-fluid">' +
+                          '<h3>Q. ' + reportQuestion[i-1].question + '</h3>' +
+                          '<div class="container-fluid subjective-answer">' +
+                            reportQuestion[i-1].answer +
+                          '</div>' +
+                      '</div>'
+                      ;
+                    }
+                    $('.tab-content').append(output);
+                  }
+                  else if((i+1) == proceedingReportSplit) {
+                    if(!isWrite((i+1)+'차 보고서')) { // 아직 보고서를 안 썼을 경우
+                      $(window).unbind('beforeunload');
+                      $(window).bind('beforeunload', function() {
+                        return '이 페이지를 벗어나면 작성했던 데이터는 저장되지 않습니다.';
+                      });
+
+                      $('.nav-tabs').append('<li class="active"><a data-toggle="tab" href="#tab-' + i + '"> ' + (i+1) + '차 보고서</a></li>');
+                      var summernoteValue = new Array();
+                      var summernoteValueLength = 0;
+                      var output =
+                      '<div id="tab-' + i + '" class="tab-pane active">' +
+                          '<div class="panel-body">'
+                      ;
+                      for(var j=0; j<report[i].questions.length; j++) {
+                        if(report[i].questions[j].category == 'objective') {
+                          output +=
+                          '<div class="container-fluid objective">' +
+                              '<h3>Q' + (i+1) + '-' + (j+1) + '. ' + report[i].questions[j].question + '</h3>' +
+                              '<div class="col-sm-6">'
+                          ;
+                          for(var k=0; k<report[i].questions[j].options.length; k++) {
+                            output +=
+                              '<div class="radio">' +
+                                '<input type="radio" name="radio' + i + j + '" id="radio' + i + '' + j + '' + k + '" value="' + (k+1) + '" >' +
+                                '<label for="radio' + i + '' + j + '' + k + '">' +
+                                    report[i].questions[j].options[k].option +
+                                '</label>' +
+                              '</div>'
+                            ;
+                          }
+                          output +=
+                            '</div>' +
+                          '</div>'
+                          ;
+                        }
+                        else if(report[i].questions[j].category == 'subjective') {
+                          var _subjectiveTemp = '';
+                          for(var _i = 0; _i < report[i].questions[j].question.length; _i++) {
+                            _subjectiveTemp += '<p>' + (_i+1) + '. ' + report[i].questions[j].question[_i] + '</p>';
+                          }
+                          output +=
+                          '<div class="container-fluid subjective">' +
+                              '<h3>Q' + (i+1) + '-' + (j+1) + '. 주관식' + '</h3>' +
+                              _subjectiveTemp +
+                              '<div class="faq-answer" style="padding-bottom: 30px;">' +
+                                  '<fieldset class="form-horizontal">' +
+                                      '<div class="summernote' + j + '"></div>' +
+                                  '</fieldset>' +
+                                  '<div>' +
+                                    '<span style="float: right; line-height: 30px; margin-right: 5px;">(0 / 300)</span>' +
+                                    '<span style="float: right; line-height: 30px; margin-right: 15px;">(0 / 2)</span>' +
+                                    '<span style="float: right; line-height: 30px; margin-right: 15px;"></span>' +
+                                  '</div>' +
+                              '</div>' +
+                          '</div>'
+                          ;
+                          summernoteValue[j] = report[i].questions[j].question;
+                          for(var _j = 0; _j < summernoteValue[j].length; _j++) {
+                            summernoteValueLength += convertHtmlToSystemSource(removeBlank(summernoteValue[j][_j])).length + 2;
+                          }
+                        }
+                      }
+                      // 질문 받았을 때
+                      if(i != 0 && reportQuestion[i-1].question) {
+                        output +=
+                        '<div class="container-fluid subjective">' +
+                            '<h3>Q. ' + reportQuestion[i-1].question + '</h3>' +
+                            '<div class="faq-answer">' +
+                                '<fieldset class="form-horizontal">' +
+                                    '<div value="reportQuestion" class="summernote"></div>' +
+                                '</fieldset>' +
+                            '</div>' +
+                        '</div>'
+                        ;
+                      }
+
+                      output +=
+                      '<div class="mail-body text-right tooltip-demo" style="padding-bottom:0px;">' +
+                          '<a class="btn btn-sm btn-white report-submit"><i class="fa fa-save"></i> 등록하기</a>' +
+                      '</div>'
+                      ;
+                      $('.tab-content').append(output);
+
+                      $('div[class^="summernote"]').each(function(idx) {
+                        var reprtLen = 0;
+                        var imageLen = 0;
+                        $(this).summernote({
+                          minHeight: 200,
+                          disableDragAndDrop:true,
+                          callbacks: {
+                            onImageUpload: function(files) {
+                              sendFile(files[0], $(this).attr('class'));
+                            },
+                            onPaste: function (e) {
+                              // var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('text');
+                              e.preventDefault();
+                              // document.execCommand('insertText', false, bufferText);
+                            },
+                            onChange: function() {
+                              reportLen = removeBlank($(this).next().find('.note-editable').text()).length - summernoteValueLength;
+                              imageLen = $('<div>' + $(this).next().find('.note-editable').html() + '</div>').find('img').length;
+
+                              if(reportLen >= 300 && imageLen >= 2) {
+                                $(this).parent().siblings('div').addClass('media-profile');
+                                $(this).parent().siblings('div').find('span').eq(0).text('(' + reportLen + ' / 300)');
+                                $(this).parent().siblings('div').find('span').eq(1).text('(' + imageLen + ' / 2)');
+                                $(this).parent().siblings('div').find('span').eq(2).text('글자수와 이미지 첨부가 많을수록 좋은 점수를 받을 수 있습니다!');
+                              }
+                              else {
+                                $(this).parent().siblings('div').removeClass('media-profile');
+                                $(this).parent().siblings('div').find('span').eq(0).text('(' + reportLen + ' / 300)');
+                                $(this).parent().siblings('div').find('span').eq(1).text('(' + imageLen + ' / 2)');
+                                $(this).parent().siblings('div').find('span').eq(2).text('');
+                              }
+
+                            },
+                            onKeyup: function(e) {
+                              var _summernoteValue = summernoteValue[$(this).attr('class').split('summernote')[1]];
+                              if(_summernoteValue) {
+                                if($(this).next().find('.note-editable').next() == '') {
+                                  $(this).summernote('redo', 1);
+                                }
+                                $(this).next().find('.note-editable contents').each(function() {
+                                  if($(this).html() == '<br>') {
+                                    $(this).parent().html('<br>');
+                                  }
+                                });
+
+                                var content = convertSystemSourceToHtml($(this).next().find('.note-editable p span').text());
+                                if(content) {
+                                  if($(this).next().find('.note-editable contents').length != _summernoteValue.length) {
+                                    if($(this).next().find('.note-editable p span').parent().html().substring(0, 5) != '<span') {
+                                      $(this).summernote('undo', 1);
+                                    }
+                                    else {
+                                      $(this).next().find('.note-editable p span').parent().html('<contents style="font-size: 18px; font-weight: bold;">' + content + '</contents>');
+                                    }
+                                  }
+                                  else {
+                                    $(this).next().find('.note-editable p span').parent().html(content);
+                                  }
+                                }
+
+                                $(this).next().find('.note-editable contents').siblings().each(function() {
+                                  $(this).wrap('<p/>');
+                                  $(this).parent().parent().after('<p style="text-align: center;">' + $(this).parent().html() + '</p>');
+                                  $(this).parent().remove();
+                                });
+
+                                if($(this).next().find('.note-editable contents').length != _summernoteValue.length) {
+                                  while($(this).next().find('.note-editable contents').length != _summernoteValue.length) {
+                                    $(this).summernote('undo', 1);
+                                  }
+                                  alert('보고서 목차는 필수항목입니다!');
+                                }
+                                else {
+                                  $(this).next().find('.note-editable contents').each(function(idx) {
+                                    if(convertSystemSourceToHtml($(this).text()) != (idx+1) + '. ' + _summernoteValue[idx]) {
+                                      $(this).html((idx+1) + '. ' + _summernoteValue[idx]);
+                                      alert('보고서 목차는 필수항목입니다!');
+                                    }
+                                  });
+                                }
+                              }
+
+                              reportLen = removeBlank($(this).next().find('.note-editable').text()).length - summernoteValueLength;
+                              imageLen = $('<div>' + $(this).next().find('.note-editable').html() + '</div>').find('img').length;
+
+                              if(reportLen >= 300 && imageLen >= 2) {
+                                $(this).parent().siblings('div').addClass('media-profile');
+                                $(this).parent().siblings('div').find('span').eq(0).text('(' + reportLen + ' / 300)');
+                                $(this).parent().siblings('div').find('span').eq(1).text('(' + imageLen + ' / 2)');
+                                $(this).parent().siblings('div').find('span').eq(2).text('글자수와 이미지 첨부가 많을수록 좋은 점수를 받을 수 있습니다!');
+                              }
+                              else {
+                                $(this).parent().siblings('div').removeClass('media-profile');
+                                $(this).parent().siblings('div').find('span').eq(0).text('(' + reportLen + ' / 300)');
+                                $(this).parent().siblings('div').find('span').eq(1).text('(' + imageLen + ' / 2)');
+                                $(this).parent().siblings('div').find('span').eq(2).text('');
+                              }
+
+                            }
+                          },
+                          lang : 'ko-KR',
+                          toolbar: [
+                            // [groupName, [list of button]]
+                            ['style', ['style']],
+                            ['font', ['bold', 'color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'hr']]
+                          ]
+                        });
+
+                        if(summernoteValue[$(this).attr('class').split('summernote')[1]]) {
+                          var contents = summernoteValue[$(this).attr('class').split('summernote')[1]];
+                          $(this).next().find('.note-editable').html('');
+                          for(var i=0; i<contents.length; i++) {
+                            $(this).next().find('.note-editable').append('<p style="text-align: center;"><contents style="font-size: 18px; font-weight: bold;">' + (i+1) + '. ' + contents[i] + '</contents></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p>');
+                          }
+                        }
+                        $(this).next().find('.note-control-selection').css('z-index', 1);
+                        $(this).next().find('.note-statusbar').html('');
+                      });
+                      $('.report-submit').click(function() {
+                        if(window.confirm('보고서 점수는 글자수와 첨부 이미지 갯수에 따라 영향을 받으며 보고서는 한번 제출하시면 수정하실 수 없습니다. 정말 제출하시겠습니까?') && validate(summernoteValueLength)) {
+                          var imageArray = new Array();
+                          $('div.active .subjective .note-editable').each(function() {
+                            var editable = $(this);
+                            $(this).wrap('<div/>').parent().find('img').each(function() {
+                              if(!$(this).css('width').match('%')) {
+                                var resizedWidth = $(this).width();
+                                var originalWidth = editable.width();
+                                var percent = resizedWidth * 100 / originalWidth;
+                                if(percent > 100) {
+                                  percent = 100;
+                                }
+                                $(this).css('width', percent + '%');
+                                $(this).css('height', '');
+                              }
+                              imageArray.push($(this).attr('src'));
+                            });
+                          });
+                          for(var i=0; i<imageArray.length; i++) {
+                            $.ajax({
+                              url:'/api/move',
+                              type:'post',
+                              cache:false,
+                              data:{'img': imageArray[i]},
+                              async:false,
+                              success:function(data) {
+                                console.log(data);
+                              },
+                              error:function(data) {
+                                alert('오류가 발생했습니다.');
+                              }
+                            });
+                          }
+
+                          var reportData = getReportData(proceedingReport, summernoteValueLength);
+                          if($('div.active .container-fluid.subjective .summernote').attr('value') == 'reportQuestion') {
+                            reportQuestion[Number(proceedingReportSplit)-2].answer = $('div.active .container-fluid.subjective .summernote').next().find('.note-editable').html().replace(/.com\/tmp\//g, '.com/images/');
+                          }
+
+                          $.ajax({
+                            url:'/api/report/'+pid,
+                            type:'post',
+                            cache:false,
+                            data:{
+                              reportData: JSON.stringify(reportData),
+                              reportQuestion: JSON.stringify(reportQuestion)
+                            },
+                            success:function(data){
+                              alert('성공적으로 등록되었습니다');
+                              $(window).unbind('beforeunload');
+                              window.location.reload();
+                            },
+                            error:function(data){
+                              alert('오류가 발생했습니다.');
+                            }
+                          });
+                        }
+                      });
+
+                    }
+                    else { // 보고서를 작성했을 경우
+                      $('.nav-tabs').append('<li class="active"><a data-toggle="tab" href="#tab-' + i + '"> ' + (i+1) + '차 보고서</a></li>');
+                      var output =
+                      '<div id="tab-' + i + '" class="tab-pane active">' +
+                          '<div class="panel-body">'
+                      ;
+                      for(var j=0; j<report[i].questions.length; j++) {
+                        if(report[i].questions[j].category == 'objective') {
+                          output +=
+                          '<div class="container-fluid">' +
+                              '<h3>Q' + (i+1) + '-' + (j+1) + '. ' + report[i].questions[j].question + '</h3>' +
+                              '<div class="col-sm-6">'
+                          ;
+                          for(var k=0; k<report[i].questions[j].options.length; k++) {
+                            output +=
+                            '<div class="radio">' +
+                                '<input type="radio" name="radio' + i + j + '" id="radio' + i + '' + j + '' + k + '" ' + ((_report[i].questions[j].answer == (k+1)) ? "checked" : "") + ' disabled>' +
+                                '<label for="radio' + i + '' + j + '' + k + '">' +
+                                    report[i].questions[j].options[k].option +
+                                '</label>' +
+                            '</div>'
+                            ;
+                          }
+                          output +=
+                            '</div>' +
+                          '</div>'
+                          ;
+                        }
+                        else if(report[i].questions[j].category == 'subjective') {
+                          var _subjectiveTemp = '';
+                          for(var _i = 0; _i < report[i].questions[j].question.length; _i++) {
+                            _subjectiveTemp += '<p>' + (_i+1) + '. ' + report[i].questions[j].question[_i] + '</p>';
+                          }
+                          output +=
+                          '<div class="container-fluid">' +
+                              '<h3>Q' + (i+1) + '-' + (j+1) + '. 주관식' + '</h3>' +
+                              _subjectiveTemp +
+                              '<div class="container-fluid subjective-answer">' +
+                                _report[i].questions[j].answer +
+                              '</div>' +
+                          '</div>'
+                          ;
+                        }
+                      }
+                      // 질문 받았을 때
+                      if(i != 0 && reportQuestion[i-1].question) {
+                        output +=
+                        '<div class="container-fluid">' +
+                            '<h3>Q. ' + reportQuestion[i-1].question + '</h3>' +
+                            '<div class="container-fluid subjective-answer">' +
+                              reportQuestion[i-1].answer +
+                            '</div>' +
+                        '</div>'
+                        ;
+                      }
+                      $('.tab-content').append(output);
+                    }
+                  }
+                  else {
+                    $('.nav-tabs').append('<li class="disabled"><a> ' + (i+1) + '차 보고서</a></li>');
+                  }
+                }
+                function isWrite(title) {
+                  for(var j=0; j<_report.length; j++) {
+                    if(_report[j].title == title) {
+                      return true;
+                    }
+                  }
+                  return false;
+                }
+              }
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+        });
+
+        function validate(summernoteValueLength) {
+          var isFalse = false;
+          $('div.active .container-fluid').each(function() {
+            if($(this).hasClass('objective')) {
+              if($(this).find('input:checked').val() == undefined) {
+                alert('내용을 모두 입력하고 다시 시도해주세요.');
+                isFalse = true;
+                return false;
+              }
+            }
+            else if($(this).hasClass('subjective')) {
+              if($(this).find('.note-editable').html() == '<p><br></p>' || $(this).find('.note-editable').html() == '') {
+                alert('내용을 모두 입력하고 다시 시도해주세요.');
+                isFalse = true;
+                return false;
+              }
+              if((removeBlank($(this).find('.note-editable').text()).length - summernoteValueLength) < 300) {
+                if($(this).find('.summernote').attr('value') == 'reportQuestion') {
+                  return true;
+                }
+                else {
+                  alert('보고서 길이는 최소 300자 이상은 되어야 합니다. (' + (removeBlank($(this).find('.note-editable').text()).length - summernoteValueLength) + ' / 300)');
+                  isFalse = true;
+                  return false;
+                }
+              }
+              if($($(this).find('.note-editable').wrap('<div/>').parent().html()).find('img').length < 2) {
+                if($(this).find('.summernote').attr('value') == 'reportQuestion') {
+                  return true;
+                }
+                else {
+                  alert('이미지 첨부는 최소 2개 이상이어야 합니다. (' + $($(this).find('.note-editable').wrap('<div/>').parent().html()).find('img').length + ' / 2)');
+                  isFalse = true;
+                  return false;
+                }
+              }
+            }
+          });
+          if(isFalse) {
+            return false;
+          }
+          return true;
+
+        }
+
+        function sendFile(file, className) {
+          var formData = new FormData();
+          formData.append('ex_filename', file);
+          $.ajax({
+            url:'/api/upload/tmp',
+            type:'post',
+            cache:false,
+            processData: false,  // file전송시 필수
+            contentType: false,  // file전송시 필수
+            data:formData,
+            success:function(data){
+              $('.'+className).summernote('insertImage', data, function($image) {
+                $image.css('width', '25%');
+              });
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+        }
+
+        function getReportData(proceedingReport, summernoteValueLength) {
+          var reportData = {
+            title: proceedingReport,
+            registerDate: '',
+            questions: new Array()
+          };
+          $('div.active .container-fluid').each(function(idx) {
+            if($(this).hasClass('objective')) {
+              reportData.questions.push({
+                qid: idx+1,
+                answer: convertSystemSourceToHtml($(this).find('input:checked').val())
+              });
+            }
+            else if($(this).hasClass('subjective')) {
+              reportData.questions.push({
+                qid: idx+1,
+                answer: $(this).find('.note-editable').html().replace(/.com\/tmp\//g, '.com/images/'),
+                score: removeBlank($(this).find('.note-editable').text()).length - summernoteValueLength + ($($(this).find('.note-editable').wrap('<div/>').parent().html()).find('img').length * 100)
+              });
+            }
+          });
+
+          return reportData;
+        }
+
+        function removeBlank(text) {
+         text = text.replace(/\s/gi, "");
+         text = text.replace(/&nbsp;/ig, "");
+
+         return text;
+        }
+
+        function reportClick(report) {
+            if ($(report).hasClass( 'active' )) {
+                $(report).removeClass( 'active' );
+            } else {
+                $(report).addClass( 'active' );
+            }
+        }
+
+        function getFormatDate(date) {
+            var year = date.getFullYear(); //yyyy
+            var month = (1 + date.getMonth()); //M
+            month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+            var day = date.getDate(); //d
+            day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+            return year + '-' + month + '-' + day;
+        }
+
+        function addDays(date, days) {
+            var result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return getFormatDate(result);
+        }
+
+        function getPeriod(startDate, nextStartDate) {
+            return getFormatDate(new Date(startDate)).slice(2) + ' ~ ' + addDays(nextStartDate, -1).slice(2);
+        }
+
+        function convertSystemSourceToHtml(str){
+          str = str.replace(/&/g,"&amp;");
+          str = str.replace(/</g,"&lt;");
+          str = str.replace(/>/g,"&gt;");
+          str = str.replace(/\"/g,"&quot;");
+          str = str.replace(/\'/g,"&#39;");
+          str = str.replace(/\n/g,"<br />");
+          return str;
+        }
+
+        function convertHtmlToSystemSource(str){
+          str = str.replace(/&amp;/g,"&");
+          str = str.replace(/&lt;/g,"<");
+          str = str.replace(/&gt;/g,">");
+          str = str.replace(/&quot;/g,"\"");
+          str = str.replace(/&#39;/g,"\'");
+          str = str.replace(/<br \/>/g,"\n");
+          return str;
+        }
+
+    </script>
+
+
+</body>
+
+</html>

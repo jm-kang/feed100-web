@@ -1,0 +1,109 @@
+/*
+Sliders
+*/
+
+.flexslider{
+    padding: 0;
+    margin: 0;
+    border: 0px;
+    background-color: transparent;
+    .slides{
+        li{
+            h1{
+                color:#fff;
+            font-size: 6rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            position: relative;
+            font-family: $title-font;
+            }
+            p{
+                color:#fff;
+            }
+        }
+    }
+}
+
+.testi-slider{
+    text-align:center;
+    p{
+        color:#fff;
+        font-style: italic;
+        font-weight: 300;
+        font-size: 2rem;
+        line-height: 3rem;
+        margin: 20px 0;
+        font-family: $default-font;
+    }
+    h5{
+        color:$skin-color;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+    i{
+        display: block;
+        font-size: 3rem;
+        color:#fff;
+    }
+}
+/***home slider**/
+.slider-banner{
+    position: relative;
+    .slider-overlay{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;        
+    }
+    .slider-table{
+        display: table;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .slider-vm{
+            display: table-cell;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            h1{
+                color:#fff;
+                font-size: 5rem;
+                text-transform: uppercase;
+                letter-spacing: 4px;
+                font-weight: 300;
+            }
+            p{
+                color:#fff;
+                margin-bottom: 20px;
+                font-size: 20px;
+                line-height: 35px;
+            }
+        }
+    }
+    .flex-direction-nav a:before{
+        content: "";
+        display: none;
+    }
+}
+.main-slider:hover .flex-direction-nav .flex-prev{
+    left: 0px;
+}
+.main-slider:hover .flex-direction-nav .flex-next{
+    right: 0px;
+}
+.main-slider .flex-direction-nav a{
+    text-align: center;
+    font-size: 40px;
+    line-height: 40px;
+    color:#fff;
+    text-shadow: none;
+    i{
+        display: block;
+    }
+}
+.main-slider:hover .flex-direction-nav a{
+    opacity: 1;
+}

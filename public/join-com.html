@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="assets/css/style-dashBoard.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown" style="padding-top: 150px;">
+        <div>
+            <a href="/">
+                <img src="assets/images/logo.png" alt="" style="width: 100%;">
+            </a>
+
+            <div class="m-t">
+                <div class="form-group">
+                  <input type="email" class="form-control" name="username" placeholder="이메일" required="">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="비밀번호" required="">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" name="passwordCheck" placeholder="비밀번호 확인" required="">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="companyName" placeholder="회사명 / 팀명" required="">
+                </div>
+                <div class="form-group">
+                  <input type="tel" class="form-control" name="phoneNumber" placeholder="담당자 연락처" required="" pattern="[0-9]{10,11}">
+                </div>
+                <div class="form-group">
+                  <div class="checkbox i-checks"><label> <input type="checkbox" name="policyCheck" required=""><i></i> Agree the terms and policy </label></div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">기업 회원가입</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+      $('div button.btn').click(function() {
+        join();
+      });
+      $('input').keypress(function(e) {
+        if(e.keyCode == 13){
+          join();
+        }
+      });
+
+      function join() {
+        if(validate()) {
+          $.ajax({
+            url:'/auth/join-com',
+            type:'post',
+            cache:false,
+            data:{
+              username: $('input').eq(0).val(),
+              password: $('input').eq(1).val(),
+              companyName: convertSystemSourceToHtml($('input').eq(3).val()),
+              phoneNumber: $('input').eq(4).val().replace(/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?([0-9]{3,4})-?([0-9]{4})$/, "$1-$2-$3")
+            },
+            success:function(data) {
+              if(data == '로그인') {
+                window.location.replace('/');
+              }
+              else {
+                alert(data);
+              }
+            },
+            error:function(data) {
+              alert('오류가 발생했습니다.');
+            }
+          });
+        }
+      }
+
+      function validate() {
+        var emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        var passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{8,16}$/;
+        var phoneNumberRegExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})([0-9]{3,4})([0-9]{4})$/;
+
+        if($('input').eq(0).val() == '') {
+          $('input').eq(0).focus();
+          alert('이메일 주소를 입력해주세요.');
+          return false;
+        }
+        else if(!$('input').eq(0).val().match(emailRegExp)){
+          $('input').eq(0).focus();
+          alert('올바른 이메일 형식이 아닙니다.');
+          return false;
+        }
+        if($('input').eq(1).val() == '') {
+          $('input').eq(1).focus();
+          alert('비밀번호를 입력해주세요.');
+          return false;
+        }
+        else if(!$('input').eq(1).val().match(passwordRegExp)){
+          $('input').eq(1).focus();
+          alert('비밀번호는 8-16자리 영문, 숫자, 특수문자 조합이어야 합니다.');
+          return false;
+        }
+        if($('input').eq(2).val() == '') {
+          $('input').eq(2).focus();
+          alert('비밀번호 확인을 위해 한번 더 입력해주세요.');
+          return false;
+        }
+        else if($('input').eq(1).val() != $('input').eq(2).val()) {
+          $('input').eq(2).focus();
+          alert('비밀번호를 다시 확인해주세요.');
+          return false;
+        }
+        if($('input').eq(3).val() == '') {
+          $('input').eq(3).focus();
+          alert('회사명 / 팀명을 입력해주세요.');
+          return false;
+        }
+        else if($('input').eq(3).val().length < 2) {
+          $('input').eq(3).focus();
+          alert('회사명 / 팀명은 최소 2글자 이상이어야 합니다.');
+          return false;
+        }
+        if($('input').eq(4).val() == '') {
+          $('input').eq(4).focus();
+          alert('담당자 연락처를 입력해주세요.');
+          return false;
+        }
+        else if(!$('input').eq(4).val().match(phoneNumberRegExp)){
+          $('input').eq(4).focus();
+          alert('올바른 전화번호 형식이 아닙니다. -를 제외하고 입력해주세요.');
+          return false;
+        }
+        if(!$('input').eq(5).is(':checked')) {
+          $('input').eq(5).focus();
+          alert('이용약관에 동의해주세요.');
+          return false;
+        }
+        return true;
+      }
+
+      function convertSystemSourceToHtml(str){
+        str = str.replace(/&/g,"&amp;");
+        str = str.replace(/</g,"&lt;");
+        str = str.replace(/>/g,"&gt;");
+        str = str.replace(/\"/g,"&quot;");
+        str = str.replace(/\'/g,"&#39;");
+        str = str.replace(/\n/g,"<br />");
+        return str;
+      }
+
+    });
+    </script>
+
+</body>
+
+</html>

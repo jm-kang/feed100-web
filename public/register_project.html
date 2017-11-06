@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FEED100</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <link rel='stylesheet' type="text/css" href="assets/dzsparallaxer/dzsparallaxer.css" />
+
+    <!-- summernote -->
+    <link href="assets/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="assets/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+
+    <!-- file upload -->
+    <link href="assets/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <!-- touchspin -->
+    <link href="assets/css/plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+
+    <!--main css file-->
+    <link href="assets/css/style-registerProject.css" rel="stylesheet">
+    <link href="assets/css/style-nav.css" rel="stylesheet">
+    <link href="assets/css/style-footer.css" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <style>
+      .navbar-default .navbar-brand img {
+        margin-top: -7px;
+      }
+    </style>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+    <!--preloader-->
+    <div id="preloader"></div>
+    <!--preloader-->
+    <!--  navbar -->
+    <nav class="navbar navbar-default" style="border-bottom: 1px solid #ddd;">
+    </nav>
+    <section id="Contents">
+        <div class="container">
+            <div class="row">
+                <div class="board col-sm-offset-1 col-sm-10">
+                    <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+                    <div class="board-inner">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <div class="liner"></div>
+                            <li class="active">
+                                <!-- 20170514 id 추가 (수정) -->
+                                <a href="#card" id="cardMenu" data-toggle="tab" title="기본정보">
+                                <!-- 20170514 end -->
+                                    <span class="round-tabs one">
+                        <i class="fa fa-id-card-o"></i>
+                </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <!-- 20170514 id 추가 (수정) -->
+                                <a href="#story" id="storyMenu" data-toggle="tab" title="스토리">
+                                <!-- 20170514 end -->
+                                    <span class="round-tabs two">
+                   <i class="fa fa-book"></i>
+               </span>
+                                </a>
+                            </li>
+
+                            <!-- 20170513 조건 탭 추가 (추가) -->
+                            <li>
+                                <a href="#condition" id="conditionMenu" data-toggle="tab" title="조건">
+                                    <span class="round-tabs three">
+                   <i class="fa fa-filter"></i>
+               </span>
+                                </a>
+                            </li>
+                            <!-- 20170513 end -->
+
+                            <li>
+                                <!-- 20170514 id 추가 (수정) -->
+                                <a href="#reports" id="reportsMenu" data-toggle="tab" title="보고서 항목">
+                                <!-- 20170514 end -->
+                                    <span class="round-tabs four">
+                        <i class="fa fa-list"></i>
+                   </span>
+                                </a>
+                            </li>
+
+                            <!-- 20170513 프로젝트 정보 탭 추가 (추가) -->
+                            <li>
+                                <a href="#information" id="informationMenu" data-toggle="tab" title="테스트 미션">
+                                    <span class="round-tabs five">
+                   <i class="fa fa-film"></i>
+               </span>
+                                </a>
+                            </li>
+                            <!-- 20170513 end -->
+
+                            <li>
+                                <a style="cursor:pointer;" id="preview" title="미리보기">
+                                    <!-- 20170513 class 수정 (수정) -->
+                                    <span class="round-tabs six">
+                                    <!-- 20170513 end -->
+                        <i class="fa fa-search"></i>
+                   </span> </a>
+                            </li>
+                            <li>
+                                <a id="submitMenu" href="#submit" data-toggle="tab" title="제출">
+                                    <!-- 20170513 class 수정 (수정) -->
+                                    <span class="round-tabs seven">
+                                    <!-- 20170513 end -->
+                        <i class="glyphicon glyphicon-ok"></i>
+                   </span> </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="card">
+                            <div class="space-20"></div>
+                            <h2 class="center-title scrollReveal sr-bottom">기본정보</h2>
+                            <div class="center-border"></div>
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1 text-center">
+                                    <p class="lead">
+                                        테스터들이 가장 먼저 보이는 곳을 꾸미는 공간입니다.<br /> 빠르고 좋은 테스터를 모으기 위해서는 잘 생각해보시고 결정하시기 바랍니다.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-20"></div>
+                            <div class="col-md-9">
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">프로젝트 이미지</div>
+                                    <div class="col-sm-9">
+                                        <div class="filebox">
+                                          <form id="fileForm">
+                                            <input class="upload-name col-xs-10 margin-b-10" value="파일선택" disabled="disabled">
+                                            <label for="ex_filename" class="col-xs-2">업로드</label>
+                                            <input type="file" id="ex_filename" name="ex_filename" class="upload-hidden" accept="image/*">
+                                          </form>
+                                        </div>
+
+                                        <p>
+                                            이것은 사람들이 프로젝트를 보았을 때 가장 먼저 보게 될 것입니다. 선명하고 텍스트가없는 이미지를 선택하십시오. 16:9 Size만 가능합니다.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">프로젝트 제목</div>
+                                    <div class="col-sm-9">
+                                        <div class="character_counter_wrapper">
+                                            <input id="field50" type="text" class="form-control">
+                                            <span class="character_counter_container">
+                                        <span id="charNum">0</span> / 50
+                                            </span>
+                                        </div>
+                                        <p>
+                                            우리의 검색은 프로젝트 제목과 광고 문안의 단어를 조사하므로 귀하가 작성한 내용을 명확하게 설명 할 수 있습니다. 프로필 이름도 검색 할 수 있습니다.
+                                        </p>
+                                        <p>
+                                            이 단어들은 사람들이 귀하의 프로젝트를 찾는 데 도움이되므로 현명하게 선택하십시오! 귀하의 이름도 검색 가능합니다.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">카테고리</div>
+                                    <div class="col-sm-9">
+                                        <select class="form-control m-b" id="categorySelect">
+                                            <option value="hardware">하드웨어</option>
+                                            <option value="web">웹 서비스</option>
+                                            <option value="app">어플리케이션</option>
+                                            <option value="game">게임</option>
+                                        </select>
+                                        <p>
+                                            카테고리에서 프로젝트와 맞는 항목을 선택하세요.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">테스터 모집 인원</div>
+                                    <div class="col-sm-9">
+                                        <input id="vertical_num" type="text" value="0" name="vertical_num">
+                                        <p>
+                                            원하시는 테스터 모집 인원을 입력해주세요. 게시될때 요청하신 인원의 2배수로 뽑아 추천을 통해 선별된 인원을 모집합니다.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">보고서 횟수 및 기간</div>
+                                    <div class="col-sm-5">
+                                        <input id="vertical_num2" value="0" name="vertical_num2" readonly>
+                                        <p>
+                                            원하시는 보고서 횟수와 기간을 선택해주세요. 보고서 횟수가 많을수록 테스터의 이해도와 관심이 증가되어 좋은 피드백을 받을 수 있는 확률이 증가합니다.
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="container-fluid white-box">
+                                            <div class="container-fluid">
+                                                <!-- 20170512 count-up, count-down (수정 및 추가) -->
+                                                <span class="pull-right button pointer" onClick=countUp(1)>+</span>
+                                                <span class="pull-right m-r-10">일</span>
+                                                <span class="pull-right m-l-10" id="periodDay1">3</span>
+                                                <span class="pull-right pointer" onClick=countDown(1)>-</span>
+                                                <!-- 20170512 end -->
+                                                <span>대기일</span>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <!-- 20170512 count-up, count-down (수정 및 추가) -->
+                                                <span class="pull-right button pointer" onClick=countUp(2)>+</span>
+                                                <span class="pull-right m-r-10">일</span>
+                                                <span class="pull-right m-l-10" id="periodDay2">3</span>
+                                                <span class="pull-right pointer" onClick=countDown(2)>-</span>
+                                                <!-- 20170512 end -->
+                                                <span>모집일</span>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <!-- 20170512 count-up, count-down (수정 및 추가) -->
+                                                <span class="pull-right button pointer" onClick=countUp(3)>+</span>
+                                                <span class="pull-right m-r-10">일</span>
+                                                <span class="pull-right m-l-10" id="periodDay3">3</span>
+                                                <span class="pull-right pointer" onClick=countDown(3)>-</span>
+                                                <!-- 20170512 end -->
+                                                <span>선정일</span>
+                                            </div>
+                                            <div class="container-fluid report-period" id="countPeriod">
+                                            </div>
+                                            <hr />
+                                            <div class="container-fluid">
+                                                <span class="pull-right">일</span>
+                                                <span class="pull-right" id="total_day">9</span>
+                                                <span>총</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="post item-wrapper">
+                                    <div class="hovereffect">
+                                        <a href="#">
+                                            <img id="blah" src="assets/images/16.9.png" alt="your image" class="img-responsive" />
+                                        </a>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="container-fluid">
+                                            <h3><a id="preview_projectTitle" style="word-wrap:break-word"></a></h3>
+                                            <h6 id="preview_companyName">by </h6>
+                                        </div>
+                                        <div class="space-20"></div>
+
+                                        <h6><i class="ion-social-usd"></i> &emsp;보상 max&emsp;<strong>????? 원</strong></h6>
+                                        <h6 style="margin-bottom:7px;"><i class="ion-person-stalker"></i>&emsp;모집 인원&emsp;<strong id="preview_numOfRecruitment">0 / 10</strong></h6>
+                                        <div class="progress clearfix progress-small">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+                                        </div>
+                                        <!--progress bar-->
+                                        <hr>
+                                        <ul class="list-inline post-meta text-center">
+                                            <li><i class="ion-eye"></i>&emsp;0</li>
+                                            <li><i class="ion-heart"></i>&emsp;0</li>
+                                            <li id="preview_category"><i class="ion-pricetag"></i>&emsp;hw</li>
+                                        </ul>
+                                    </div>
+                                    <!--post content-->
+                                </div>
+                            </div>
+                            <!-- 20170514 하단 버튼 추가 (추가) -->
+                            <div class="container col-xs-9">
+                              <div class='container-flex text-right m-r-10'>
+                                  <a href="#story" data-toggle="tab" class="btn btn-border-blue btn-lg" onClick="activeList('story')">다음으로&emsp;<i class="fa fa-angle-right"></i></a>
+                              </div>
+                            </div>
+                            <!-- 20170514 end -->
+                        </div>
+                        <div class="tab-pane fade" id="story">
+                            <div class="space-20"></div>
+                            <h2 class="center-title scrollReveal sr-bottom">스토리</h2>
+                            <div class="center-border"></div>
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1 text-center">
+                                    <p class="lead">
+                                        테스터에게 프로젝트를 어필해보세요.<br /> 자세하게 적을수록 테스터들의 참여율이 높아집니다.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-20"></div>
+                            <div class="col-md-9">
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">프로젝트 영상 <small>(선택)</small></div>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="youTubeUrl" class="col-xs-10" style="margin-bottom:9px;" />
+                                        <input type="button" value="등록" onClick="validateYouTubeUrl()" class="btn btn-primary col-xs-2 margin-b-10">
+                                        <div></div>
+                                        <p>
+                                            프로젝트에 우선 유튜브에 영상을 업로드해 주세요. 유튜브의 경우, 해당 영상 페이지 하단의 공유(Share) 버튼을 클릭하면 나오는 짧은 링크를 등록해 주세요.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">핵심 메세지</div>
+                                    <div class="col-sm-9">
+                                        <div class="character_counter_wrapper">
+                                            <input id="field100" type="text" class="form-control">
+                                            <span class="character_counter_container">
+                                        <span id="charNum2">0</span> / 100
+                                            </span>
+                                        </div>
+                                        <p>
+                                            참여자들이 페이지를 열었을 때 가장 처음 보는 문장으로, 사람들이 이 문장을 읽고 “아~ 이게 어떤 프로젝트구나~” 라는 것을 알 수 있도록 작성해주세요. 3줄 이하로 작성되면 좋겠습니다. 너무 길지 않게 적어주세요.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="col-sm-12">
+                                      <div class="tab-primary">프로젝트 스토리</div>
+                                        <p style="margin-top:10px;">
+                                            프로젝트 기금을 사용하여 기금 모금 활동 및 기금 모금 방법에 대해 더 많이 공유하십시오. 프로젝트의 케이스를 만드는 것은 당신에게 달려 있습니다.
+                                        </p>
+                                        <div class="summernote"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="post-notice container-fluid">
+                                    <div class="col-xs-2 text-center"><i class="fa fa-lightbulb-o"></i></div>
+                                    <div class="col-xs-10">
+                                        <h5>프로젝트를 클릭하여 서포터가 처음 만나는 영상 혹은 이미지</h5>
+                                        <p>상세페이지 최상단에 노출되는 영상 혹은 이미지는 SNS나 카카오톡에서 프로젝트 링크를 클릭하여 진입한 경우, 가장 먼저 보게 됩니다.</p>
+                                        <p>프로젝트의 내용을 압축하여 가장 잘 보여줄 수 있는 콘텐츠인 영상 제작의 중요성과 좋은 영상에 대해 알려드립니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 20170514 하단 버튼 추가 (추가) -->
+                            <div class="container col-xs-9">
+                              <div class='container-flex text-right m-r-10'>
+                                  <a href="#card" data-toggle="tab" class="btn btn-border-blue btn-lg" onClick="activeList('card')"><i class="fa fa-angle-left"></i>&emsp;이전으로</a>
+                                  <a href="#condition" data-toggle="tab" class="btn btn-border-blue btn-lg btn-next" onClick="activeList('condition')">다음으로&emsp;<i class="fa fa-angle-right"></i></a>
+                              </div>
+                            </div>
+                            <!-- 20170514 end -->
+                        </div>
+
+                        <!-- 20170513 조건 추가 (추가) -->
+                        <div class="tab-pane fade" id="condition">
+                            <div class="space-20"></div>
+                            <h2 class="center-title scrollReveal sr-bottom">조&emsp;건</h2>
+                            <div class="center-border"></div>
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1 text-center">
+                                    <p class="lead">
+                                        원하시는 참여 조건은 어떻게 되나요?<br /> 조건을 통해 프로젝트와 적합한 테스터를 찾아보세요.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-20"></div>
+                            <div class="col-md-9">
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">기본 조건</div>
+                                    <div class="col-sm-9">
+                                        <div class="condition-box gender">
+                                            <h5>성&ensp;별</h5>
+                                            <ul class="select-box">
+                                                <div class="select-liner"></div>
+                                                <li>
+                                                    <span class="select-item select-left"></span>
+                                                    <p class="select-tag select-tag-left">남자</p>
+                                                </li>
+                                                <li class="active">
+                                                    <span class="select-item2 item-anything"></span>
+                                                    <p class="select-tag">무관</p>
+                                                </li>
+                                                <li>
+                                                    <span class="select-item3 select-right"></span>
+                                                    <p class="select-tag select-tag-right">여자</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="condition-box age">
+                                            <h5>나&ensp;이</h5>
+                                            <ul class="select-box">
+                                                <div class="select-liner"></div>
+                                                <li class="active li-side">
+                                                    <span class="select-item select-left select-else item-anything"></span>
+                                                    <p class="select-tag select-tag-left">무관</p>
+                                                </li>
+                                                <li>
+                                                    <span class="select-item2"></span>
+                                                    <p class="select-tag">10대</p>
+                                                </li>
+                                                <li>
+                                                    <span class="select-item3"></span>
+                                                    <p class="select-tag">20대</p>
+                                                </li>
+                                                <li>
+                                                    <span class="select-item4"></span>
+                                                    <p class="select-tag">30대</p>
+                                                </li>
+                                                <li class="li-side">
+                                                    <span class="select-item6 select-right"></span>
+                                                    <p class="select-tag select-tag-right">40대~</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="condition-box local">
+                                            <h5>지&ensp;역</h5>
+                                            <select class="form-control m-r-10 m-l-10" name="sido1" id="conditionLocal"></select>
+                                        </div>
+
+                                        <div class="condition-box job">
+                                            <h5>직&ensp;업</h5>
+                                            <select class="form-control m-r-10 m-l-10" name="account">
+                                                <option value="무관">무관</option>
+                                                <option value="직장인">직장인</option>
+                                                <option value="학생">학생</option>
+                                                <option value="전업주부">전업주부</option>
+                                                <option value="기타">기타</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="condition-box interest">
+                                            <h5>관심분야</h5>
+                                            <select class="form-control m-r-10 m-l-10" name="account">
+                                              <option>무관</option>
+                                              <option value="하드웨어">하드웨어</option>
+                                              <option value="웹 서비스">웹 서비스</option>
+                                              <option value="어플리케이션">어플리케이션</option>
+                                              <option value="게임">게임</option>
+                                            </select>
+                                        </div>
+
+                                        <p>
+                                            참여자들이 페이지를 열었을 때 가장 처음 보는 문장으로, 사람들이 이 문장을 읽고 “아~ 이게 어떤 프로젝트구나~” 라는 것을 알 수 있도록 작성해주세요. 3줄 이하로 작성되면 좋겠습니다. 너무 길지 않게 적어주세요.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">추가 조건</div>
+                                    <div class="col-sm-9">
+                                        <ul class="c-question-list">
+                                          <li class="c-subjective-element c-question-element" id="c-question-element' + c_question_count + '">
+                                            <span class="type-title">주관식 문항</span>
+                                            <input type="text" class="form-control" placeholder="질문을 입력해주세요." value="프로젝트 지원 이유를 작성해주세요." disabled />
+                                          </li>
+                                        </ul>
+                                        <button type="button" class="btn btn-objective width50" onClick=addCObjective()>객관식</button>
+                                        <button type="button" class="btn btn-subjective width50" onClick=addCSubjective()>주관식</button>
+                                        <p style="margin-top:10px;">
+                                            참여자들이 페이지를 열었을 때 가장 처음 보는 문장으로, 사람들이 이 문장을 읽고 “아~ 이게 어떤 프로젝트구나~” 라는 것을 알 수 있도록 작성해주세요. 3줄 이하로 작성되면 좋겠습니다. 너무 길지 않게 적어주세요.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="post-notice container-fluid">
+                                    <div class="col-xs-2 text-center"><i class="fa fa-lightbulb-o"></i></div>
+                                    <div class="col-xs-10">
+                                        <h5>프로젝트를 클릭하여 서포터가 처음 만나는 영상 혹은 이미지</h5>
+                                        <p>상세페이지 최상단에 노출되는 영상 혹은 이미지는 SNS나 카카오톡에서 프로젝트 링크를 클릭하여 진입한 경우, 가장 먼저 보게 됩니다.</p>
+                                        <p>프로젝트의 내용을 압축하여 가장 잘 보여줄 수 있는 콘텐츠인 영상 제작의 중요성과 좋은 영상에 대해 알려드립니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container col-xs-9">
+                              <div class='container-flex text-right m-r-10'>
+                                  <a href="#story" data-toggle="tab" class="btn btn-border-blue btn-lg" onClick="activeList('story')"><i class="fa fa-angle-left"></i>&emsp;이전으로</a>
+                                  <a href="#reports" data-toggle="tab" class="btn btn-border-blue btn-lg" onClick="activeList('reports')">다음으로&emsp;<i class="fa fa-angle-right"></i></a>
+                              </div>
+                            </div>
+                        </div>
+                        <!-- 20170513 end -->
+
+                        <div class="tab-pane fade" id="reports">
+                            <div class="space-20"></div>
+                            <h2 class="center-title scrollReveal sr-bottom">보고서 항목</h2>
+                            <div class="center-border"></div>
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1 text-center">
+                                    <p class="lead">
+                                        어떤 피드백을 원하시나요?<br /> 프로젝트를 통해 테스터에게 어떤 피드백을 받을지 적어주세요.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-20"></div>
+                            <ul class="col-md-9 report-wrapper">
+                            </ul>
+                            <div class="col-md-3">
+                                <div class="post-notice container-fluid">
+                                    <div class="col-xs-2 text-center"><i class="fa fa-lightbulb-o"></i></div>
+                                    <div class="col-xs-10">
+                                        <h5>프로젝트를 클릭하여 서포터가 처음 만나는 영상 혹은 이미지</h5>
+                                        <p>상세페이지 최상단에 노출되는 영상 혹은 이미지는 SNS나 카카오톡에서 프로젝트 링크를 클릭하여 진입한 경우, 가장 먼저 보게 됩니다.</p>
+                                        <p>프로젝트의 내용을 압축하여 가장 잘 보여줄 수 있는 콘텐츠인 영상 제작의 중요성과 좋은 영상에 대해 알려드립니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 20170514 하단 버튼 추가 (추가) -->
+                            <div class="container col-xs-9">
+                              <div class='container-flex text-right m-r-10'>
+                                  <a href="#condition" data-toggle="tab" class="btn btn-border-blue btn-lg" onClick="activeList('condition')"><i class="fa fa-angle-left"></i>&emsp;이전으로</a>
+                                  <a href="#information" data-toggle="tab" class="btn btn-border-blue btn-lg" onClick="activeList('information')">다음으로&emsp;<i class="fa fa-angle-right"></i></a>
+                              </div>
+                            </div>
+                            <!-- 20170514 end -->
+                        </div>
+
+                        <!-- 20170514 정보 추가 (추가) -->
+                        <div class="tab-pane fade" id="information">
+                            <div class="space-20"></div>
+                            <h2 class="center-title scrollReveal sr-bottom">테스트 미션</h2>
+                            <div class="center-border"></div>
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1 text-center">
+                                    <p class="lead">
+                                        테스트에 대한 미션입니다.<br /> 참여하는 테스터는 테스트 미션을 기반으로 활동하게 됩니다.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-20"></div>
+                            <div class="col-md-9">
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">링크</div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="link" placeholder="url을 입력해주세요.">
+                                        <p>
+                                            테스터들이 테스트에 참여할 수 있게 접속할 수 있는 주소 및 다운로드 링크를 적어주세요.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="col-sm-12">
+                                      <div class="tab-primary">테스트 내용</div>
+                                        <p style="margin-top:10px;">
+                                            테스터가 테스트 기간동안 수행해야 될 내용을 적어주세요. 내용이 구체적일수록 테스터들의 적극적인 활동이 이루어질 수 있습니다.
+                                        </p>
+                                        <div class="summernote"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="post-notice container-fluid">
+                                    <div class="col-xs-2 text-center"><i class="fa fa-lightbulb-o"></i></div>
+                                    <div class="col-xs-10">
+                                        <h5>프로젝트를 클릭하여 서포터가 처음 만나는 영상 혹은 이미지</h5>
+                                        <p>상세페이지 최상단에 노출되는 영상 혹은 이미지는 SNS나 카카오톡에서 프로젝트 링크를 클릭하여 진입한 경우, 가장 먼저 보게 됩니다.</p>
+                                        <p>프로젝트의 내용을 압축하여 가장 잘 보여줄 수 있는 콘텐츠인 영상 제작의 중요성과 좋은 영상에 대해 알려드립니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container col-xs-9">
+                              <div class='container-flex text-right m-r-10'>
+                                  <a href="#reports" data-toggle="tab" class="btn btn-border-blue btn-lg" onClick="activeList('reports')"><i class="fa fa-angle-left"></i>&emsp;이전으로</a>
+                                  <a href="#submit" data-toggle="tab" class="btn btn-border-blue btn-lg" onClick="activeList('submit')">미리보기&emsp;<i class="fa fa-angle-right"></i></a>
+                              </div>
+                            </div>
+                        </div>
+                        <!-- 20170514 end -->
+
+                        <div class="tab-pane fade" id="submit">
+                            <div class="space-20"></div>
+                            <h2 class="center-title scrollReveal sr-bottom">제출</h2>
+                            <div class="center-border"></div>
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1 text-center">
+                                    <p class="lead">
+                                        견적서를 확인해보시고 제출해주세요.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-20"></div>
+                            <div class="col-md-9">
+                                <div class="container-fluid">
+                                    <div class="col-sm-3 tab-primary">견적서</div>
+                                    <div class="col-sm-9">
+                                        <div class="table-content">
+                                            <div class="table-responsive">
+                                                <table class="table shoping-cart-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="desc first-td" style="width:60%">
+                                                                <h4>
+                                                                  <a class="text-navy">
+                                                                      기본금
+                                                                  </a>
+                                                              </h4>
+                                                                <dl class="small m-b-none">
+                                                                    <dt>설명</dt>
+                                                                    <dd>프로젝트 등록을 위한 기본 요금입니다.</dd>
+                                                                </dl>
+                                                            </td>
+                                                            <td class="first-td">
+                                                                <h5  style="float:right">
+                                                                  원
+                                                              </h5>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="table-content">
+                                            <div class="table-responsive">
+                                                <table class="table shoping-cart-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="desc" style="width:60%">
+                                                                <h4>
+                                                                  <a href="" class="text-navy">
+                                                                      보고서 횟수 및 기간
+                                                                  </a>
+                                                              </h4>
+                                                                <dl class="small m-b-none">
+                                                                    <dt>설명</dt>
+                                                                    <dd>보고서 횟수 및 기간에 따른 테스터 당 요금입니다.</dd>
+                                                                </dl>
+                                                            </td>
+                                                            <td class="text-small width12" style="text-align:right">
+                                                                0회
+                                                            </td>
+                                                            <td>
+                                                                <h5 style="float:right">
+                                                                  0원
+                                                              </h5>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="table-content">
+                                            <div class="table-responsive">
+                                                <table class="table shoping-cart-table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="desc" style="width:60%">
+                                                                <h4>
+                                                                  <a href="" class="text-navy">
+                                                                      테스터 수
+                                                                  </a>
+                                                              </h4>
+                                                                <dl class="small m-b-none">
+                                                                    <dt>설명</dt>
+                                                                    <dd>테스터 수에 따른 요금입니다.</dd>
+                                                                </dl>
+                                                            </td>
+
+                                                            <td class="text-small width12" style="text-align:right">
+                                                                0명
+                                                            </td>
+                                                            <td>
+                                                                <h5  style="float:right">
+                                                                  0원
+                                                              </h5>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <p>
+                                            FEED100 견적서는 기본금, 보고서 횟수, 테스터 수에 따라 계산됩니다. 모든 항목 및 견적서를 꼼꼼하게 확인한 후 등록해주시길 바랍니다.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="post-notice container-fluid">
+                                    <div class="summary-title">
+                                        <h5>견적서 요약</h5>
+                                    </div>
+                                    <div class="summary-content">
+                                        <span>
+                                          총 금액
+                                      </span>
+                                        <h2 class="font-bold">
+                                          0원
+                                      </h2>
+
+                                        <hr/>
+                                        <span class="text-muted small">
+                                          *더 요구하실 사항이나 수정할 사항이 있을경우 아래 메일로 연락주시기 바랍니다.<br />
+                                          <a href="#">feed100.help@gmail.com</a>
+                                      </span>
+
+                                        <div class="m-t-sm">
+                                            <button class="project-submit" style="vertical-align:middle"><span>프로젝트 등록하기 </span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--end about section-->
+
+    <div class="space-40"></div>
+    <!--footer start-->
+    <footer class="footer"></footer>
+    <!--footer end-->
+    <!--back to top-->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up"></i></a>
+    <!--back to top end-->
+    <!-- jQuery plugins-->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/jquery-migrate.min.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/bower_components/flexslider/jquery.flexslider-min.js"></script>
+    <script src="assets/js/modernizr.custom.97074.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/dzsparallaxer/dzsparallaxer.js" type="text/javascript"></script>
+    <script src="assets/js/template-custom.js" type="text/javascript"></script>
+
+    <!-- summernote -->
+    <script src="assets/js/plugins/summernote/summernote.min.js"></script>
+
+
+    <!-- TouchSpin -->
+    <script src="assets/js/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+    <!-- selectbox bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+    <!-- Touch Punch - Touch Event Support for jQuery UI -->
+    <script src="assets/js/plugins/touchpunch/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- Jasny -->
+    <script src="assets/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+    <!-- include summernote-ko-KR -->
+    <script src="assets/js/plugins/summernote/lang/summernote-ko-KR.js"></script>
+    <script src="/assets/js/nav.js"></script>
+    <script src="/assets/js/footer.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var editableWidth = 0;
+
+            $(window).bind('beforeunload', function() {
+              return '이 페이지를 벗어나면 작성했던 데이터는 저장되지 않습니다.';
+            });
+
+            // 20170513 지역 선택 (추가)
+            var area0 = ["무관","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
+
+            $("select[name^=sido]").each(function() {
+              $selsido = $(this);
+              $.each(eval(area0), function() {
+                $selsido.append("<option value='"+this+"'>"+this+"</option>");
+              });
+            });
+            // 20170513 end
+
+            $.ajax({
+              url:'/api/users',
+              type:'get',
+              cache:false,
+              success:function(data){
+                $('#preview_companyName').append(data[0].companyName);
+              },
+              error:function(data){
+                alert('오류가 발생했습니다.');
+              }
+            });
+
+            $('.summernote').summernote({
+                minHeight: 500, //set editable area's height
+                disableDragAndDrop:true,
+                callbacks: {
+                  onImageUpload: function(files) {
+                    sendFile(files[0]);
+                  },
+                  onPaste: function (e) {
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    document.execCommand('insertText', false, bufferText);
+                  }
+                },
+                lang : 'ko-KR',
+                toolbar: [
+                  // [groupName, [list of button]]
+                  ['style', ['style']],
+                  ['font', ['bold', 'color']],
+                  ['para', ['ul', 'ol', 'paragraph']],
+                  ['table', ['table']],
+                  ['insert', ['link', 'picture', 'hr']],
+                  ['fullscreen', ['fullscreen']]
+                ]
+            });
+            $('.summernote').next().find('.note-control-selection').css('z-index', 1);
+            $('.summernote').next().find('.note-statusbar').html('');
+
+            function sendFile(file) {
+              var formData = new FormData();
+              formData.append('ex_filename', file);
+              $.ajax({
+                url:'/api/upload/tmp',
+                type:'post',
+                cache:false,
+                processData: false,  // file전송시 필수
+                contentType: false,  // file전송시 필수
+                data:formData,
+                success:function(data){
+                  $('.summernote').summernote('insertImage', data, function($image) {
+                    $image.css('width', '25%');
+                    if(editableWidth == 0 && editableWidth != -20) {
+                      editableWidth = $('.note-editable').width();
+                    }
+                  });
+                },
+                error:function(data){
+                  alert('오류가 발생했습니다.');
+                }
+              });
+            }
+
+            var counter = 0;
+            var value = $('#vertical_num2').val();
+            var daynum = 0;
+            // 20170512 total_num 정적 값을 화면의 값을 지움 (삭제)
+            // var total_num = 9;
+            // 20170512 end
+
+            $(".col-sm-5 .bootstrap-touchspin-up").click(function() {
+                reportCountPlus();
+            });
+            $(".col-sm-5 .bootstrap-touchspin-down").click(function() {
+                if (counter > 2) {
+                    // 20170512 정적이였던 total_num을 동적으로 바꿈 (수정)
+                    total_num = Number($("#total_day").text()) - (Number($("#periodDay"+(counter+3)).text()) + 1);
+                    // 20170512 end
+
+                    $("#countPeriod .count" + (counter--) + "").remove()
+                    $("#total_day").text(total_num);
+                    $(".report-wrapper li.container-fluid").last().remove();
+                }
+            });
+
+            for(var i=0; i<2; i++) {
+              reportCountPlus();
+            }
+
+            function reportCountPlus() {
+              counter++;
+              // 20170512 정적이였던 total_num을 동적으로 바꿈 (수정)
+              total_num = Number($("#total_day").text()) + 4;
+              // 20170512 end
+
+              // 20170512 보고서 차수 추가 부분도 count-up, count-down 추가 및 텀 기간 추가 (수정 및 추가)
+              $("#countPeriod").append(
+                '<div class="container-fluid count' + counter + '">' +
+                  '<span class="pull-right button pointer" onClick=countUp(' + (counter+3) + ')>+</span>' +
+                  '<span class="pull-right m-r-10">일</span>' +
+                  '<span class="pull-right m-l-10 proceeding" id="periodDay' + (counter+3) + '">3</span>' +
+                  '<span class="pull-right pointer" onClick=countDown(' + (counter+3) +')>-</span>' +
+                  '<span>' + counter + '차 보고서</span>' +
+                '</div>' +
+                '<div class="container-fluid count' + counter + ' wait-period">' +
+                  '<span class="pull-right m-r-10">일</span>' +
+                  '<span class="pull-right m-l-10 proceeding">1</span>' +
+                  '<span>' + counter + '차 점검</span>' +
+                '</div>'
+              );
+
+              // 20170512 end
+
+              $("#total_day").text(total_num);
+              $(".report-wrapper").append(
+              '<li class="container-fluid">' +
+                '<div class="col-sm-3 tab-primary">' + counter + '차 보고서</div>' +
+                  '<div class="col-sm-9">' +
+                    '<ul class="r-question-list" id="r-question-list' + counter + '">' +
+                    '</ul>' +
+                    // 20170513 보고서 항목 (수정 및 추가)
+                    '<button type="button" class="btn btn-w-m btn-objective-classic btn-block" onClick=addRObjectiveClassic(' + counter + ')>객관식 추가하기</button>' +
+                    // '<button type="button" class="btn btn-w-m btn-objective-explanation width50" onClick=addRObjectiveExplanation(' + counter + ')>객관식(설명형)</button>' +
+                    '<ul class="r-question-list">' +
+                      '<li class="r-subjective-element r-question-element" id="r-question-element' + counter + '-' + r_question_count + '">' +
+                        '<span class="type-title">주관식 문항</span>' +
+                        '<ol class="r-objective-detail" id="r-subjective-detail' + counter + '">' +
+                          '<li id="r-detail-list' + counter + '-0" class="keyword-box">' +
+                            '<div class="input-group" style="width:100%">' +
+                              '<div class="input-box">' +
+                                '<input type="text" class="form-control" placeholder="목차를 입력해주세요.">' +
+                                '<span class="unit">(키워드 or 서술)</span>' +
+                              '</div>' +
+                            '</div>' +
+                          '</li>' +
+                          '<li id="r-detail-list' + counter + '-1" class="keyword-box">' +
+                            '<div class="input-group" style="width:100%">' +
+                              '<div class="input-box">' +
+                                '<input type="text" class="form-control" placeholder="목차를 입력해주세요.">' +
+                                '<span class="unit">(키워드 or 서술)</span>' +
+                              '</div>' +
+                            '</div>' +
+                          '</li>' +
+                        '</ol>' +
+                        '<div class="button-box">' +
+                          '<button type="button" id="r-detail" onClick=rKeyword(' + counter + ') class="btn btn-subjective-keyword btn-block">보고서 목차 추가하기</button>' +
+                          // '<button type="button" id="r-detail" onClick=rDescription(' + counter + ') class="btn btn-subjective-description  width50">서술형 항목 추가하기</button>' +
+                        '</div>' +
+                      '</li>' +
+                    '</ul>' +
+                    // 20170513 end
+                    '<p style="margin-top:10px;">' +
+                      '조건을 추가하여 더 프로젝트에 적합한 테스터를 모집해보세요. 이는 테스터가 조건에 만족하지 않아도 지원은 가능하며 데쉬보드에서 프로젝트 참여자 목록에 얼마나 적합하는지 퍼센트로 표시됩니다.' +
+                    '</p>' +
+                    '<p>추가는 주관식 객관식 상관없이 10개까지 추가가 가능합니다. 또한 객관식 항목도 10개까지 추가할 수 있습니다.</p>' +
+                  '</div>' +
+                '</div>' +
+              '</li>'
+              );
+
+            }
+
+
+
+            var reports = $("#vertical_num2").val();
+
+            $('#categorySelect').change(function() {
+                $('#preview_category').html('<i class="ion-pricetag"></i>&emsp;' + (($('#categorySelect').val() === 'hardware') ? 'hw' : $('#categorySelect').val()));
+            });
+
+            $('#vertical_num').change(function() {
+                $('#preview_numOfRecruitment').html('0 / ' + $('#vertical_num').val());
+            });
+
+            $('.project-submit').click(function() {
+                if(validate()) {
+                  var imageArray = new Array();
+                  imageArray.push($('#blah').attr('src'));
+                  $('.note-editable').eq(0).wrap('<div/>').parent().find('img').each(function() {
+                    if(!$(this).css('width').match('%')) {
+                      var resizedWidth = $(this).width();
+                      var originalWidth = editableWidth;
+                      var percent = resizedWidth * 100 / originalWidth;
+                      if(percent > 100) {
+                        percent = 100;
+                      }
+                      $(this).css('width', percent + '%');
+                      $(this).css('height', '');
+                    }
+                    imageArray.push($(this).attr('src'));
+                  });
+                  $('.note-editable').eq(1).wrap('<div/>').parent().find('img').each(function() {
+                    if(!$(this).css('width').match('%')) {
+                      var resizedWidth = $(this).width();
+                      var originalWidth = editableWidth;
+                      var percent = resizedWidth * 100 / originalWidth;
+                      if(percent > 100) {
+                        percent = 100;
+                      }
+                      $(this).css('width', percent + '%');
+                      $(this).css('height', '');
+                    }
+                    imageArray.push($(this).attr('src'));
+                  });
+                  for(var i=0; i<imageArray.length; i++) {
+                    $.ajax({
+                      url:'/api/move',
+                      type:'post',
+                      cache:false,
+                      data:{'img': imageArray[i]},
+                      async:false,
+                      success:function(data) {
+                        console.log(data);
+                      },
+                      error:function(data) {
+                        alert('오류가 발생했습니다.');
+                      }
+                    });
+                  }
+
+                  var projectData = getProjectData($('#blah').attr('src').replace('/tmp/', '/images/'));
+                  projectData.projectStory = projectData.projectStory.replace(/.com\/tmp\//g, '.com/images/');
+                  projectData.testContent = projectData.testContent.replace(/.com\/tmp\//g, '.com/images/');
+                  console.log(projectData);
+                  $.ajax({
+                    url:'/api/project',
+                    type:'post',
+                    cache:false,
+                    data:projectData,
+                    success:function(data){
+                      alert('성공적으로 등록되었습니다');
+                      $(window).unbind('beforeunload');
+                      location.replace('/');
+                    },
+                    error:function(data){
+                      alert('오류가 발생했습니다.');
+                    }
+                  });
+                }
+
+            });
+
+            function validate() {
+              if($('#blah').attr('src') == 'assets/images/16.9.png' || $('blah').attr('src') == '') {
+                alert('프로젝트 이미지를 업로드하고 다시 시도해주세요.');
+                return false;
+              }
+              if($('#field50').val() == '') {
+                alert('프로젝트 제목을 입력하고 다시 시도해주세요.');
+                return false;
+              }
+              var url = $('#youTubeUrl').val();
+              if (url != '') {
+                var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                if (match && match[2].length == 11) {
+                } else {
+                  alert('프로젝트 영상을 확인하고 다시 시도해주세요.');
+                  return false;
+                }
+              }
+              if($('#field100').val() == '') {
+                alert('핵심 메세지를 입력하고 다시 시도해주세요.');
+                return false;
+              }
+              if($('.note-editable').eq(0).html() == '<p><br></p>' || $('.note-editable').eq(0).html() == '') {
+                alert('프로젝트 스토리를 입력하고 다시 시도해주세요.');
+                return false;
+              }
+              var isValidate = true;
+              $('.c-question-list').find('input').each(function() {
+                if($(this).val() == '') {
+                  alert('추가 조건 항목을 모두 입력하고 다시 시도해주세요.');
+                  isValidate = false;
+                  return false;
+                }
+              });
+              if(!isValidate) {
+                return false;
+              }
+              $('.report-wrapper').find('input').each(function() {
+                if($(this).val() == '') {
+                  alert('보고서 항목을 모두 입력하고 다시 시도해주세요.');
+                  isValidate = false;
+                  return false;
+                }
+              });
+              if(!isValidate) {
+                return false;
+              }
+              if($('#link').val() == '') {
+                alert('링크를 입력하고 다시 시도해주세요.');
+                return false;
+              }
+              if($('.note-editable').eq(1).html() == '<p><br></p>' || $('.note-editable').eq(1).html() == '') {
+                alert('테스트 내용을 입력하고 다시 시도해주세요.');
+                return false;
+              }
+              return true;
+            }
+
+            $('#preview').click(function() {
+              var projectData = getProjectData($('#blah').attr('src'));
+              $.ajax({
+                url:'/sess',
+                type:'post',
+                cache:false,
+                async:false,
+                data:projectData,
+                success:function(data){
+                  window.open("/project-preview");
+                },
+                error:function(data){
+                  alert('오류가 발생했습니다.');
+                }
+              });
+            });
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+              if($(e.target).attr('href') == '#submit') {
+                var baseAmount = 100000;
+                var paymentPerTester = 10000 + (Number($('#vertical_num2').val())-2) * 4000;
+                var amountOfPayment = baseAmount + paymentPerTester * Number($('#vertical_num').val());
+                $('.table-content:eq(0)').find('td:eq(1) h5').html(numberWithCommas(baseAmount));
+                $('.table-content:eq(1)').find('td:eq(1)').html($('#vertical_num2').val() + '회');
+                $('.table-content:eq(1)').find('td:eq(2) h5').html(numberWithCommas(paymentPerTester));
+                $('.table-content:eq(2)').find('td:eq(1)').html($('#vertical_num').val() + '명');
+                $('.table-content:eq(2)').find('td:eq(2) h5').html(numberWithCommas(paymentPerTester * Number($('#vertical_num').val())));
+                $('.summary-content h2').html(numberWithCommas(amountOfPayment));
+              }
+            });
+
+            function numberWithCommas(x) {
+              return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
+            }
+
+            function getProjectData(data) {
+              if(data != '') {
+                var projectData = {
+                  'projectImage': data,
+                  'projectTitle': convertSystemSourceToHtml($('#field50').val()),
+                  'category': $('#categorySelect').val(),
+                  'numOfRecruitment': $('#vertical_num').val(),
+                  'reportCount': $('#vertical_num2').val(),
+                  'period': new Array(),
+                  'projectVideo': convertSystemSourceToHtml($('#youTubeUrl').val()),
+                  'coreMessage': convertSystemSourceToHtml($('#field100').val()),
+                  'projectStory': $('.note-editable').eq(0).html(),
+                  'conditions': '',
+                  'reports': new Array(),
+                  'testLink': convertSystemSourceToHtml($('#link').val()),
+                  'testContent': $('.note-editable').eq(1).html()
+                };
+                // period 데이터 json 구조 생성
+                projectData.period.push({
+                  'progress': '대기중',
+                  'period': Number($('#periodDay1').html()),
+                  'startDate': ''
+                });
+                projectData.period.push({
+                  'progress': '모집중',
+                  'period': Number($('#periodDay2').html()),
+                  'startDate': ''
+                });
+                projectData.period.push({
+                  'progress': '선정중',
+                  'period': Number($('#periodDay3').html()),
+                  'startDate': ''
+                });
+                projectData.period.push({
+                  'progress': '진행중',
+                  'period': 0,
+                  'reports': new Array(),
+                  'startDate': ''
+                });
+                projectData.period.push({
+                  'progress': '종료',
+                  'startDate': ''
+                });
+                proceedingPeriod = 0;
+                $('.proceeding').each(function() {
+                  proceedingPeriod += Number($(this).html());
+                  projectData.period[3].reports.push({
+                    'progress': $(this).siblings('span').last().html(),
+                    'period': Number($(this).html()),
+                    'startDate': ''
+                  });
+                });
+                projectData.period[3].period = proceedingPeriod;
+                // period 데이터 json 구조 생성
+
+                // conditions 데이터 json 구조 생성
+                projectData.conditions = {
+                  'gender': $('div.condition-box.gender').find('li.active p').html(),
+                  'age': new Array(),
+                  'region': $('div.condition-box.local').find('select').val(),
+                  'job': $('div.condition-box.job').find('select').val(),
+                  'interestFields': $('div.condition-box.interest').find('select').val(),
+                  'questions': new Array()
+                }
+                $('div.condition-box.age').find('li.active').each(function() {
+                  projectData.conditions.age.push($(this).find('p').html());
+                });
+                $('.c-question-list').children('li').each(function(index) {
+                  if($(this).hasClass('c-objective-element')) {
+                    var question = {
+                      'qid': index+1,
+                      'category': 'objective',
+                      'question': convertSystemSourceToHtml($(this).children('input').val()),
+                      'options': new Array()
+                    };
+                    $(this).children('ol').children().each(function(index) {
+                      var option = {
+                        'oid': index+1,
+                        'option': convertSystemSourceToHtml($(this).children().children('input').val()),
+                      }
+                      question.options.push(option);
+                    });
+                    projectData.conditions.questions.push(question);
+                  }
+                  else {
+                    var question = {
+                      'qid': index+1,
+                      'category': 'subjective',
+                      'question': convertSystemSourceToHtml($(this).children('input').val())
+                    };
+                    projectData.conditions.questions.push(question);
+                  }
+                });
+                // conditions 데이터 json 구조 생성
+
+                // reports 데이터 json 구조 생성
+                for(var i=0; i<Number(projectData.reportCount); i++) {
+                  var report = {
+                    'title': (i+1) + '차 보고서',
+                    'submitCount': 0,
+                    'questions': new Array()
+                  };
+
+                  $('#r-question-list'+(i+1)).parent().find('li.r-question-element').each(function(index) {
+                    if($(this).hasClass('r-objective-classic-element')) {
+                      var question = {
+                        'qid': index+1,
+                        'category': 'objective',
+                        'question': convertSystemSourceToHtml($(this).children('input').val()),
+                        'options': new Array()
+                      }
+                      $(this).children('ol').children().each(function(index) {
+                        var option = {
+                          'oid': index+1,
+                          'option': convertSystemSourceToHtml($(this).children().children('input').val()),
+                          'count': 0
+                        }
+                        question.options.push(option);
+                      });
+                      report.questions.push(question);
+                    }
+                    else {
+                      var question = {
+                        'qid': index+1,
+                        'category': 'subjective',
+                        'question': new Array()
+                      };
+                      $(this).find('input').each(function() {
+                        question.question.push(convertSystemSourceToHtml($(this).val()));
+                      });
+                      report.questions.push(question);
+                    }
+                  });
+                  projectData.reports.push(report);
+                }
+                projectData.period = JSON.stringify(projectData.period);
+                projectData.conditions = JSON.stringify(projectData.conditions);
+                projectData.reports = JSON.stringify(projectData.reports);
+                // reports 데이터 json 구조 생성
+                console.log(projectData);
+                return projectData;
+              }
+            }
+        });
+
+        $(function() {
+            $('a[title]').tooltip();
+        });
+
+        $("#field50").keyup(function() {
+            el = $(this);
+            if (el.val().length >= 51) {
+                el.val(el.val().substr(0, 50));
+            } else {
+                $("#charNum").text(el.val().length);
+                $("#preview_projectTitle").html(convertSystemSourceToHtml(el.val()));
+            }
+        });
+        $("#field100").keyup(function() {
+            el = $(this);
+            if (el.val().length >= 101) {
+                el.val(el.val().substr(0, 100));
+            } else {
+                $("#charNum2").text(el.val().length);
+            }
+        });
+        $("input[name='vertical_num']").TouchSpin({
+            max: 1000,
+            min: 10,
+            step: 5,
+            mousewheel: false,
+            verticalbuttons: true,
+            verticalupclass: 'glyphicon glyphicon-plus',
+            verticaldownclass: 'glyphicon glyphicon-minus'
+        });
+        $("input[name='vertical_num2']").TouchSpin({
+            mousewheel: false,
+            min: 2
+        });
+
+        var r_question_count = 0;
+        var r_detail_count = 0;
+        var r_detail_list_count = 2;
+        // 20170513 주관식 항목 (추가)
+        var r_subjective_detail_list_count = 2;
+        // 20170513 end
+
+
+        function addRObjectiveClassic(len) {
+            if (len <= 5) {
+                $("#r-question-list" + len).append(
+                '<li class="r-objective-classic-element r-question-element" id="r-question-element' + len + '-' + r_question_count + '">' +
+                  '<div class="ibox-tools pull-right">' +
+                    '<a class="remove_r_field" onClick=removeRQuestions(' + len + ',' + r_question_count + ')><i class="fa fa-times"></i></a>' +
+                  '</div>' +
+                  '<span class="type-title">객관식 문항</span>' +
+                  '<input type="text" class="form-control" placeholder="질문을 입력해주세요."/>' +
+                  '<ol class="r-objective-detail" id="r-objective-detail' + r_detail_count + '">' +
+                    '<li id="r-detail-list' + r_detail_count + '-0">' +
+                      '<div class="input-group" style="width:100%"><input type="text" class="form-control" placeholder="항목 내용을 입력해주세요."> </div>' +
+                    '</li>' +
+                    '<li id="r-detail-list' + r_detail_count + '-1">' +
+                      '<div class="input-group" style="width:100%"><input type="text" class="form-control" placeholder="항목 내용을 입력해주세요."> </div>' +
+                    '</li>' +
+                  '</ol>' +
+                  // 20170513 parameter 수정 (수정)
+                  '<button type="button" name="r-detail" id="r-detail" onClick=rDetail(' + r_detail_count + ') class="btn btn-rounded btn-block btn-objective-classic btn-objective-detail">객관식 항목 추가하기</button>' +
+                  // 20170513 end
+                '</li>'
+                );
+                r_detail_count++;
+                r_question_count++;
+            }
+        }
+        function addRObjectiveExplanation(len) {
+            if (len <= 5) {
+                $("#r-question-list" + len).append(
+                '<li class="r-objective-explanation-element r-question-element" id="r-question-element' + len + '-' + r_question_count + '">' +
+                  '<div class="ibox-tools pull-right">' +
+                    '<a class="remove_r_field" onClick=removeRQuestions(' + len + ',' + r_question_count + ')><i class="fa fa-times"></i></a>' +
+                  '</div>' +
+                  '<span class="badge badge-r-objective-explanation">객관식(설명형)</span>' +
+                  '<input type="text" class="form-control" placeholder="질문을 입력해주세요."/>' +
+                  '<ol class="r-objective-detail" id="r-objective-detail' + r_detail_count + '">' +
+                    '<li id="r-detail-list' + r_detail_count + '-0">' +
+                      '<div class="input-group" style="width:100%"><input type="text" class="form-control" placeholder="항목 내용을 입력해주세요."> </div>' +
+                    '</li>' +
+                    '<li id="r-detail-list' + r_detail_count + '-1">' +
+                      '<div class="input-group" style="width:100%"><input type="text" class="form-control" placeholder="항목 내용을 입력해주세요."> </div>' +
+                    '</li>' +
+                  '</ol>' +
+                  // 20170513 parameter 수정 (수정)
+                  '<button type="button" name="r-detail" id="r-detail" onClick=rDetail(' + r_detail_count + ') class="btn btn-rounded btn-block btn-objective-explanation btn-objective-detail">객관식 항목 추가하기</button>' +
+                  // 20170513 end
+                '</li>'
+                );
+                r_detail_count++;
+                r_question_count++;
+            }
+        }
+
+        // 20170513 추가 조건 변수 추가 (추가)
+        var c_question_count = 1;
+        var c_detail_count = 0;
+        var c_detail_list_count = 2;
+        // 20170513 end
+
+        // 20170513 기존 보고서 addRSubjective인 주관식 문항추가를 조건탭으로 바꿈 (수정)
+        function addCSubjective() {
+          if(c_question_count < 5) {
+            $(".c-question-list").append(
+            '<li class="c-subjective-element c-question-element" id="c-question-element' + c_question_count + '">' +
+              '<div class="ibox-tools pull-right">' +
+                '<a class="remove_c_field" onClick=removeCQuestions(' + c_question_count + ')><i class="fa fa-times"></i></a>' +
+              '</div>' +
+              '<span class="type-title">주관식 문항</span>' +
+              '<input type="text" class="form-control" placeholder="질문을 입력해주세요."/>' +
+            '</li>'
+            );
+            c_question_count++;
+          }
+        }
+        // 20170513 end
+
+        // 20170513 추가 조건 (추가)
+        function addCObjective() {
+          if(c_question_count < 5) {
+            $(".c-question-list").append(
+                '<li class="c-objective-element c-question-element" id="c-question-element'+c_question_count+'">' +
+                    '<div class="ibox-tools pull-right">' +
+                        '<a class="remove_c_field" onClick=removeCQuestions('+c_question_count+')><i class="fa fa-times"></i></a>' +
+                    '</div>' +
+                    '<span class="type-title">객관식 문항</span>' +
+                    '<input type="text" class="form-control" placeholder="질문을 입력해주세요."/>' +
+                    '<ol class="c-objective-detail" id="c-objective-detail'+ c_detail_count +'">' +
+                        '<li id="c-detail-list'+c_detail_count+'-0">' +
+                            '<div class="input-group" style="width:100%">' +
+                                '<input type="text" class="form-control" placeholder="항목 내용을 입력해주세요.">' +
+                            '</div>' +
+                        '</li>' +
+                        '<li id="c-detail-list'+c_detail_count+'-1">' +
+                            '<div class="input-group" style="width:100%">' +
+                                '<input type="text" class="form-control" placeholder="항목 내용을 입력해주세요.">' +
+                            '</div>' +
+                        '</li>' +
+                    '</ol>' +
+                    '<button type="button" name="c-detail" id="c-detail" onClick=detail('+c_detail_count +') class="btn btn-block btn-objective btn-objective-detail">객관식 항목 추가하기</button>' +
+                '</li>'
+            );
+            c_detail_count++;
+            c_question_count++;
+          }
+        }
+        // 20170513 end
+
+        function removeRQuestions(len, count) { //user click on remove text
+            $("#r-question-element" + len + "-" + count).remove();
+        }
+
+        function removeRDetail(len, count) {
+            $("#r-detail-list" + len + "-" + count).remove();
+        }
+
+        // 20170513 추가조건 문항 및 항목 삭체 (추가)
+        function removeCQuestions(count) { //user click on remove text
+            $("#c-question-element" + count).remove();
+        }
+
+        function removeCDetail(len, count) {
+            $("#c-detail-list" + len + "-" + count).remove();
+        }
+        // 20175013 end
+
+        // 20170513 오류 (수정)
+        function rDetail(len) {
+            $("#r-objective-detail" + len).append(
+            '<li id="r-detail-list' + len + '-' + r_detail_list_count + '">' +
+              '<div class="input-group">' +
+                '<input type="text" class="form-control" placeholder="항목 내용을 입력해주세요.">' +
+                '<span class="input-group-btn remove_r_field_detail" onClick=removeRDetail(' + len + ',' + r_detail_list_count + ')>' +
+                  '<button type="button" class="btn btn-default">' +
+                    '<a><i class="fa fa-times"></i></a>' +
+                  '</button>' +
+                '</span>' +
+              '</div>' +
+            '</li>'
+            );
+            r_detail_list_count++;
+        }
+        // 20170513 end
+
+        // 20170513 추가조건 객관식 항목 추가 (추가)
+        function detail(len) {
+            $("#c-objective-detail" + len).append(
+            '<li id="c-detail-list' + len + '-' + c_detail_list_count + '">' +
+              '<div class="input-group">' +
+                '<input type="text" class="form-control" placeholder="항목 내용을 입력해주세요.">' +
+                '<span class="input-group-btn remove_c_field_detail" onClick=removeCDetail(' + len + ',' + c_detail_list_count + ')>' +
+                  '<button type="button" class="btn btn-default">' +
+                    '<a><i class="fa fa-times"></i></a>' +
+                  '</button>' +
+                '</span>' +
+              '</div>' +
+            '</li>'
+            );
+            c_detail_list_count++;
+        }
+        // 20170513 end
+
+        // 20170513 주관식 항목 (추가)
+        function rKeyword(order) {
+            $("#r-subjective-detail" + order).append(
+            '<li id="r-detail-list' + order + '-' + r_subjective_detail_list_count + '" class="keyword-box">' +
+              '<div class="input-group">' +
+                '<div class="input-box">' +
+                  '<input type="text" class="form-control" placeholder="목차를 입력해주세요.">' +
+                  '<span class="unit">(키워드 or 서술)</span>' +
+                '</div>' +
+                '<span class="input-group-btn remove_r_field_detail" onClick=removeRDetail(' + order + ',' + r_subjective_detail_list_count + ')>' +
+                  '<button type="button" class="btn btn-default">' +
+                    '<a><i class="fa fa-times"></i></a>' +
+                  '</button>' +
+                '</span>' +
+              '</div>' +
+            '</li>'
+            );
+            r_subjective_detail_list_count++;
+        }
+        function rDescription(order) {
+            $("#r-subjective-detail" + order).append(
+            '<li id="r-detail-list' + order + '-' + r_subjective_detail_list_count + '" class="description-box">' +
+              '<div class="input-group">' +
+              '<div class="input-box">' +
+                '<input type="text" class="form-control" placeholder="서술해주세요.">' +
+                '<span class="unit">(서술형)</span>' +
+              '</div>' +
+                '<span class="input-group-btn remove_r_field_detail" onClick=removeRDetail(' + order + ',' + r_subjective_detail_list_count + ')>' +
+                  '<button type="button" class="btn btn-default">' +
+                    '<a><i class="fa fa-times"></i></a>' +
+                  '</button>' +
+                '</span>' +
+              '</div>' +
+            '</li>'
+            );
+            r_subjective_detail_list_count++;
+        }
+        // 20170513 end
+
+
+        function validateYouTubeUrl() {
+            var url = $('#youTubeUrl').val();
+            if (url != undefined || url != '') {
+                var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                if (match && match[2].length == 11) {
+                    // Do anything for being valid
+                    // if need to change the url to embed url then use below line
+                    var _src = 'https://www.youtube.com/embed/' + match[2] + '?autoplay=1&enablejsapi=1';
+                    $('#youTubeUrl').siblings('div').html('<iframe allowfullscreen="" frameborder="0" height="180" src=' + _src + 'width="320"></iframe>');
+                    alert('등록되었습니다.');
+                } else {
+
+                    alert('유효하지 않은 주소입니다.');
+                    // Do anything for not being valid
+                }
+            }
+        }
+
+        $(document).ready(function() {
+            var fileTarget = $('.filebox .upload-hidden');
+            fileTarget.on('change', function() { // 값이 변경되면
+                var filename = '';
+                var upload_hidden = $(this);
+
+                if (window.FileReader) { // modern browser
+                    var filename = $(this)[0].files[0].name;
+                } else { // old IE
+                    var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+                }
+
+                var u = URL.createObjectURL(this.files[0]);
+                var img = new Image;
+                img.src = u;
+
+                img.onload = function() {
+                    if(img.width/16 == img.height/9) {
+                      console.log(img.width/16, img.height/9);
+                      if (upload_hidden[0].files && upload_hidden[0].files[0]) {
+                        var formData = new FormData();
+                        formData.append('ex_filename', upload_hidden[0].files[0]);
+                        $.ajax({
+                          url:'/api/upload/tmp',
+                          type:'post',
+                          cache:false,
+                          processData: false,  // file전송시 필수
+                          contentType: false,  // file전송시 필수
+                          data:formData,
+                          success:function(data){
+                            $('#blah').attr('src', data);
+                            // 추출한 파일명 삽입
+                            upload_hidden.siblings('.upload-name').val(filename);
+                          },
+                          error:function(data){
+                            alert('오류가 발생했습니다.');
+                          }
+                        });
+                      }
+
+                    }
+                    else {
+                      alert('16:9 Size 이미지만 업로드 할 수 있습니다.');
+                    }
+                };
+            });
+            // 20170512 count-up, count-down 부분 script (추가)
+            window.countUp = function(seq) {
+                var old_day = Number($('#periodDay'+seq).text());
+                $('#periodDay'+seq).text(old_day+1);
+                $("#total_day").text(Number($("#total_day").text())+1);
+            }
+
+            window.countDown = function(seq) {
+                var old_day = Number($('#periodDay'+seq).text());
+                if(old_day > 1) {
+                    $('#periodDay'+seq).text(old_day-1);
+                    $("#total_day").text(Number($("#total_day").text())-1);
+                }
+            }
+            // 20170512 end
+
+            // 20170513 성별 select 활성화 (추가)
+            $('.gender [class^="select-item"]').click(function() {
+                $(this).parent().siblings().removeClass('active');
+                $(this).parent().addClass('active');
+            })
+            // 20170513 end
+
+            // 20170514 나이 select 활성화 (추가)
+            $('.age [class^="select-item"]').click(function() {
+                if($(this).hasClass('select-else')) {
+                    $(this).parent().siblings().removeClass('active');
+                    $(this).parent().addClass('active');
+                } else {
+                    if($('.select-else').parent().hasClass('active')) {
+                        $('.select-else').parent().removeClass('active');
+                    }
+                    if($(this).parent().hasClass('active')) {
+                        $(this).parent().removeClass('active');
+                        if($(this).parent().siblings().hasClass('active') == false) {
+                          $('.select-else').parent().addClass('active');
+                        }
+                    } else {
+                        $(this).parent().addClass('active');
+                    }
+                }
+                // 20170514 end
+            })
+
+        });
+
+        // 20170514 하단 버튼 클릭시 탭 변경 (추가)
+        function activeList(id) {
+          if(id == 'submit') {
+            $('#preview').click();
+          }
+          id = "#" + id + "Menu";
+          $(id).parent().siblings().removeClass('active');
+          $(id).parent().addClass('active');
+          $('.scrollToTop').click();
+        }
+        // 20170514 end
+
+        function convertSystemSourceToHtml(str){
+          str = str.replace(/&/g,"&amp;");
+          str = str.replace(/</g,"&lt;");
+          str = str.replace(/>/g,"&gt;");
+          str = str.replace(/\"/g,"&quot;");
+          str = str.replace(/\'/g,"&#39;");
+          str = str.replace(/\n/g,"<br />");
+          return str;
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="/dashboard_tester/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard_tester/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/dashboard_tester/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="/dashboard_tester/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+
+    <link href="/dashboard_tester/css/animate.css" rel="stylesheet">
+    <link href="/dashboard_tester/css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <style>
+      .faq-answer {
+        padding-top: 5px;
+      }
+
+      .mail-body {
+        padding-top: 10px;
+      }
+    </style>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <div id="page-wrapper" class="gray-bg">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>질문 게시판</h2>
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <strong>궁금한 사항에 대해 질문해주세요.</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="wrapper wrapper-content animated question" style="margin-bottom:0;">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="wrapper wrapper-content animated question">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+    <!-- Mainly scripts -->
+    <script src="/dashboard_tester/js/jquery-3.1.1.min.js"></script>
+    <script src="/dashboard_tester/js/bootstrap.min.js"></script>
+    <script src="/dashboard_tester/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/dashboard_tester/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="/dashboard_tester/js/nav.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/dashboard_tester/js/inspinia.js"></script>
+    <script src="/dashboard_tester/js/plugins/pace/pace.min.js"></script>
+
+    <!-- SUMMERNOTE -->
+    <script src="/dashboard_tester/js/plugins/summernote/summernote.min.js"></script>
+    <!-- include summernote-ko-KR -->
+    <script src="/dashboard_tester/js/plugins/summernote/lang/summernote-ko-KR.js"></script>
+
+    <script src="/dashboard_tester/js/plugins/timeago/jquery.timeago.js"></script>
+    <script src="/dashboard_tester/js/plugins/timeago/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
+
+    <script>
+      $(document).ready(function() {
+        var params = document.location.href.split("dashboard_tester/questions/");
+        var pid = params[1].split('#')[0];
+        var uid = 0;
+
+        $.ajax({
+          url:'/api/projects/'+pid,
+          type:'get',
+          cache:false,
+          success:function(data){
+            if(data[0] == null) {
+              alert('잘못된 접근입니다.');
+              location.replace('/');
+            }
+            else {
+              $('.proceeding_color').html(data[0].progressState);
+            }
+          },
+          error:function(data){
+            alert('오류가 발생했습니다.');
+          }
+        });
+
+        $.ajax({
+          url:'/api/users',
+          type:'get',
+          cache:false,
+          async:false,
+          success:function(data){
+            if(data[0] == null) {
+              alert('잘못된 접근입니다.');
+              location.replace('/');
+            }
+            else {
+              uid = data[0].uid;
+              $('.question').eq(0).append(
+                '<div class="faq-item">' +
+                    '<div class="row">' +
+                          '<div class="social-avatar">' +
+                          '</div>' +
+                          '<div class="social-body">' +
+                            '<div class="faq-answer">' +
+                                '<fieldset class="form-horizontal">' +
+                                    '<div class="summernote"></div>' +
+                                '</fieldset>' +
+                                '<div class="mail-body text-right tooltip-demo" style="padding-bottom:0px;">' +
+                                    '<a class="btn btn-sm btn-white question-submit"><i class="fa fa-save"></i> 등록하기</a>' +
+                                '</div>' +
+                                '<div class="clearfix"></div>' +
+                            '</div>' +
+                          '</div>' +
+                    '</div>' +
+                '</div>'
+                );
+
+                $('.summernote').summernote({
+                  minHeight: 150,
+                  disableDragAndDrop:true,
+                  focus: true,
+                  callbacks: {
+                    onImageUpload: function(files) {
+                      sendFile(files[0]);
+                    },
+                    onPaste: function (e) {
+                      var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                      e.preventDefault();
+                      document.execCommand('insertText', false, bufferText);
+                    }
+                  },
+                  lang : 'ko-KR',
+                  toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['style']],
+                    ['font', ['bold', 'color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'hr']],
+                    ['fullscreen', ['fullscreen']]
+                  ]
+                });
+                $('.summernote').next().find('.note-control-selection').css('z-index', 1);
+                $('.summernote').next().find('.note-statusbar').html('');
+
+                $('.question-submit').click(function() {
+                  var editable = $(this).parent().siblings('fieldset').find('.note-editable');
+                  if(validate(editable)) {
+                    var imageArray = new Array();
+                    editable.wrap('<div/>').parent().find('img').each(function() {
+                      if(!$(this).css('width').match('%')) {
+                        var resizedWidth = $(this).width();
+                        var originalWidth = editable.width();
+                        var percent = resizedWidth * 100 / originalWidth;
+                        if(percent > 100) {
+                          percent = 100;
+                        }
+                        $(this).css('width', percent + '%');
+                        $(this).css('height', '');
+                      }
+                      imageArray.push($(this).attr('src'));
+                    });
+                    for(var i=0; i<imageArray.length; i++) {
+                      $.ajax({
+                        url:'/api/move',
+                        type:'post',
+                        cache:false,
+                        data:{'img': imageArray[i]},
+                        async:false,
+                        success:function(data) {
+                          console.log(data);
+                        },
+                        error:function(data) {
+                          alert('오류가 발생했습니다.');
+                        }
+                      });
+                    }
+
+                    var questionData = {
+                      'content': editable.html()
+                    }
+
+                    questionData.content = questionData.content.replace(/.com\/tmp\//g, '.com/images/');
+                    $.ajax({
+                      url:'/api/dashboardQuestion/'+pid,
+                      type:'post',
+                      cache:false,
+                      data:questionData,
+                      success:function(data){
+                        alert('성공적으로 등록되어 점수가 5점 올랐습니다.');
+                        window.location.reload();
+                      },
+                      error:function(data){
+                        alert('오류가 발생했습니다.');
+                      }
+                    });
+                  }
+                });
+            }
+          },
+          error:function(data){
+            alert('오류가 발생했습니다.');
+          }
+        });
+
+        $.ajax({
+          url:'/api/dashboardQuestions/'+pid,
+          type:'get',
+          cache:false,
+          success:function(data){
+            for(var i=0; i<data.length; i++) {
+              if(data[i].answer == null) {
+                $('.question').eq(1).append(
+                  '<div class="faq-item">' +
+                      '<div class="row">' +
+                            '<div class="pull-right social-action dropdown">' +
+                                '<a class="btn btn-white btn-bitbucket" class="faq-question">' +
+                                    '<i class="fa fa-minus"></i>' +
+                                '</a>' +
+                            '</div>' +
+                            '<div class="social-avatar">' +
+                                '<div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">' +
+                                    '<div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                        '<img alt="image" src="' + ((uid == data[i].uid) ? data[i].profileImage : '/assets/images/avatar.png') + '" style="width: 100%;">' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class="media-body" style="padding: 15px;">' +
+                                    '<a>' + ((uid == data[i].uid) ? data[i].nickname : convertNickname(data[i].nickname)) + '</a>' +
+                                    '<small class="text-muted">' + getFullFormatDate(new Date(data[i].registerDate)) + '</small>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="social-body">' +
+                                '<p>' +
+                                    data[i].question +
+                                '</p>' +
+                            '</div>' +
+                      '</div>' +
+                  '</div>'
+                  );
+              }
+              else {
+                $('.question').eq(1).append(
+                  '<div class="faq-item">' +
+                    '<div class="row">' +
+                          '<div class="pull-right social-action dropdown">' +
+                              '<span><strong style="color:#1ab394; padding-right:10px; font-size:14px;">답변 완료</strong></span>' +
+                              '<a class="btn btn-primary btn-bitbucket collapse-link" data-toggle="collapse" href="#faq' + i + '" class="faq-question">' +
+                                    '<i class="fa fa-chevron-down"></i>' +
+                              '</a>' +
+                          '</div>' +
+                          '<div class="social-avatar">' +
+                              '<div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">' +
+                                  '<div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                      '<img alt="image" src="' + ((uid == data[i].uid) ? data[i].profileImage : '/assets/images/avatar.png') + '" style="width: 100%;">' +
+                                  '</div>' +
+                              '</div>' +
+                              '<div class="media-body" style="padding: 15px;">' +
+                                  '<a>' + ((uid == data[i].uid) ? data[i].nickname : convertNickname(data[i].nickname)) + '</a>' +
+                                  '<small class="text-muted">' + getFullFormatDate(new Date(data[i].registerDate)) + '</small>' +
+                              '</div>' +
+                          '</div>' +
+                          '<div class="social-body">' +
+                              '<p>' +
+                                  data[i].question +
+                              '</p>' +
+                          '</div>' +
+                    '</div>' +
+                      '<div class="row">' +
+                          '<div class="col-lg-12">' +
+                              '<div id="faq' + i + '" class="panel-collapse collapse">' +
+                                  '<div class="faq-answer">' +
+                                      '<p>' +
+                                          data[i].answer +
+                                      '</p>' +
+                                  '</div>' +
+                              '</div>' +
+                          '</div>' +
+                      '</div>' +
+                  '</div>'
+                  );
+              }
+            }
+          },
+          error:function(data){
+            alert('오류가 발생했습니다.');
+          }
+        });
+
+        function convertNickname(nickname) {
+          var convertedNickname = nickname[0];
+          convertedNickname += '****';
+          return convertedNickname;
+        }
+
+        function validate(editable) {
+          if(editable.html() == '<p><br></p>' || $(editable).html() == '') {
+            alert('내용을 입력하고 다시 시도해주세요.');
+            return false;
+          }
+          return true;
+        }
+
+        function sendFile(file) {
+          var formData = new FormData();
+          formData.append('ex_filename', file);
+          $.ajax({
+            url:'/api/upload/tmp',
+            type:'post',
+            cache:false,
+            processData: false,  // file전송시 필수
+            contentType: false,  // file전송시 필수
+            data:formData,
+            success:function(data){
+              $('.summernote').summernote('insertImage', data, function($image) {
+                $image.css('width', '25%');
+              });
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+        }
+
+        function getFullFormatDate(date) {
+            var year = date.getFullYear(); //yyyy
+            var month = (1 + date.getMonth()); //M
+            month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+            var day = date.getDate(); //d
+            day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+            var hour = date.getHours();
+            hour = hour >= 10 ? hour: '0' + hour;
+            var minute = date.getMinutes();
+            minute = minute >= 10 ? minute : '0' + minute; //minute 두자리로 저장
+            var second = date.getSeconds();
+            second = second >= 10 ? second : '0' + second;
+            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+        }
+
+      });
+
+    </script>
+
+</body>
+
+</html>

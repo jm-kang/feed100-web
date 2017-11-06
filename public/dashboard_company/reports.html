@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="/dashboard_company/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard_company/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/dashboard_company/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <link href="/dashboard_company/css/plugins/slick/slick.css" rel="stylesheet">
+    <link href="/dashboard_company/css/plugins/slick/slick-theme.css" rel="stylesheet">
+
+    <link href="/dashboard_company/css/animate.css" rel="stylesheet">
+    <link href="/dashboard_company/css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <div id="page-wrapper" class="gray-bg">
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>보고서</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>테스터에 의해 작성된 보고서를 관리하고 보고서에 대해 질문 및 수정할 수 있습니다.</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="container-fluid" id="reportState" style="margin-top:15px;">
+
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wrapper wrapper-content animated ecommerce">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tab-0"> 순위</a></li>
+
+                                <li class="" style="float:right"><a data-toggle="tab" href="#tab-all"> 종합</a></li>
+                                <!-- 인터뷰 -->
+                                <li class="" style="float:right"><a data-toggle="tab" href="#tab-interview"> 인터뷰</a></li>
+                                <!-- 끝 -->
+
+                            </ul>
+
+                            <div class="tab-content">
+                                <div id="tab-0" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="wrapper wrapper-content animated">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="tab-all" class="tab-pane total-report">
+                                    <div class="panel-body">
+                                        <div class="container total-objective">
+                                            <h4>객관식</h4>
+                                        </div>
+                                        <div class="container total-subjective">
+                                            <h4>주관식</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 인터뷰 -->
+                                <div id="tab-interview" class="tab-pane total-report">
+                                  <div class="panel-body">
+
+                                  </div>
+                                </div>
+                                <!-- 끝 -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+
+        <!-- 인터뷰 -->
+        <div class="modal inmodal fade" id="modalInterview" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2></h2>
+                <p class="modal-summary">
+
+                </p>
+              </div>
+              <div class="modal-body container-fluid">
+                <div class="modal-interview-profile">
+                  <div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">
+                      <div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">
+                          <img src="/assets/images/avatar.png" style="width: 100%;">
+                      </div>
+                  </div>
+                  <a class="m-l-sm" style="cursor: none; line-height: 54px;"></a>
+                </div>
+
+                <div class="col-xs-12 modal-interview-answer m-t">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 끝 -->
+
+        <!-- 20170531 보고서 모달 인터뷰 o-->
+        <div class="modal inmodal fade active modal-reports" id="modalReports" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <span class="slick-ranking">2</span>
+                <div class="modal-bookmark-wrapper"><img src="/assets/images/bookmark.png" alt="" class="modal-bookmark"></div>
+                <img src="/assets/images/quotes-modal.png" alt="" class="modal-quotes">
+                <div class="modal-header-wrapper slick-footer">
+                    <div class="slick-footer-left slick-footer-middle">
+                      <div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">
+                          <div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">
+                              <img src="/assets/images/avatar.png" alt="" style="width: 100%;">
+                          </div>
+                      </div>
+                    </div>
+                    <div class="slick-footer-body">
+                      <div class="tester-name nickname-hover">홍길동</div>
+                      <div class="hashtag-box">
+                          <span class="hashtag">#</span>
+                          <span class="hashtag">#</span>
+                          <span class="hashtag">#</span>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-summary">
+                  <div class="modal-subjective">
+                    <h3 style="margin-top: 30px; text-align:center;">보고서</h3>
+                    <div class="small-border-center"></div>
+
+                    <h2 style="margin-top:10px;">n차 보고서</h2>
+                    <div class="modal-subjective-body">
+                      <h4>1. 첫번째 키워드 목차</h4>
+                      <h4>2. 두번째 키워드 목차</h4>
+                      <h4>3. 세번째 키워드 목차</h4>
+                    </div>
+                  </div>
+
+                  <div class="mark-date-box">
+                    <span class="answer-mark">R.&ensp;</span><span class="modal-report-date">2017-05-12 12:12:12</span>
+                  </div>
+                  <div class="modal-subjective-answer">
+                      <p>
+                        두 개 이상의 주체에서, 한 쪽의 활동에 의한 영향을 다른 쪽이 받고, 그 결과에 대한 반응을 원래 쪽으로 돌려주어 새로운 활동에 반영시키는 순환적 활동을 의미힌다.<br /><br />
+
+                        예를 들자면 제조자의 제품/서비스를 사용한 뒤 제조자에게 다시 전달되는 소비자 의견이라는 의미에서 사용될 수 있고, 학술적, 정치적인 부분에서도 흔히 사용되는 용어이다.
+                      </p>
+                      <img src="/assets/images/bg-tester.jpg" alt="" style="width:100%;">
+                      <p>
+                        정치적인 분야 <br />
+                        국민 여론을 수집한다(원인). 여론을 바탕으로 정책을 만든다(결과). <br />
+                        다시 그 정책에 대해 여론을 수집한다(원인). 정책을 보수한다(결과).<br />
+                        학술적인 분야 <br />
+                        특정 결과물을 제시한다(결과). 결과물에 대해 조언을 듣는다(원인). <br />
+                        결과물을 보충한다(결과). 또 그 결과물에 대해 조언을 듣는다(원인).<br /><br />
+
+                        여성시대나 외방커뮤니티와 같은 여초 사이트들에서는 이 단어를 '해명'의 의미로 사용하고 있는데[3] 이는 잘못된 용례에 해당한다. 뭘바라냐? 비슷한말로 자아비판이 있다 그런데 이건 '해명'보다는 '보고 반응해라'라는 의미 아닌가..??
+                      </p>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <button type="button" class="btn btn-block btn-primary">등록하기</button>
+                <h3 style="text-align:center;">인터뷰</h3>
+                <div class="small-border-center"></div>
+                <div style="margin-bottom:20px;">
+                    <span class="answer-mark">Q.&ensp;</span><span class="modal-interview-question">이 프로젝트를 통해 가장 많이 개선되었으면 하는 점을 적어주세요.</span>
+                </div>
+                <div>
+                    <span class="answer-mark">A.&ensp;</span>
+                </div>
+                <div class="container-fluid answer">
+                  <p>가장 개선되어야 할 부분은 이것 저것 이되겠습니다 . 사진으로 확인할 수 있습니다.</p>
+                  <img src="/assets/images/bg-company.jpg" alt="" style="width:100%;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end -->
+
+        <div class="modal inmodal fade" id="modalQuestion" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2>인터뷰하기</h2>
+                <p class="modal-summary">인터뷰를 이용하시면 선택한 테스터에게만 질문이 전달되고 질문에 대한 답은 인터뷰 탭에 추가됩니다. 비용은 추가되지 않으며, 질문 등록시 자동으로 해당 테스터는 추가 점수를 부여받습니다.</p>
+              </div>
+              <div class="modal-body">
+                <input type="text" placeholder="질문을 입력해주세요" class="form-control">
+                <button type="button" class="btn btn-block btn-primary">등록하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal inmodal fade" id="modalProfile" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="row">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <div class="col-xs-6">
+                          <div class="col-xs-12 text-center p-t-xxl">
+                              <div style="margin: auto; width: 108px; height: 108px; border-radius: 120px; padding-top: 4px; background-color: #e1e1e1; margin-bottom: 0; line-height: 96px;">
+                                  <div style="position: relative; margin: 0 auto; width: 100px; height: 100px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">
+                                      <img alt="image" style="width: 100%;">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xs-12 text-center">
+                              <h5></h5>
+                              <h3></h3>
+                              <h4 class="m-b" style="font-size:12px; font-weight:300">정확도 : 0%</h4>
+                              <h5></h5>
+                              <div class="col-xs-4 text-right">
+                                  <i class="fa fa-trophy trophy-gold"></i>
+                              </div>
+                              <div class="col-xs-4">
+                                  <i class="fa fa-trophy trophy-silver"></i>
+                              </div>
+                              <div class="col-xs-4 text-left">
+                                  <i class="fa fa-trophy trophy-bronze"></i>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 b-l">
+                          <div class="client-detail">
+                            <div class="row m-b-sm">
+
+                                <div class="col-xs-12">
+                                    <strong>
+                                  About me
+                              </strong>
+
+                                    <p>
+
+                                    </p>
+                                </div>
+                            </div>
+
+                              <strong>기본 정보</strong>
+
+                              <ul class="list-group clear-list">
+                                  <li class="list-group-item fist-item">
+                                      <span class="pull-right"> </span>
+                                      <i class="fa fa-caret-right condition-checked"></i>&ensp;이&emsp;름
+                                  </li>
+                                  <li class="list-group-item">
+                                      <span class="pull-right"> </span>
+                                      <i class="fa fa-caret-right  condition-checked"></i>&ensp;성&emsp;별
+                                  </li>
+                                  <li class="list-group-item">
+                                      <span class="pull-right"> </span>
+                                      <i class="fa fa-caret-right condition-checked"></i>&ensp;나&emsp;이
+                                  </li>
+                                  <li class="list-group-item">
+                                      <span class="pull-right"> </span>
+                                      <i class="fa fa-caret-right condition-checked"></i>&ensp;지&emsp;역
+                                  </li>
+                                  <li class="list-group-item">
+                                      <span class="pull-right"> </span>
+                                      <i class="fa fa-caret-right condition-checked"></i>&ensp;직&emsp;업
+                                  </li>
+                                  <li class="list-group-item">
+                                      <span class="pull-right"> </span>
+                                      <i class="fa fa-caret-right condition-checked"></i>&ensp;관심 분야
+                                  </li>
+                                  <li class="list-group-item">
+                                      <span class="pull-right"> </span>
+                                      <i class="fa fa-caret-right condition-checked"></i>&ensp;핸드폰 번호
+                                  </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <strong>추가 정보</strong>
+                      <ul class="list-group clear-list">
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Mainly scripts -->
+        <script src="/dashboard_company/js/jquery-3.1.1.min.js"></script>
+        <script src="/dashboard_company/js/bootstrap.min.js"></script>
+        <script src="/dashboard_company/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="/dashboard_company/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+        <script src="/dashboard_company/js/nav.js"></script>
+
+        <!-- ChartJS-->
+        <script src="/dashboard_company/js/plugins/chartJs/Chart.min.js"></script>
+
+        <script src="/dashboard_company/js/plugins/slick/slick.min.js"></script>
+
+        <!-- Custom and plugin javascript -->
+        <script src="/dashboard_company/js/inspinia.js"></script>
+        <script src="/dashboard_company/js/plugins/pace/pace.min.js"></script>
+
+        <script src="/dashboard_company/js/plugins/timeago/jquery.timeago.js"></script>
+        <script src="/dashboard_company/js/plugins/timeago/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
+
+        <script>
+            $(document).ready(function() {
+              var params = document.location.href.split("dashboard_company/reports/");
+              var pid = params[1].split('#')[0];
+              var report = '';
+              var proceedingReport = '';
+              var proceedingReportSplit = '';
+              var conditions = '';
+              var goldCount = 0;
+              var silverCount = 0;
+              var bronzeCount = 0;
+              var normalCount = 0;
+
+              Chart.pluginService.register({
+                  afterDraw: function(chart, easing) {
+                      if (chart.config.options.showPercentage || chart.config.options.showLabel) {
+                          var self = chart.config;
+                          var ctx = chart.chart.ctx;
+
+                          ctx.font = '18px Arial';
+                          ctx.textAlign = "center";
+                          ctx.fillStyle = "#fff";
+
+                          self.data.datasets.forEach(function(dataset, datasetIndex) {
+                              var total = 0, //total values to compute fraction
+                                  labelxy = [],
+                                  offset = Math.PI / 2, //start sector from top
+                                  radius,
+                                  centerx,
+                                  centery,
+                                  lastend = 0; //prev arc's end line: starting with 0
+
+                              for (var i=0; i<dataset.data.length; i++) {
+                                  total += dataset.data[i];
+                              }
+
+                              //TODO needs improvement
+                              var i = 0;
+                              var meta = dataset._meta[i];
+                              while (!meta) {
+                                  i++;
+                                  meta = dataset._meta[i];
+                              }
+
+                              var element;
+                              for (index = 0; index < meta.data.length; index++) {
+
+                                  element = meta.data[index];
+                                  radius = 0.9 * element._view.outerRadius - element._view.innerRadius;
+                                  centerx = element._model.x;
+                                  centery = element._model.y;
+                                  var thispart = dataset.data[index],
+                                      arcsector = Math.PI * (2 * thispart / total);
+                                  if (element.hasValue() && dataset.data[index] > 0) {
+                                      labelxy.push(lastend + arcsector / 2 + Math.PI + offset);
+                                  } else {
+                                      labelxy.push(-1);
+                                  }
+                                  lastend += arcsector;
+                              }
+
+
+                              var lradius = radius * 3 / 4;
+                              for (var idx in labelxy) {
+                                  if (labelxy[idx] === -1) continue;
+                                  var langle = labelxy[idx],
+                                      dx = centerx + lradius * Math.cos(langle),
+                                      dy = centery + lradius * Math.sin(langle),
+                                      val = Math.round(dataset.data[idx] / total * 100);
+                                  if (chart.config.options.showPercentage)
+                                      ctx.fillText(val + '%', dx, dy);
+                                  else
+                                      ctx.fillText(chart.config.data.labels[idx], dx, dy);
+                              }
+                              ctx.restore();
+                          });
+                      }
+                  }
+              });
+
+              $.ajax({
+                url:'/api/projects/'+pid,
+                type:'get',
+                cache:false,
+                async:false,
+                success:function(data){
+                  if(data[0] == null) {
+                    alert('잘못된 접근입니다.');
+                    location.replace('/');
+                  }
+                  else {
+                    $('.proceeding_color').html(data[0].progressState);
+                    conditions = JSON.parse(data[0].conditions);
+                    report = JSON.parse(data[0].reports);
+                    goldCount = data[0].goldCount;
+                    silverCount = data[0].silverCount;
+                    bronzeCount = data[0].bronzeCount;
+                    normalCount = data[0].normalCount;
+                    var pieChart = new Array();
+                    var _j = 0;
+                    proceedingReport = data[0].proceedingReport;
+                    proceedingReportSplit = proceedingReport.split('차 ')[0];
+                    for(var i=0; i<data[0].reportCount; i++) {
+                      var reports = JSON.parse(data[0].reports);
+                      var period = JSON.parse(data[0].period);
+                      var percent = (data[0].numOfApplicant == 0) ? 0 : ((reports[i].submitCount / data[0].numOfApplicant) * 100).toFixed(0);
+
+                      $('#reportState').append(
+                        '<div>' +
+                            '<span>' + ((proceedingReport == reports[i].title) ? '<strong>' : '') + reports[i].title + ((proceedingReport == reports[i].title) ? '</strong>' : '') + '</span>' +
+                            '<span class="m-l-md small-text" style="font-weight: normal">(' + getPeriod(period[3].reports[_j].startDate, period[3].reports[_j+1].startDate) + ')</span>' +
+                            '<small class="pull-right">' + reports[i].submitCount + ' / ' + data[0].numOfApplicant + ' (' + percent + '%)</small>' +
+                        '</div>' +
+                        '<div class="progress progress-small ' + ((proceedingReport == reports[i].title) ? 'progress-striped active' : '') + '">' +
+                            '<div style="width: ' + percent + '%;" class="progress-bar ' + ((proceedingReport == reports[i].title) ? 'progress-bar-success' : '') + '"></div>' +
+                        '</div>' +
+                        '<div class="check-wrapper">' +
+                            '<span>' + ((proceedingReport == reports[i].title.split(' ')[0] + ' 점검') ? '<strong>' : '') + reports[i].title.split(' ')[0] + ' 점검&emsp;' + ((proceedingReport == reports[i].title.split(' ')[0] + ' 점검') ? '</strong>' : '') + '</span>' +
+                            '<span class="m-l-md small-text" style="font-weight: normal">(' + getFormatDate(new Date(period[3].reports[_j+1].startDate)) + ')</span>' +
+                        '</div>'
+                      );
+                      _j +=  2;
+
+                      $('.nav-tabs li').eq(-1).before('<li class=""><a data-toggle="tab" href="#tab-' + (i+1) + '"> ' + (i+1) + '차 보고서</a></li>');
+                      var output =
+                        '<div id="tab-' + (i+1) + '" class="tab-pane">' +
+                            '<div class="panel-body">'
+                        ;
+                      if((i+1) <= proceedingReportSplit || data[0].progressState == '종료') { // 이미 지났거나 진행중인 보고서
+                        for(var j=0; j<report[i].questions.length; j++) {
+                          var temp = '';
+                          if(report[i].questions[j].category == 'objective') {
+                            temp =
+                            '<div class="container-fluid objective" id="objective' + i + '' + j + '">' +
+                                '<h3>Q' + (i+1) + '-' + (j+1) + '. ' + report[i].questions[j].question + '</h3>' +
+                                '<div class="row">' +
+                                    '<div class="col-lg-6">' +
+                                        '<div class="ibox float-e-margins">' +
+                                            '<div>' +
+                                                '<canvas id="pieChart' + i + '' + j + '" height="200"></canvas>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="col-lg-6">' +
+                                        '<div class="ibox float-e-margins">' +
+                                            '<div class="ibox-content">' +
+                                              '<table class="table table-stripped small m-t-md">' +
+                                                '<tbody>'
+                            ;
+                            for(var k=0; k<report[i].questions[j].options.length; k++) {
+                              temp +=
+                                '<tr>' +
+                                    '<td class="no-borders">' +
+                                        '<i class="fa fa-circle text-navy"></i>' +
+                                    '</td>' +
+                                    '<td class="no-borders">' +
+                                        report[i].questions[j].options[k].option + ' - ' + report[i].questions[j].options[k].count + '명' +
+                                    '</td>' +
+                                '</tr>'
+                                ;
+                            }
+                            temp +=
+                                                '</tbody>' +
+                                              '</table>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>'
+                            ;
+
+                            output += temp;
+                            $('.total-objective').append(temp);
+
+                            $('.total-objective #objective'+i+j).attr('id', 'clone-' + $('.total-objective #objective'+i+j).attr('id'));
+                            $('.total-objective #pieChart'+i+j).attr('id', 'clone-' + $('.total-objective #pieChart'+i+j).attr('id'));
+
+                            var chartLabels = new Array();
+                            var chartData = new Array();
+                            for(var k=0; k<report[i].questions[j].options.length; k++) {
+                              chartLabels.push(convertHtmlToSystemSource(report[i].questions[j].options[k].option));
+                              chartData.push(report[i].questions[j].options[k].count);
+                            }
+
+                            pieChart.push({
+                              id : "#pieChart"+i+j,
+                              chartLabels : chartLabels,
+                              chartData : chartData
+                            });
+                            pieChart.push({
+                              id : "#clone-pieChart"+i+j,
+                              chartLabels : chartLabels,
+                              chartData : chartData
+                            });
+
+                          }
+                          else if(report[i].questions[j].category == 'subjective') {
+                            var _subjectiveTemp = '';
+                            for(var _i = 0; _i < report[i].questions[j].question.length; _i++) {
+                              _subjectiveTemp += '<h4>' + (_i+1) + '. ' + report[i].questions[j].question[_i] + '</h4>';
+                            }
+
+                            temp +=
+                            '<div class="container-fluid subjective" id="subjective' + i + '' + j + '">' +
+                              '<h3>Q' + (i+1) + '-' + (j+1) + '. ' + '주관식' + '</h3>' +
+                                '<div class="modal-subjective-body">' +
+                                  _subjectiveTemp +
+                                '</div>' +
+                              '<div class="slick">' +
+                              '</div>' +
+                            '</div>'
+
+                            ;
+
+                            output = output + temp;
+                            $('.total-subjective').append(temp);
+                            $('.total-subjective #subjective'+i+j).attr('id', 'clone-' + $('.total-subjective #subjective'+i+j).attr('id'));
+
+                          }
+
+                        }
+                        output +=
+                              '</div>' +
+                            '</div>'
+                        ;
+                        $('#tab-all').before(output);
+                      }
+
+                      else { // 시작 전 보고서의 경우 수정 가능
+                        var objectiveTemp = '';
+                        var subjectiveTemp = '';
+                        for(var j=0; j<report[i].questions.length; j++) {
+                          if(report[i].questions[j].category == 'objective') {
+                            var optionTemp = '';
+                            for(var k=0; k<report[i].questions[j].options.length; k++) {
+                              if(k < 2) {
+                                optionTemp +=
+                                '<li>' +
+                                  '<div class="input-group" style="width:76%"><input type="text" class="form-control" placeholder="항목 내용을 입력해주세요."><div>' + report[i].questions[j].options[k].option + '</div></div>' +
+                                '</li>'
+                                ;
+                              }
+                              else {
+                                optionTemp +=
+                                '<li>' +
+                                  '<div class="input-group">' +
+                                    '<input type="text" class="form-control" placeholder="항목 내용을 입력해주세요."><div>' + report[i].questions[j].options[k].option + '</div>' +
+                                    '<span class="input-group-btn remove_r_field_detail">' +
+                                      '<button type="button" class="btn btn-default">' +
+                                        '<a><i class="fa fa-times"></i></a>' +
+                                      '</button>' +
+                                    '</span>' +
+                                  '</div>' +
+                                '</li>'
+                                ;
+                              }
+                            }
+                            objectiveTemp +=
+                            '<li class="r-objective-classic-element r-question-element">' +
+                              '<div class="ibox-tools pull-right">' +
+                                '<a class="remove_r_field"><i class="fa fa-times"></i></a>' +
+                              '</div>' +
+                              '<div class="container-fluid">'+
+                                  '<h3 class="col-xs-3" style="width: 83px; padding:0; margin-top:14px;">Q (객관식)</h3>'+
+                                  '<h3 class="col-xs-10" style="padding:0;"><input type="text" class="form-control"/><div>' + report[i].questions[j].question + '</div></h3>' +
+                              '</div>'+
+                              '<ol class="r-objective-detail">' +
+                                optionTemp +
+                              '</ol>' +
+                              '<button type="button" name="r-detail" class="btn btn-rounded btn-block btn-objective-classic" style="width: 73%; margin-top: -15px;">객관식 항목 추가하기</button>' +
+                            '</li>'
+                            ;
+
+                          }
+                          else if(report[i].questions[j].category == 'subjective') {
+                            for(var k=0; k<report[i].questions[j].question.length; k++) {
+                              if(k < 2) {
+                                subjectiveTemp +=
+                                '<li class="keyword-box">' +
+                                  '<div class="input-group" style="width: 76%;">' +
+                                    '<div class="input-box">' +
+                                      '<input type="text" class="form-control" placeholder="목차를 입력해주세요."><div>' + report[i].questions[j].question[k] + '</div>' +
+                                      '<span class="unit">(키워드 OR 서술)</span>' +
+                                    '</div>' +
+                                  '</div>' +
+                                '</li>'
+                                ;
+                              }
+                              else {
+                                subjectiveTemp +=
+                                '<li class="keyword-box">' +
+                                  '<div class="input-group">' +
+                                    '<div class="input-box">' +
+                                      '<input type="text" class="form-control" placeholder="목차를 입력해주세요."><div>' + report[i].questions[j].question[k] + '</div>' +
+                                      '<span class="unit">(키워드 OR 서술)</span>' +
+                                    '</div>' +
+                                    '<span class="input-group-btn remove_r_field_detail">' +
+                                      '<button type="button" class="btn btn-default">' +
+                                        '<a><i class="fa fa-times"></i></a>' +
+                                      '</button>' +
+                                    '</span>' +
+                                  '</div>' +
+                                '</li>'
+                              }
+                            }
+
+                          }
+                        }
+                        output +=
+                        '<div class="row">' +
+                            '<div class="col-lg-12">' +
+                                '<div class="modify-reports' + i + ' wrapper wrapper-content animated">' +
+                                    '<ul class="r-question-list">' +
+                                      objectiveTemp +
+                                    '</ul>' +
+                                    '<button type="button" class="btn btn-w-m btn-objective-classic">객관식 추가하기</button>' +
+                                    '<ul class="r-question-list" >' +
+                                      '<li class="r-subjective-element r-question-element">' +
+                                        '<div class="container-fluid">'+
+                                            '<h3 class="col-xs-3" style="width: 83px; padding:0; margin-top:14px;">Q (주관식)</h3>'+
+                                        '</div>'+
+                                        '<ol class="r-objective-detail">' +
+                                          subjectiveTemp +
+                                        '</ol>' +
+                                        '<div class="button-box">' +
+                                          '<button type="button" class="btn btn-subjective-keyword">보고서 목차 추가하기</button>' +
+                                        '</div>' +
+                                      '</li>' +
+                                    '</ul>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>'
+                        ;
+                        output +=
+                              '<button class="btn btn-primary btn-sm modifyButton' + i + '" value = ' + i + ' style="float: right; margin-right: 10px; margin-bottom: 20px;">보고서 수정하기</button>' +
+                              '</div>' +
+                            '</div>'
+                        ;
+
+                        $('#tab-all').before(output);
+                        $('div#tab-' + (i+1) + ' input.form-control').each(function() {
+                          $(this).val($(this).next('div').text());
+                          $(this).next('div').html('');
+                        });
+
+                        // 객관식 옵션 삭제
+                        $('.modify-reports' + i).find('ul.r-question-list').eq(0).find('ol.r-objective-detail button.btn.btn-default').click(function() {
+                          $(this).parent().parent().parent().remove();
+                        });
+                        // 객관식 삭제
+                        $('.modify-reports' + i).find('ul.r-question-list').eq(0).find('div.ibox-tools.pull-right').click(function() {
+                          $(this).parent().remove();
+                        });
+                        // 객관식 옵션 추가
+                        $('.modify-reports' + i).find('ul.r-question-list').eq(0).find('button.btn.btn-rounded.btn-block.btn-objective-classic').click(function() {
+                          $(this).parent().find('ol.r-objective-detail').append(
+                            '<li>' +
+                              '<div class="input-group">' +
+                                '<input type="text" class="form-control" placeholder="항목 내용을 입력해주세요.">' +
+                                '<span class="input-group-btn remove_r_field_detail">' +
+                                  '<button type="button" class="btn btn-default">' +
+                                    '<a><i class="fa fa-times"></i></a>' +
+                                  '</button>' +
+                                '</span>' +
+                              '</div>' +
+                            '</li>'
+                          );
+                          $(this).parent().find('ol.r-objective-detail button.btn.btn-default').unbind('click');
+                          $(this).parent().find('ol.r-objective-detail button.btn.btn-default').click(function() {
+                            $(this).parent().parent().parent().remove();
+                          });
+
+                        });
+
+                        //객관식 추가
+                        $('.modify-reports' + i + ' button.btn.btn-w-m.btn-objective-classic').click(function() {
+                          var modifyDiv = $(this).parent();
+                          if(modifyDiv.find('ul.r-question-list li.r-question-element').length < 5) {
+                            modifyDiv.find('ul.r-question-list').eq(0).append(
+                              '<li class="r-objective-classic-element r-question-element">' +
+                                '<div class="ibox-tools pull-right">' +
+                                  '<a class="remove_r_field"><i class="fa fa-times"></i></a>' +
+                                '</div>' +
+                                '<div class="container-fluid">'+
+                                    '<h3 class="col-xs-3" style="width: 83px; padding:0; margin-top:14px;">Q (객관식)</h3>'+
+                                    '<h3 class="col-xs-10" style="padding:0;"><input type="text" class="form-control" placeholder="질문을 입력해주세요."/></h3>' +
+                                '</div>'+
+                                '<ol class="r-objective-detail">' +
+                                  '<li>' +
+                                    '<div class="input-group" style="width:76%"><input type="text" class="form-control" placeholder="항목 내용을 입력해주세요."> </div>' +
+                                  '</li>' +
+                                  '<li>' +
+                                    '<div class="input-group" style="width:76%"><input type="text" class="form-control" placeholder="항목 내용을 입력해주세요."> </div>' +
+                                  '</li>' +
+                                '</ol>' +
+                                '<button type="button" name="r-detail" class="btn btn-rounded btn-block btn-objective-classic" style="width: 73%; margin-top: -15px;">객관식 항목 추가하기</button>' +
+                              '</li>'
+                            );
+                            // 객관식 삭제
+                            modifyDiv.find('ul.r-question-list').eq(0).find('div.ibox-tools.pull-right').unbind('click');
+                            modifyDiv.find('ul.r-question-list').eq(0).find('div.ibox-tools.pull-right').click(function() {
+                              $(this).parent().remove();
+                            });
+                            // 객관식 옵션 추가
+                            modifyDiv.find('ul.r-question-list').eq(0).find('button.btn.btn-rounded.btn-block.btn-objective-classic').unbind('click');
+                            modifyDiv.find('ul.r-question-list').eq(0).find('button.btn.btn-rounded.btn-block.btn-objective-classic').click(function() {
+                              $(this).parent().find('ol.r-objective-detail').append(
+                                '<li>' +
+                                  '<div class="input-group">' +
+                                    '<input type="text" class="form-control" placeholder="항목 내용을 입력해주세요.">' +
+                                    '<span class="input-group-btn remove_r_field_detail">' +
+                                      '<button type="button" class="btn btn-default">' +
+                                        '<a><i class="fa fa-times"></i></a>' +
+                                      '</button>' +
+                                    '</span>' +
+                                  '</div>' +
+                                '</li>'
+                              );
+                              $(this).parent().find('ol.r-objective-detail button.btn.btn-default').unbind('click');
+                              $(this).parent().find('ol.r-objective-detail button.btn.btn-default').click(function() {
+                                $(this).parent().parent().parent().remove();
+                              });
+
+                            });
+                          }
+                        });
+                        // 주관식 목차 삭제
+                        $('.modify-reports' + i).find('ul.r-question-list').eq(1).find('ol.r-objective-detail button.btn.btn-default').click(function() {
+                          $(this).parent().parent().parent().remove();
+                        });
+                        // 주관식 목차 추가
+                        $('.modify-reports' + i + ' button.btn.btn-subjective-keyword').click(function() {
+                          var modifyDiv = $(this).parent().parent().parent().parent();
+                          modifyDiv.find('ul.r-question-list').eq(1).find('ol.r-objective-detail').append(
+                            '<li class="keyword-box">' +
+                              '<div class="input-group">' +
+                                '<div class="input-box">' +
+                                  '<input type="text" class="form-control" placeholder="목차를 입력해주세요.">' +
+                                  '<span class="unit">(키워드 OR 서술)</span>' +
+                                '</div>' +
+                                '<span class="input-group-btn remove_r_field_detail">' +
+                                  '<button type="button" class="btn btn-default">' +
+                                    '<a><i class="fa fa-times"></i></a>' +
+                                  '</button>' +
+                                '</span>' +
+                              '</div>' +
+                            '</li>'
+                          );
+                          // 주관식 목차 삭제
+                          modifyDiv.find('ul.r-question-list').eq(1).find('ol.r-objective-detail button.btn.btn-default').unbind('click');
+                          modifyDiv.find('ul.r-question-list').eq(1).find('ol.r-objective-detail button.btn.btn-default').click(function() {
+                            $(this).parent().parent().parent().remove();
+                          });
+                        });
+
+                        $('.modifyButton' + i).click(function() {
+                          var isValidate = true;
+                          $(this).siblings('div.row').find('input').each(function() {
+                            if($(this).val() == '') {
+                              alert('보고서 항목을 모두 입력하고 다시 시도해주세요.');
+                              isValidate = false;
+                              return false;
+                            }
+                          });
+                          if(isValidate) {
+                            var questions = new Array();
+                            $(this).siblings('div.row').find('li.r-question-element').each(function(index) {
+                              if($(this).hasClass('r-objective-classic-element')) {
+                                var question = {
+                                  'qid': index+1,
+                                  'category': 'objective',
+                                  'question': convertSystemSourceToHtml($(this).find('h3 input').val()),
+                                  'options': new Array()
+                                }
+                                $(this).children('ol').find('input').each(function(index) {
+                                  var option = {
+                                    'oid': index+1,
+                                    'option': convertSystemSourceToHtml($(this).val()),
+                                    'count': 0
+                                  }
+                                  question.options.push(option);
+                                });
+                                questions.push(question);
+                              }
+                              else {
+                                var question = {
+                                  'qid': index+1,
+                                  'category': 'subjective',
+                                  'question': new Array()
+                                };
+                                $(this).find('input').each(function() {
+                                  question.question.push(convertSystemSourceToHtml($(this).val()));
+                                });
+                                questions.push(question);
+                              }
+                            });
+
+                            var newReports = JSON.parse(data[0].reports);
+                            newReports[$(this).val()].questions = questions;
+
+                            var projectData = {
+                              'reports': JSON.stringify(newReports)
+                            };
+
+                            $.ajax({
+                              url:'/api/modifyReport/'+pid,
+                              type:'post',
+                              cache:false,
+                              data:projectData,
+                              success:function(data){
+                                console.log('asd');
+                                alert('수정이 완료되었습니다.');
+                                window.location.reload();
+                              },
+                              error:function(data){
+                                alert('오류가 발생했습니다.');
+                              }
+                            });
+
+                          }
+                        })
+                      }
+
+                      // 인터뷰
+                      $('#tab-interview div.panel-body').append(
+                        '<div class="container interview-box-' + i + '">' +
+                          '<h3>' + (i+1) + '차 보고서 인터뷰' + '</h3>' +
+                          '<h4 class="main-question">' +
+                          function() {
+                            var output = '';
+                            for(var j=0; j<report[i].questions.length; j++) {
+                              if(report[i].questions[j].category == 'subjective') {
+                                for(var k=0; k<report[i].questions[j].question.length; k++) {
+                                  output += '<p>' + (k+1) + '. ' + report[i].questions[j].question[k] + '</p>';
+                                }
+                              }
+                            }
+                            return output;
+                          }() +
+                          '</h4>' +
+                          '<h4 class="text-center m-t-md"><i class="fa fa-exclamation" style="color: #d9534f;"></i>&ensp;등록한 질문이 없습니다.</h4>' +
+                        '</div>'
+                      );
+
+                    }
+                  }
+                  for(var i=0; i<pieChart.length; i++) {
+                    setPieChart(pieChart[i].id, pieChart[i].chartLabels, pieChart[i].chartData);
+                  }
+                  function setPieChart(id, chartLabels, chartData) {
+                    var pieChart = {
+                        type: 'pie',
+                        data: {
+                            labels: chartLabels,
+                            datasets: [{
+                                label: '%',
+                                data: chartData,
+                                backgroundColor: [
+                                    "#AF9177", "#DFA797", "#F7CBB2", "#DBC0B9", "#CFDBC7", "#FDF6E6",
+                                    "#E2EDDD", "#C8D8D5", "#A6BFBB", "#897880", "#C8D2DE", "#E9F1F4",
+                                ]
+                            }]
+                        },
+                        options: {
+                            tooltips: {
+                                enabled: true,
+                            },
+                            showPercentage: true, //Enables percentages on the pie
+                        }
+                    };
+
+                    var ctx = $(id).get(0).getContext('2d');
+                    new Chart(ctx, pieChart);
+                  }
+                },
+                error:function(data){
+                  alert('오류가 발생했습니다.');
+                }
+              });
+
+              $.ajax({
+                url:'/api/tester-list/'+pid,
+                type:'get',
+                cache:false,
+                async:false,
+                success:function(data){
+                  for(var i=0; i<data.length; i++) {
+                    var _report = JSON.parse(data[i].report);
+                    var reportQuestion = JSON.parse(data[i].reportQuestion);
+                    var trophy = '';
+                    if((i+1) <= goldCount) {
+                      trophy = 'gold';
+                    }
+                    else if((i+1) <= goldCount + silverCount) {
+                      trophy = 'silver';
+                    }
+                    else if((i+1) <= goldCount + silverCount + bronzeCount) {
+                      trophy = 'bronze';
+                    }
+                    else {
+                      trophy = 'normal';
+                    }
+
+                    var output =
+                      '<div class="faq-item">' +
+                          '<div class="row report-rank collapsed" data-toggle="collapse" href="#faq' + i + '">' +
+                              '<div class="col-xs-5">' +
+                                  '<span class="pull-left chevron">' +
+                                      '<i class="fa fa-chevron fa-fw" ></i>' +
+                                  '</span>' +
+                                  '<div class="image pull-left report-rank-img">' +
+                                      ((trophy && trophy != 'normal') ?
+                                        '<img alt="image" src="/dashboard_company/img/trophy-icon/trophy-' + trophy + '-icon.png">' +
+                                        '<div class="overlay">' + (i+1) + '</div>'
+                                        :
+                                        '<h3>' + (i+1) + '</h3>'
+                                      ) +
+                                  '</div>' +
+                                  '<div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px; margin-right: 30px;">' +
+                                      '<div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                          '<img alt="image" src="' + data[i].profileImage + '" style="width: 100%;">' +
+                                      '</div>' +
+                                  '</div>' +
+
+                                  '<div class="container-fluid">' +
+                                      'Lv' + data[i].level + '&ensp;' +
+                                      '<a class="report-client-name nickname-hover" id="tester-list' + i + '">' + data[i].nickname + '</a>' +
+                                  '</div>' +
+                              '</div>' +
+                              '<div class="col-xs-3" style="margin:10px 0;">' +
+                                  '<div class="col-xs-3" data-toggle="tooltip" data-placement="top" title="참여 횟수">' +
+                                      '<i class="fa fa-flag">&nbsp;' + data[i].testCount + '</i>' +
+                                  '</div>' +
+                                  '<div class="col-xs-3">' +
+                                      '<i class="fa fa-trophy trophy-gold">&nbsp;' + data[i].goldCount + '</i>' +
+                                  '</div>' +
+                                  '<div class="col-xs-3">' +
+                                      '<i class="fa fa-trophy trophy-silver">&nbsp;' + data[i].silverCount + '</i>' +
+                                  '</div>' +
+                                  '<div class="col-xs-3">' +
+                                      '<i class="fa fa-trophy trophy-bronze">&nbsp;' + data[i].bronzeCount + '</i>' +
+                                  '</div>' +
+                              '</div>' +
+                              '<div class="col-md-3 text-right" style="margin:10px 0;">' +
+                                  '<div class="tag-list">' +
+                                      getReportProgressState(_report) +
+                                  '</div>' +
+                              '</div>' +
+                              '<div class="col-xs-1 text-right">' +
+                                  '<span class="small font-bold">총점</span><br/> ' + data[i].score + '' +
+                              '</div>' +
+                          '</div>' +
+                          '<div class="row">' +
+                              '<div class="col-lg-12">' +
+                                  '<div id="faq' + i + '" href="#faq' + i + '" data-toggle="collapse" class="panel-collapse collapse">' +
+                                      getReportContents(_report) +
+                                  '</div>' +
+                              '</div>' +
+                          '</div>' +
+
+                      '</div>'
+                      ;
+                      $('#tab-0 .wrapper-content').append(output);
+
+                      $('div.container-fluid a.report-client-name#tester-list' + i).click(function() {
+                        var id = $(this).attr('id').split('tester-list')[1];
+                        $('#modalProfile img').attr('src', data[id].profileImage);
+                        $('#modalProfile h5').eq(0).html('Lv' + data[id].level + ' ' + data[id].levelName);
+                        $('#modalProfile h3').html(data[id].nickname);
+                        $('#modalProfile h5').eq(1).html('프로젝트 참여 횟수 : ' + data[id].testCount);
+                        $('#modalProfile h4.m-b').html('정확도 : ' + data[id].accuracyRate + '%');
+                        $('#modalProfile .trophy-gold').html('&ensp;' + data[id].goldCount);
+                        $('#modalProfile .trophy-silver').html('&ensp;' + data[id].silverCount);
+                        $('#modalProfile .trophy-bronze').html('&ensp;' + data[id].bronzeCount);
+                        $('#modalProfile .modal-body p').html(data[id].introduction);
+                        $('#modalProfile .list-group-item span').eq(0).html(data[id].name);
+                        $('#modalProfile .list-group-item span').eq(1).html(data[id].gender);
+                        $('#modalProfile .list-group-item span').eq(2).html(data[id].age);
+                        $('#modalProfile .list-group-item span').eq(3).html(data[id].region);
+                        $('#modalProfile .list-group-item span').eq(4).html(data[id].job);
+                        $('#modalProfile .list-group-item span').eq(5).html(data[id].interestFields);
+                        $('#modalProfile .list-group-item span').eq(6).html(data[id].phoneNumber);
+                        $('#modalProfile div.modal-footer ul').html('');
+                        for(var i=0; i<conditions.questions.length; i++) {
+                          var questionAnswer = JSON.parse(data[id].questionAnswer);
+                          $('#modalProfile div.modal-footer ul').append(
+                            '<li class="list-group-item fist-item">' +
+                                '<i class="fa fa-caret-right condition-checked"></i>&ensp;Q' + (i+1) + '. ' + conditions.questions[i].question +
+                                '<div class="conAns container-flex">A. ' + questionAnswer[i].answer + '</div>' +
+                            '</li>'
+                          );
+                        }
+                        $('#modalProfile').modal();
+                      });
+
+
+                      for(var j=0; j<_report.length; j++) {
+                        if(_report[j].title) {
+                          for(var k=0; k<report[j].questions.length; k++) {
+                            if(report[j].questions[k].category == 'subjective') {
+                              var shortAnswer = _report[j].questions[k].answer;
+
+                              for(var _i = 0; _i < report[j].questions[k].question.length; _i++) {
+                                shortAnswer = shortAnswer.replace((_i+1) + '. ' + report[j].questions[k].question[_i], '');
+                              }
+
+                              $('#subjective'+j+k+' div.slick').append(
+                                '<div>' +
+                                    '<div class="ibox-content ' + ((reportQuestion[j].question) ? 'active' : '') + '">' +
+                                        '<div class="slick-body subjective-list' + i + '-' + j + '-' + k + '">' +
+                                          '<img src="/assets/images/quotes.png" alt="" class="quotes-img">' +
+                                          ((reportQuestion[j].question) ? '<img src="/assets/images/bookmark.png" alt="" class="bookmark-img">' : '') +
+                                          '<span class="slick-ranking">' + (i+1) + '</span>' +
+                                          '<div class="container-fluid report-summary">' +
+                                            $(shortAnswer).text().substring(0, 200) + '...' +
+                                          '</div>' +
+                                        '</div>' +
+                                        '<div class="slick-footer">' +
+                                          '<div class="slick-date">' + getFullFormatDate(new Date(_report[j].registerDate)) + '</div>' +
+                                          '<div class="slick-footer-left slick-footer-middle">' +
+                                            '<div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">' +
+                                                '<div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                                    '<img src="' + data[i].profileImage +'" alt="" style="width: 100%; display: inline-block;">' +
+                                                '</div>' +
+                                            '</div>' +
+                                          '</div>' +
+                                          '<div class="slick-footer-body">' +
+                                            '<div class="tester-name nickname-hover subjective-list' + i + '">' + data[i].nickname + '</div>' +
+                                            '<div class="hashtag-box">' +
+                                                '<span class="hashtag">#' + data[i].job + ' &nbsp;</span>' +
+                                                '<span class="hashtag">#' + data[i].age + '세 &nbsp;</span>' +
+                                                '<span class="hashtag">#' + data[i].gender + ' &nbsp;</span>' +
+                                            '</div>' +
+                                          '</div>' +
+                                          '<div class="slick-footer-btn ' + ((((j+1) == proceedingReportSplit) && !reportQuestion[j].question) ? '' : 'expire') + '">' +
+                                            ((reportQuestion[j].question) ? '#인터뷰대상' : ((((j+1) == proceedingReportSplit) && !reportQuestion[j].question) ? '<button type="button" class="btn btn-outline btn-primary" onclick=showModalQuestion(' + data[i].tid + ',' + proceedingReportSplit + ')>인터뷰 신청하기</button>' : '인터뷰 기간이 만료되었습니다.')) +
+                                          '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>'
+                              );
+
+                              $('#clone-subjective'+j+k+' div.slick').append(
+                                '<div>' +
+                                    '<div class="ibox-content ' + ((reportQuestion[j].question) ? 'active' : '') + '">' +
+                                        '<div class="slick-body subjective-list' + i + '-' + j + '-' + k + '">' +
+                                          '<img src="/assets/images/quotes.png" alt="" class="quotes-img">' +
+                                          ((reportQuestion[j].question) ? '<img src="/assets/images/bookmark.png" alt="" class="bookmark-img">' : '') +
+                                          '<span class="slick-ranking">' + (i+1) + '</span>' +
+                                          '<div class="container-fluid report-summary">' +
+                                            $(shortAnswer).text().substring(0, 200) + '...' +
+                                          '</div>' +
+                                        '</div>' +
+                                        '<div class="slick-footer">' +
+                                          '<div class="slick-date">' + getFullFormatDate(new Date(_report[j].registerDate)) + '</div>' +
+                                          '<div class="slick-footer-left slick-footer-middle">' +
+                                            '<div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">' +
+                                                '<div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                                    '<img src="' + data[i].profileImage +'" alt="" style="width: 100%; display: inline-block;">' +
+                                                '</div>' +
+                                            '</div>' +
+                                          '</div>' +
+                                          '<div class="slick-footer-body">' +
+                                            '<div class="tester-name nickname-hover subjective-list' + i + '">' + data[i].nickname + '</div>' +
+                                            '<div class="hashtag-box">' +
+                                                '<span class="hashtag">#' + data[i].job + ' &nbsp;</span>' +
+                                                '<span class="hashtag">#' + data[i].age + '세 &nbsp;</span>' +
+                                                '<span class="hashtag">#' + data[i].gender + ' &nbsp;</span>' +
+                                            '</div>' +
+                                          '</div>' +
+                                          '<div class="slick-footer-btn ' + ((((j+1) == proceedingReportSplit) && !reportQuestion[j].question) ? '' : 'expire') + '">' +
+                                            ((reportQuestion[j].question) ? '#인터뷰대상' : ((((j+1) == proceedingReportSplit) && !reportQuestion[j].question) ? '<button type="button" class="btn btn-outline btn-primary" onclick=showModalQuestion(' + data[i].tid + ',' + proceedingReportSplit + ')>인터뷰 신청하기</button>' : '인터뷰 기간이 만료되었습니다.')) +
+                                          '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>'
+                              );
+
+                              $('div.slick-body.subjective-list' + i + '-' + j + '-' + k).click(function() {
+                                var split = $(this).attr('class').split('subjective-list')[1].split('-');
+                                var i = Number(split[0]);
+                                var j = Number(split[1]);
+                                var k = Number(split[2]);
+                                var _report = JSON.parse(data[i].report);
+                                var reportQuestion = JSON.parse(data[i].reportQuestion);
+                                $('#modalReports span.slick-ranking').html(i+1);
+                                $('#modalReports div.slick-footer-middle img').attr('src', data[i].profileImage);
+                                $('#modalReports div.tester-name').attr('class', '');
+                                $('#modalReports div.hashtag-box').prev().addClass('tester-name');
+                                $('#modalReports div.hashtag-box').prev().addClass('nickname-hover');
+                                $('#modalReports div.tester-name').addClass('subjective-list' + i);
+                                $('#modalReports div.tester-name').html(data[i].nickname);
+                                $('#modalReports span.hashtag').eq(0).html('#' + data[i].job);
+                                $('#modalReports span.hashtag').eq(1).html('#' + data[i].age + '세');
+                                $('#modalReports span.hashtag').eq(2).html('#' + data[i].gender);
+                                $('#modalReports h2').eq(0).html((j+1) + '차 보고서');
+                                var contents = '';
+                                for(var _i = 0; _i < report[j].questions[k].question.length; _i++) {
+                                  contents += '<h4>' + (_i+1) + '. ' + report[j].questions[k].question[_i] + '</h4>';
+                                }
+                                $('#modalReports div.modal-subjective-body').html(contents);
+                                $('#modalReports span.modal-report-date').html(getFullFormatDate(new Date(_report[j].registerDate)));
+                                $('#modalReports div.modal-subjective-answer').html(_report[j].questions[k].answer);
+
+                                if(reportQuestion[j].question) {
+                                  $('#modalReports div.modal-bookmark-wrapper').html('<img src="/assets/images/bookmark.png" alt="" class="modal-bookmark">');
+
+                                  $('#modalReports div.modal-body').html(
+                                    '<h3 style="text-align:center;">인터뷰</h3>' +
+                                    '<div class="small-border-center"></div>' +
+                                    '<div style="margin-bottom:20px;">' +
+                                        '<span class="answer-mark">Q.&ensp;</span><span class="modal-interview-question">' + reportQuestion[j].question + '</span>' +
+                                    '</div>' +
+                                    '<div>' +
+                                        '<span class="answer-mark">A.&ensp;</span>' +
+                                    '</div>' +
+                                    '<div class="container-fluid answer">' +
+                                      reportQuestion[j].answer +
+                                    '</div>'
+                                  );
+                                }
+                                else {
+                                  $('#modalReports div.modal-bookmark-wrapper').html('');
+
+                                  if((j+1) == proceedingReportSplit) {
+                                    $('#modalReports div.modal-body').html(
+                                      '<button type="button" class="btn btn-block btn-primary" onclick=showModalQuestion(' + data[i].tid + ',' + proceedingReportSplit + ')>인터뷰 신청하기</button>'
+                                    );
+                                  }
+                                  else {
+                                    $('#modalReports div.modal-body').html('');
+                                  }
+                                }
+
+                                $('#modalReports div.subjective-list' + i).unbind('click');
+                                $('#modalReports div.subjective-list' + i).click(function() {
+                                  var id = $(this).attr('class').split('subjective-list')[1];
+                                  $('#modalProfile img').attr('src', data[id].profileImage);
+                                  $('#modalProfile h5').eq(0).html('Lv' + data[id].level + ' ' + data[id].levelName);
+                                  $('#modalProfile h3').html(data[id].nickname);
+                                  $('#modalProfile h5').eq(1).html('프로젝트 참여 횟수 : ' + data[id].testCount);
+                                  $('#modalProfile h4.m-b').html('정확도 : ' + data[id].accuracyRate + '%');
+                                  $('#modalProfile .trophy-gold').html('&ensp;' + data[id].goldCount);
+                                  $('#modalProfile .trophy-silver').html('&ensp;' + data[id].silverCount);
+                                  $('#modalProfile .trophy-bronze').html('&ensp;' + data[id].bronzeCount);
+                                  $('#modalProfile .modal-body p').html(data[id].introduction);
+                                  $('#modalProfile .list-group-item span').eq(0).html(data[id].name);
+                                  $('#modalProfile .list-group-item span').eq(1).html(data[id].gender);
+                                  $('#modalProfile .list-group-item span').eq(2).html(data[id].age);
+                                  $('#modalProfile .list-group-item span').eq(3).html(data[id].region);
+                                  $('#modalProfile .list-group-item span').eq(4).html(data[id].job);
+                                  $('#modalProfile .list-group-item span').eq(5).html(data[id].interestFields);
+                                  $('#modalProfile .list-group-item span').eq(6).html(data[id].phoneNumber);
+                                  $('#modalProfile div.modal-footer ul').html('');
+                                  for(var i=0; i<conditions.questions.length; i++) {
+                                    var questionAnswer = JSON.parse(data[id].questionAnswer);
+                                    $('#modalProfile div.modal-footer ul').append(
+                                      '<li class="list-group-item fist-item">' +
+                                          '<i class="fa fa-caret-right condition-checked"></i>&ensp;Q' + (i+1) + '. ' + conditions.questions[i].question +
+                                          '<div class="conAns container-flex">A. ' + questionAnswer[i].answer + '</div>' +
+                                      '</li>'
+                                    );
+                                  }
+                                  $('#modalProfile').modal();
+                                });
+
+                                $('#modalReports').modal();
+                              });
+
+                              $('div.nickname-hover.subjective-list' + i).click(function() {
+                                var id = $(this).attr('class').split('subjective-list')[1];
+                                $('#modalProfile img').attr('src', data[id].profileImage);
+                                $('#modalProfile h5').eq(0).html('Lv' + data[id].level + ' ' + data[id].levelName);
+                                $('#modalProfile h3').html(data[id].nickname);
+                                $('#modalProfile h5').eq(1).html('프로젝트 참여 횟수 : ' + data[id].testCount);
+                                $('#modalProfile h4.m-b').html('정확도 : ' + data[id].accuracyRate + '%');
+                                $('#modalProfile .trophy-gold').html('&ensp;' + data[id].goldCount);
+                                $('#modalProfile .trophy-silver').html('&ensp;' + data[id].silverCount);
+                                $('#modalProfile .trophy-bronze').html('&ensp;' + data[id].bronzeCount);
+                                $('#modalProfile .modal-body p').html(data[id].introduction);
+                                $('#modalProfile .list-group-item span').eq(0).html(data[id].name);
+                                $('#modalProfile .list-group-item span').eq(1).html(data[id].gender);
+                                $('#modalProfile .list-group-item span').eq(2).html(data[id].age);
+                                $('#modalProfile .list-group-item span').eq(3).html(data[id].region);
+                                $('#modalProfile .list-group-item span').eq(4).html(data[id].job);
+                                $('#modalProfile .list-group-item span').eq(5).html(data[id].interestFields);
+                                $('#modalProfile .list-group-item span').eq(6).html(data[id].phoneNumber);
+                                $('#modalProfile div.modal-footer ul').html('');
+                                for(var i=0; i<conditions.questions.length; i++) {
+                                  var questionAnswer = JSON.parse(data[id].questionAnswer);
+                                  $('#modalProfile div.modal-footer ul').append(
+                                    '<li class="list-group-item fist-item">' +
+                                        '<i class="fa fa-caret-right condition-checked"></i>&ensp;Q' + (i+1) + '. ' + conditions.questions[i].question +
+                                        '<div class="conAns container-flex">A. ' + questionAnswer[i].answer + '</div>' +
+                                    '</li>'
+                                  );
+                                }
+                                $('#modalProfile').modal();
+                              });
+
+                            }
+                          }
+                        }
+                      }
+
+                      // 인터뷰
+                      for(var j=0; j<reportQuestion.length; j++) {
+                        if(reportQuestion[j].question) {
+                          if($('#tab-interview div.interview-box-' + j).find('div.interview-item').length == 0) {
+                            $('#tab-interview div.interview-box-' + j).find('h4:last-child').remove();
+                            $('#tab-interview div.interview-box-' + j).append('<div class="container-fluid interview-item">');
+                          }
+                          $('#tab-interview div.interview-box-' + j).find('div.interview-item').append(
+                            '<div class="main-item' + i + '-' + j + '">' +
+                              '<span class="letter-a" style="display: inline-block; line-height: 54px;">' +
+                                '<div class="pull-left" style="margin: auto; width: 54px; height: 54px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 48px;">' +
+                                    '<div style="position: relative; margin: 0 auto; width: 50px; height: 50px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                        '<img src="' + data[i].profileImage + '" alt="" style="width: 100%;">' +
+                                    '</div>' +
+                                '</div>' +
+                                '<a class="m-r m-l-sm" id="interview-list' + i + '">' + data[i].nickname + '</a>' +
+                              '</span>' +
+                              '<span class="main-answer" aria-hidden="true">' +
+                                '<strong>R.&ensp;</strong>' +
+                                function() {
+                                  for(var _j=0; _j<report[j].questions.length; _j++) {
+                                    if(report[j].questions[_j].category == 'subjective') {
+                                      var shortAnswer = _report[j].questions[_j].answer;
+
+                                      for(var _i = 0; _i < report[j].questions[_j].question.length; _i++) {
+                                        shortAnswer = shortAnswer.replace((_i+1) + '. ' + report[j].questions[_j].question[_i], '');
+                                      }
+
+                                      return $(shortAnswer).text().substring(0, 30) + '...';
+                                    }
+                                  }
+                                }() +
+                              '</span>' +
+                            '</div>' +
+                            '<div class="sub-item0 m-l-lg m-t">' +
+                              '<i class="fa fa-level-up fa-rotate-90 pull-left" style="font-size:20px; font-weight:100"></i>' +
+                              '<div class="container-fluid">' +
+                                '<p class="m-t-sm"><strong class="m-l">' +
+                                  'Q.</strong>&ensp;' + reportQuestion[j].question + '' +
+                                '</p>' +
+                                '<div class="col-xs-12 interview-wrapper">' +
+                                  '<strong>A.</strong>' +
+                                  '<div class="interview">' +
+                                  function() {
+                                    if(reportQuestion[j].answer) {
+                                      return reportQuestion[j].answer;
+                                    }
+                                    else {
+                                      return '<h4 class="text-center m-t-md"><i class="fa fa-exclamation" style="color: #d9534f;"></i>&ensp;아직 질문에 대한 답변이 등록되지 않았습니다.</h4>';
+                                    }
+                                  }() +
+                                  '</div>' +
+                                '</div>' +
+                              '</div>' +
+                            '</div>'
+                          );
+
+                          $('div.main-item' + i + '-' + j).click(function(e) {
+                            var split = $(this).attr('class').split('main-item')[1].split('-');
+                            var i = Number(split[0]);
+                            var j = Number(split[1]);
+                            var _report = JSON.parse(data[i].report);
+                            var answer = '';
+                            $('#modalInterview').find('h2').html($(this).parent().siblings('h3').html());
+                            $('#modalInterview').find('p.modal-summary').html($(this).parent().siblings('h4.main-question').html());
+                            $('#modalInterview').find('div.modal-interview-profile img').attr('src', data[i].profileImage);
+                            $('#modalInterview').find('div.modal-interview-profile a').html(data[i].nickname);
+                            for(var _j=0; _j<report[j].questions.length; _j++) {
+                              if(report[j].questions[_j].category == 'subjective') {
+                                answer = _report[j].questions[_j].answer;
+                              }
+                            }
+                            $('#modalInterview').find('div.modal-interview-answer').html(answer);
+                            $('#modalInterview').modal();
+                          });
+
+                          $('a#interview-list' + i).click(function(e) {
+                            e.stopPropagation();
+                            var id = $(this).attr('id').split('interview-list')[1];
+                            $('#modalProfile img').attr('src', data[id].profileImage);
+                            $('#modalProfile h5').eq(0).html('Lv' + data[id].level + ' ' + data[id].levelName);
+                            $('#modalProfile h3').html(data[id].nickname);
+                            $('#modalProfile h5').eq(1).html('프로젝트 참여 횟수 : ' + data[id].testCount);
+                            $('#modalProfile h4.m-b').html('정확도 : ' + data[id].accuracyRate + '%');
+                            $('#modalProfile .trophy-gold').html('&ensp;' + data[id].goldCount);
+                            $('#modalProfile .trophy-silver').html('&ensp;' + data[id].silverCount);
+                            $('#modalProfile .trophy-bronze').html('&ensp;' + data[id].bronzeCount);
+                            $('#modalProfile .modal-body p').html(data[id].introduction);
+                            $('#modalProfile .list-group-item span').eq(0).html(data[id].name);
+                            $('#modalProfile .list-group-item span').eq(1).html(data[id].gender);
+                            $('#modalProfile .list-group-item span').eq(2).html(data[id].age);
+                            $('#modalProfile .list-group-item span').eq(3).html(data[id].region);
+                            $('#modalProfile .list-group-item span').eq(4).html(data[id].job);
+                            $('#modalProfile .list-group-item span').eq(5).html(data[id].interestFields);
+                            $('#modalProfile .list-group-item span').eq(6).html(data[id].phoneNumber);
+                            $('#modalProfile div.modal-footer ul').html('');
+                            for(var i=0; i<conditions.questions.length; i++) {
+                              var questionAnswer = JSON.parse(data[id].questionAnswer);
+                              $('#modalProfile div.modal-footer ul').append(
+                                '<li class="list-group-item fist-item">' +
+                                    '<i class="fa fa-caret-right condition-checked"></i>&ensp;Q' + (i+1) + '. ' + conditions.questions[i].question +
+                                    '<div class="conAns container-flex">A. ' + questionAnswer[i].answer + '</div>' +
+                                '</li>'
+                              );
+                            }
+                            $('#modalProfile').modal();
+                          });
+
+                        }
+                      }
+
+                  }
+                  function getReportProgressState(_report) {
+                    var temp = '';
+                    for(var i=0; i<report.length; i++) {
+                      if(_report[i].title) {
+                        temp += '<span class="round round-sm">' + (i+1) + '</span>';
+                      }
+                      else {
+                        temp += '<span class="round round-sm hollow">' + (i+1) + '</span>';
+                      }
+                    }
+                    return temp;
+                  }
+
+                  function getReportContents(_report) {
+                    var temp = '';
+                    for(var i=0; i<_report.length; i++) {
+                      if(_report[i].title) {
+                        temp +=
+                        '<div class="report-answer ' + ((reportQuestion[i].question) ? 'active' : '') + '">' +
+                            '<h5>' + (i+1) + '차 보고서</h5>'
+                        ;
+                        for(var j=0; j<report[i].questions.length; j++) {
+                          var _subjectiveTemp = '';
+                          for(var _i = 0; _i < report[i].questions[j].question.length; _i++) {
+                            _subjectiveTemp += '<p>' + (_i+1) + '. ' + report[i].questions[j].question[_i] + '</p>';
+                          }
+                          temp +=
+                          '<div class="container">' +
+                              ((report[i].questions[j].options) ?
+                              '<h5>Q' + (i+1) + '-' + (j+1) + '. ' + report[i].questions[j].question + '</h5>'
+                              :
+                              '<h5>Q' + (i+1) + '-' + (j+1) + '. ' + '주관식' + '</h5>' +
+                              _subjectiveTemp
+                              ) +
+
+                              ((report[i].questions[j].options) ?
+                                '<p>A' + (i+1) + '-' + (j+1) + '. ' + _report[i].questions[j].answer + '번 <small>(' + report[i].questions[j].options[_report[i].questions[j].answer-1].option + ')</small></p>'
+                                :
+                                '<p>A' + (i+1) + '-' + (j+1) + '. ' + _report[i].questions[j].answer + '</p>'
+                              ) +
+                              ((reportQuestion[i].question) ? '<br>인터뷰<br><br><p>Q. ' + reportQuestion[i].question + '</p>' : '') +
+                              ((reportQuestion[i].answer) ? '<p>A. ' + reportQuestion[i].answer + '</p>' : '') +
+                          '</div>'
+                          ;
+                        }
+                        temp += '</div>';
+                      }
+                    }
+                    return temp;
+                  }
+
+                  function removeHtml(text) {
+                    text = text.replace(/(<([^>]+)>)/gi, "");
+                    text = text.replace(/\s/gi, "");
+                    text = text.replace(/&nbsp;/ig, "");
+
+                   return text;
+                  }
+
+                },
+                error:function(data){
+                  alert('오류가 발생했습니다.');
+                }
+              });
+
+              setTimeout(function() {
+                $('#tab-0').find('div.faq-item').eq(0).find('div.report-rank').click();
+              }, 1000);
+
+              $('.report-client-name').click(function() {
+                  $('.report-rank').attr('data-toggle', '');
+              });
+              $('#modalProfile').on('hide.bs.modal', function() {
+                  $('.report-rank').attr('data-toggle', 'collapse');
+              });
+
+              $('[data-toggle="tooltip"]').tooltip();
+
+              $('.slick').slick({
+                  setPosition: true,
+                  dots: true,
+                  infinite: true,
+                  speed: 300,
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                  centerMode: false,
+                  responsive: [
+                      {
+                          breakpoint: 1400,
+                          settings: {
+                              slidesToShow: 3,
+                              slidesToScroll: 3,
+                              infinite: true,
+                              dots: true
+                          }
+                      },
+                      {
+                          breakpoint: 1200,
+                          settings: {
+                              slidesToShow: 2,
+                              slidesToScroll: 2
+                          }
+                      },
+                      {
+                          breakpoint: 700,
+
+                          settings: {
+                              slidesToShow: 1,
+                              slidesToScroll: 1,
+                              infinite: true,
+                              centerMode: true,
+                              dots: false,
+                              arrows:false,
+                              centerPadding: '7px'
+                          }
+                      }
+                  ]
+              });
+              $('.slick').slick('setPosition');
+
+              $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+               $('.slick').slick('setPosition');
+              });
+
+              $('#modalQuestion').on('hidden.bs.modal', function (e) {
+                if($('#modalReports').css('display') == 'block') {
+                  $('body').addClass('modal-open');
+                }
+              });
+
+              $('#modalProfile').on('hidden.bs.modal', function (e) {
+                if($('#modalReports').css('display') == 'block') {
+                  $('body').addClass('modal-open');
+                }
+              });
+
+            });
+
+            function showModalQuestion(tid, title) {
+              $('#modalQuestion').find('button').eq(1).attr('onClick', 'questionRegister(' + tid + ',' + title + ')');
+              $('#modalQuestion').modal();
+            }
+
+            function questionRegister(tid, title) {
+              var question = convertSystemSourceToHtml($('#modalQuestion').find('input').val());
+              if(question) {
+                $.ajax({
+                  url:'/api/reportQuestion/'+tid,
+                  type:'post',
+                  cache:false,
+                  data:{
+                    title : title,
+                    reportQuestion : question
+                  },
+                  success:function(data){
+                    if(data == '이미 질문을 남기셨습니다.') {
+                      alert(data);
+                    }
+                    else {
+                      alert('성공적으로 등록되었습니다.');
+                      window.location.reload();
+                    }
+                  },
+                  error:function(data){
+                    alert('오류가 발생했습니다.');
+                  }
+                });
+              }
+            }
+
+            function getFullFormatDate(date) {
+                var year = date.getFullYear(); //yyyy
+                var month = (1 + date.getMonth()); //M
+                month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+                var day = date.getDate(); //d
+                day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+                var hour = date.getHours();
+                hour = hour >= 10 ? hour: '0' + hour;
+                var minute = date.getMinutes();
+                minute = minute >= 10 ? minute : '0' + minute; //minute 두자리로 저장
+                var second = date.getSeconds();
+                second = second >= 10 ? second : '0' + second;
+                return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+            }
+
+            function getFormatDate(date) {
+                var year = date.getFullYear(); //yyyy
+                var month = (1 + date.getMonth()); //M
+                month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+                var day = date.getDate(); //d
+                day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+                return year + '-' + month + '-' + day;
+            }
+
+            function addDays(date, days) {
+                var result = new Date(date);
+                result.setDate(result.getDate() + days);
+                return getFormatDate(result);
+            }
+
+            function getPeriod(startDate, nextStartDate) {
+                return getFormatDate(new Date(startDate)).slice(2) + ' ~ ' + addDays(nextStartDate, -1).slice(2);
+            }
+
+            function convertSystemSourceToHtml(str){
+              str = str.replace(/&/g,"&amp;");
+              str = str.replace(/</g,"&lt;");
+              str = str.replace(/>/g,"&gt;");
+              str = str.replace(/\"/g,"&quot;");
+              str = str.replace(/\'/g,"&#39;");
+              str = str.replace(/\n/g,"<br />");
+              return str;
+            }
+
+            function convertHtmlToSystemSource(str){
+              str = str.replace(/&amp;/g,"&");
+              str = str.replace(/&lt;/g,"<");
+              str = str.replace(/&gt;/g,">");
+              str = str.replace(/&quot;/g,"\"");
+              str = str.replace(/&#39;/g,"\'");
+              str = str.replace(/<br \/>/g,"\n");
+              return str;
+            }
+
+        </script>
+
+
+</body>
+
+</html>

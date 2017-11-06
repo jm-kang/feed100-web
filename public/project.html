@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FEED100</title>
+
+    <!-- Bootstrap -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/assets/bower_components/flexslider/flexslider.css" rel="stylesheet">
+    <link href="/assets/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/assets/css/animate.css" rel="stylesheet">
+    <link rel='stylesheet' type="text/css" href="/assets/dzsparallaxer/dzsparallaxer.css" />
+    <link href="/assets/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet">
+    <!--main css file-->
+    <link href="/assets/css/style-project.css" rel="stylesheet">
+    <link href="/assets/css/style-nav.css" rel="stylesheet">
+    <link href="/assets/css/style-footer.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <style media="screen">
+        .video-js {
+            background-color: #fff;
+        }
+
+        .vjs-default-skin .vjs-big-play-button {
+            left: 50%;
+            top: 50%;
+            margin-left: -1.5em;
+            margin-top: -0.75em;
+            background-color: #bfa67a;
+        }
+
+        .navbar-default.navbar-transparent .navbar-nav > .active > a, .navbar-default.navbar-transparent .navbar-nav > .active > a:focus, .navbar-default.navbar-transparent .navbar-nav > .active > a:hover {
+          color: #abaca3;
+        }
+        .navbar-default.navbar-transparent .navbar-nav > li > a:hover {
+          color: #b1b1b1;
+        }
+        @media (max-width: 767px) {
+            .navbar-default .navbar-toggle .icon-bar {
+                background-color: #abaca3;
+            }
+        }
+
+        .video-content {
+            margin: 0;
+            padding-bottom: 75%;
+            max-width: 100%;
+            height: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .video-content iframe,
+        .video-content object,
+        .video-content embed {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 75%;
+            position: absolute;
+            top: 10%;
+            left: 0;
+        }
+
+    </style>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body data-spy="scroll">
+  <!--preloader-->
+  <div id="preloader"></div>
+  <!--preloader-->
+  <!--page title-->
+  <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+  </nav>
+
+    <!--page title-->
+    <div class="dzsparallaxer auto-init" data-options='{   direction: "reverse"}' style="height: 350px;">
+
+        <div class="divimage dzsparallaxer--target " id="projectImage" style="width: 101%; height: 600px; ">
+        </div>
+        <div class="parallax-text center-it" style="margin-top:30px;">
+            <h5 id="companyName"></h5>
+            <h1 id="projectTitle" style="text-align: center;"></h1>
+            <ul class="list-inline post-meta text-center">
+                <li id="views"><i class="ion-eye"></i>&emsp;</li>
+                <li id="likes"><i class="ion-heart"></i>&emsp;</li>
+                <li id="category"><i class="ion-pricetag"></i>&emsp;</li>
+            </ul>
+        </div>
+    </div>
+    <!--page title-->
+
+    <div class="container" id="project">
+
+          <div class="col-md-3 col-md-push-9 project-summary">
+              <div class="wrapper wrapper-content animated fadeInUp">
+                  <div class="projectbox">
+                      <div class="projectbox-content container-fluid">
+                          <div class="content-box">
+                              <span class="point-font" id="numOfRecruitment"></span><span class="classic-font">명 중 </span><span class="point-font" id="numOfApplicant"></span><span class="classic-font">명 모임</span>
+                              <div class="progress clearfix progress-small" style="margin-bottom:0;">
+                                  <div class="progress-bar" id="percent" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <span id="percentText" class="pull-right"></span>
+                              <!--progress bar-->
+                          </div>
+                          <div class="content-box col-md-12 col-sm-6 content-reward">
+                              <p class="point-font">
+                                  보상
+                              </p>
+                              <div class="container-fluid grade-1">
+                                  <h6 class="pull-right">&nbsp;원</h6>
+                                  <h5 class="pull-right" id="reward_gold"></h5>
+                                  <h6>금상</h6>
+                              </div>
+                              <div class="container-fluid grade-2">
+                                  <h6 class="pull-right">&nbsp;원</h6>
+                                  <h5 class="pull-right" id="reward_silver"></h5>
+                                  <h6>은상</h6>
+                              </div>
+                              <div class="container-fluid grade-3">
+                                  <h6 class="pull-right">&nbsp;원</h6>
+                                  <h5 class="pull-right" id="reward_bronze"></h5>
+                                  <h6>동상</h6>
+                              </div>
+                              <div class="container-fluid grade-3">
+                                  <h6 class="pull-right">&nbsp;원</h6>
+                                  <h5 class="pull-right" id="reward_normal"></h5>
+                                  <h6>일반</h6>
+                              </div>
+
+                          </div>
+                          <div class="content-box content-period col-md-12 col-sm-6">
+                              <p class="point-font">
+                                  기간
+                              </p>
+                              <div class="container-fluid period-0 unperiod">
+                                  <h5 class="pull-right" id="waiting"></h5>
+                                  <h6>대기중</h6>
+                              </div>
+                              <div class="container-fluid period-1 unperiod">
+                                  <h5 class="pull-right" id="recruiting"></h5>
+                                  <h6>모집중</h6>
+                              </div>
+                              <div class="container-fluid period-2 unperiod">
+                                  <h5 class="pull-right" id="selecting"></h5>
+                                  <h6>선정중</h6>
+                              </div>
+                              <div class="container-fluid period-3 unperiod">
+                                  <h5 class="pull-right" id="proceeding"></h5>
+                                  <h6>진행중</h6>
+                              </div>
+                              <div class="container-fluid period-4 unperiod">
+                                  <h5 class="pull-right" id="endDate"></h5>
+                                  <h6>종료일</h6>
+                              </div>
+                          </div>
+                          <div class="content-box report-box col-xs-12">
+                              <h6 class="pull-right">&nbsp;회</h6>
+                              <h3 class="pull-right" id="reportCount"></h3>
+                              <h6 class="pull-right">총&ensp;</h6>
+                              <p class="point-font">
+                                  보고서 횟수
+                              </p>
+                          </div>
+                      </div>
+                      <button class="follow-button unfollow" style="vertical-align:middle"><i class="fa fa-heart"></i>&ensp;팔로우하기</button>
+                      <button class="project-button" style="vertical-align:middle"><span>프로젝트 참여하기 </span></button>
+                  </div>
+              </div>
+          </div>
+            <div class="col-md-9 col-md-pull-3 project-story">
+                <div class="wrapper wrapper-content">
+                    <div class="projectbox">
+                        <div class="projectbox-content">
+                            <div class="row about-top">
+                                <div class="col-lg-12">
+                                    <div class="video-content">
+
+                                    </div>
+                                    <h4 id="coreMessage"></h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="m-t-md">
+                                        <h2>About this project</h2>
+                                    </div>
+                                    <div class="project-about" id="projectStory">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="project-caution">
+                                        <strong>프로젝트 참가 지원시 주의사항</strong>
+                                        <p>
+                                          프로젝트가 시작되면 정해진 기간 내에 테스트를 진행하고 보고서를 작성해야 합니다. 중간에 테스트를 포기하거나 기간 내에 보고서를 작성하지 않으시면 불이익이 있을 수 있습니다. 반드시 진행 일정을 확인하고 신청해주시길 바랍니다.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row m-t-sm">
+                                <div class="col-lg-12">
+                                    <div class="comment">
+                                        <span class="h2">댓글</span><span class="h5" id="commentCount"> </span>
+                                    </div>
+                                    <div class="project-comment write-comment">
+                                        <div class="social-avatar">
+                                            <a class="pull-left">
+                                                <div class="profile">
+                                                  <div class="image-upload">
+                                                      <label for="ex_filename">
+                                                        <div id="circle">
+                                                          <img alt="image" id="profileImage" src="" style="width:100%;">
+                                                        </div>
+                                                      </label>
+                                                  </div>
+                                                </div>
+                                                <div class="media-body">
+                                                    <a id="nickname">
+                                                  </a>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="social-body">
+                                            <div class="form-group message-textarea">
+                                                <textarea class="form-control" id="content" placeholder="내용을 입력하세요." rows="3" maxlength="1000"></textarea>
+                                            </div>
+                                            <div class="text-right">
+                                                <button class="btn btn-grey-border btn-xs" id="commentWrite"><strong>의견 남기기</strong></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="comments">
+
+                                    </div>
+                                    <div class="col-xs-12 comment-more">
+                                        <div class='text-center'>
+                                            <a id="loadMore" class="btn btn-border-blue btn-lg">더보기</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!--end about section-->
+
+    <div class="modal inmodal fade" id="modalCondition" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          </div>
+          <div class="modal-body">
+
+            <button type="button" class="btn btn-block btn-join">프로젝트 참여하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--footer start-->
+    <footer class="footer"></footer>
+    <!--footer end-->
+    <!--back to top-->
+    <a href="#" class="scrollToTop"><i class="fa fa-chevron-circle-up"></i></a>
+
+    <!--back to top end-->
+    <!-- jQuery plugins-->
+    <script src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/js/jquery-migrate.min.js"></script>
+    <script src="/assets/js/jquery.easing.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/bower_components/flexslider/jquery.flexslider-min.js"></script>
+    <script src="/assets/js/modernizr.custom.97074.js" type="text/javascript"></script>
+    <script src="/assets/js/jquery.sticky.js"></script>
+    <script src="/assets/dzsparallaxer/dzsparallaxer.js" type="text/javascript"></script>
+    <script src="/assets/js/template-custom.js" type="text/javascript"></script>
+    <script src="/assets/bower_components/scrollreveal/dist/scrollreveal.min.js"></script>
+    <script src="/assets/js/scroll-reavel-custom.js"></script>
+
+    <script src="/assets/js/nav.js"></script>
+    <script src="/assets/js/footer.js"></script>
+
+    <script>
+        $(document).ready(function() {
+          var params = document.location.href.split("project/");
+          var pid = params[1].split('#')[0];
+          var cid = 0;
+          var offset = 0;
+          var profile = new Array();
+
+          $.ajax({
+            url:'/api/users',
+            type:'get',
+            cache:false,
+            async:false,
+            success:function(data){
+              $('#profileImage').attr('src', data[0].profileImage);
+              (data[0].nickname == undefined) ? $('#nickname').html(data[0].companyName) : $('#nickname').html(data[0].nickname);
+              if(data[0].cid) {
+                cid = data[0].cid;
+              }
+
+              profile.push(data[0].nickname);
+              profile.push(data[0].name);
+              profile.push(data[0].gender);
+              profile.push(data[0].age);
+              profile.push(data[0].job);
+              profile.push(data[0].region);
+              profile.push(data[0].interestFields);
+              profile.push(data[0].phoneNumber);
+              profile.push(data[0].introduction);
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          projectLoad(pid, cid, profile);
+          commentLoad(pid, offset++);
+
+          $.ajax({
+            url:'/api/follows/'+pid,
+            type:'get',
+            cache:false,
+            success:function(data){
+              if(data == '1') {
+                $('.unfollow').html('<i class="fa fa-heart" style="color:#ed5565"></i>&ensp;팔로우하기');
+                $('.unfollow').removeClass('unfollow');
+              }
+            },
+            error:function(data){
+              console.log(data);
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          $('#loadMore').click(function() {
+            commentLoad(pid, offset++);
+          });
+
+          $('#shares a').click(function() {
+            alert('준비중입니다.');
+          });
+
+          $('#commentWrite').click(function() {
+            var content = convertSystemSourceToHtml($('#content').val());
+            if(content) {
+              $.ajax({
+                url:'/api/comments/'+pid,
+                type:'post',
+                cache:false,
+                data: {
+                  content:content,
+                },
+                success:function(data){
+                  offset = 0;
+                  $('#content').val('');
+                  $('#comments').html('');
+                  commentLoad(pid, offset++);
+                },
+                error:function(data){
+                  console.log(data);
+                  alert('오류가 발생했습니다.');
+                }
+              });
+            }
+          });
+
+          $('.follow-button').click(function() {
+            if(cid != 0) {
+              alert('테스터만 팔로우할 수 있습니다.');
+            }
+            else {
+              $.ajax({
+                url:'/api/follows/'+pid,
+                type:'post',
+                cache:false,
+                success:function(data){
+                  if(data == '1') {
+                    alert('이 프로젝트를 팔로우하였습니다.');
+                    window.location.reload();
+                  }
+                  else if(data == '0') {
+                    alert('이미 이 프로젝트를 팔로우중입니다.');
+                  }
+                },
+                error:function(data){
+                  console.log(data);
+                  alert('오류가 발생했습니다.');
+                }
+              });
+            }
+          });
+
+          $(".follow-button").hover(
+            function() {
+              $(this).children().addClass('hover');
+            },
+            function() {
+              $(this).children().removeClass('hover');
+            }
+          )
+
+        });
+
+        function projectLoad(pid, cid, profile) {
+          $.ajax({
+            url:'/api/projects/'+pid,
+            type:'get',
+            cache:false,
+            success:function(data){
+              if(data[0] == null) {
+                alert('잘못된 접근입니다.');
+                location.replace('/');
+              }
+              else {
+                $('#projectImage').css('background-image', 'url(' + data[0].projectImage + ')');
+                $('#companyName').html('by ' + data[0].companyName);
+                $('#projectTitle').html(data[0].projectTitle);
+                $('#views').append(data[0].views + ' views');
+                $('#likes').append(data[0].likes + ' likes');
+                $('#category').append(data[0].category);
+                validateYouTubeUrl(data[0].projectVideo);
+                $('#coreMessage').html(data[0].coreMessage);
+                $('#projectStory').html(data[0].projectStory);
+                $('#numOfRecruitment').html(data[0].numOfRecruitment);
+
+                var percent = (data[0].numOfApplicant/data[0].numOfRecruitment*100).toFixed(1);
+                $('#numOfApplicant').html(data[0].numOfApplicant);
+                $('#percentText').html(percent + '%')
+                $('#percent').css('width', percent + '%');
+                $('#reward_gold').html(numberWithCommas(data[0].reward_gold));
+                $('#reward_silver').html(numberWithCommas(data[0].reward_silver));
+                $('#reward_bronze').html(numberWithCommas(data[0].reward_bronze));
+                $('#reward_normal').html(numberWithCommas(data[0].reward_normal));
+
+                var startDateArray = data[0].startDateArray;
+                $('#waiting').html(getPeriod(startDateArray[0], startDateArray[1]));
+                $('#recruiting').html(getPeriod(startDateArray[1], startDateArray[2]));
+                $('#selecting').html(getPeriod(startDateArray[2], startDateArray[3]));
+                $('#proceeding').html(getPeriod(startDateArray[3], startDateArray[4]));
+                $('#endDate').html(getFormatDate(new Date(startDateArray[4])).slice(2));
+                $('#reportCount').html(data[0].reportCount);
+                progressStateHighlight(data[0].progressState);
+
+                $('#commentCount').html(' (' + data[0].commentCount + ')');
+
+                if(data[0].cid == cid) {
+                  $('.project-button span').html('대시보드 이동하기');
+                  $('.project-button').click(function() {
+                    window.location.href = '/dashboard_company/dashboard/' + pid;
+                  });
+                }
+                else {
+                  $('.project-button').click(function() {
+                    if(cid != 0) {
+                      alert('테스터만 참여할 수 있습니다.');
+                    }
+                    else if(data[0].progressState == '모집중') {
+                      for(var i=0; i<profile.length; i++) {
+                        if(profile[i] == '' || profile[i] == null) {
+                          alert('프로필 작성을 완료하셔야 프로젝트에 참여할 수 있습니다.');
+                          window.location.href = '/account';
+                          break;
+                        }
+                      }
+                      var conditions = JSON.parse(data[0].conditions);
+                      var questions = conditions.questions;
+                      $('#modalCondition .modal-body button').parent().find('div').remove();
+                      for(var i=0; i<questions.length; i++) {
+                        if(questions[i].category == 'objective') {
+                          var options = questions[i].options;
+                          var tempOption = '';
+                          for(var j=0; j<options.length; j++) {
+                            tempOption +=
+                            '<div class="radio">' +
+                                '<input type="radio" name="radio' + i +'" id="radio' + i + j + '">' +
+                                '<label for="radio' + i + j + '">' +
+                                    options[j].option +
+                                '</label>' +
+                            '</div>'
+                            ;
+                          }
+                          $('#modalCondition .modal-body button').before(
+                            '<div class="condition-wrapper objective">' +
+                                '<h4>Q' + (i+1) + '. ' + questions[i].question +'</h4>' +
+                                tempOption +
+                            '</div>'
+                          );
+                        }
+                        else if(questions[i].category == 'subjective'){
+                          $('#modalCondition .modal-body button').before(
+                            '<div class="condition-wrapper subjective">' +
+                                '<h4>Q' + (i+1) + '. ' + questions[i].question + '</h4>' +
+                                '<input type="text" placeholder="" class="form-control">' +
+                            '</div>'
+                          );
+                        }
+                      }
+
+                      $.ajax({
+                        url:'/api/test-history/'+pid,
+                        type:'get',
+                        cache:false,
+                        success:function(data) {
+                          if(data.length != 0) {
+                            alert('이미 참여중인 프로젝트입니다.');
+                          }
+                          else {
+                            $('#modalCondition').modal('show');
+                            $('#modalCondition .modal-body button').unbind('click');
+                            $('#modalCondition .modal-body button').click(function() {
+                              var questionAnswer = [];
+                              var isFalse = false;
+                              $(this).siblings('div.condition-wrapper').each(function(idx) {
+                                if($(this).hasClass('objective')) {
+                                  if($(this).find('input:checked').val() == undefined) {
+                                    alert('내용을 모두 입력하고 다시 시도해주세요.');
+                                    isFalse = true;
+                                    return false;
+                                  }
+                                  else {
+                                    questionAnswer.push({
+                                      qid: idx+1,
+                                      answer: convertSystemSourceToHtml($(this).find('input:checked').next().text())
+                                    });
+                                  }
+                                }
+                                else if($(this).hasClass('subjective')) {
+                                  if($(this).find('input').val() == '') {
+                                    alert('내용을 모두 입력하고 다시 시도해주세요.');
+                                    isFalse = true;
+                                    return false;
+                                  }
+                                  else {
+                                    questionAnswer.push({
+                                      qid: idx+1,
+                                      answer: convertSystemSourceToHtml($(this).find('input').val())
+                                    });
+                                  }
+                                }
+                              });
+
+                              if(!isFalse) {
+                                $.ajax({
+                                  url:'/api/test-history/'+pid,
+                                  type:'post',
+                                  cache:false,
+                                  data:{
+                                    questionAnswer: JSON.stringify(questionAnswer)
+                                  },
+                                  success:function(data) {
+                                    alert(data);
+                                    window.location.reload();
+                                  },
+                                  error:function(data) {
+                                    alert('오류가 발생했습니다.');
+                                  }
+                                });
+                              }
+                            });
+                          }
+                        },
+                        error:function(data) {
+                          alert('오류가 발생했습니다.');
+                        }
+                      });
+                    }
+                    else {
+                      alert('이 프로젝트는 현재 모집중이 아닙니다.');
+                    }
+                  });
+                }
+
+              }
+
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+        }
+
+        function commentLoad(pid, offset) {
+          $.ajax({
+            url:'/api/comments/'+pid+'/'+offset,
+            type:'get',
+            cache:false,
+            success:function(data){
+              var output = '';
+              for(var i=0; i<data.length; i++) {
+                output +=
+                '<div class="project-comment" id="' + data[i].cid + '">' +
+                    '<div class="social-avatar">' +
+                        '<a class="pull-left">' +
+                        '<div class="profile">' +
+                          '<div class="image-upload">' +
+                              '<label for="ex_filename">' +
+                                '<div id="circle">' +
+                                  '<img src="' + data[i].profileImage + '" style="width:100%;" alt="image"/>' +
+                                '</div>' +
+                              '</label>' +
+                          '</div>' +
+                        '</div>' +
+                        '</a>' +
+                        '<div class="media-body">' +
+                            '<div class="comment-condition pull-right">' +
+                                '<span class="like small"><i class="fa fa-thumbs-up"></i> ' + data[i].likeCount + '</span>' +
+                                '<span class="unlike small"><i class="fa fa-thumbs-down"></i> ' + data[i].hateCount + '</span>' +
+                            '</div>' +
+                          '<a>' +
+                              data[i].nickname +
+                          '</a>' +
+                            '<small class="text-muted">' + getFullFormatDate(new Date(data[i].registerDate)) + '</small>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="social-body">' +
+                        '<p>' +
+                            data[i].content +
+                        '</p>' +
+                    '</div>' +
+                    '<div class="actions">' +
+                        '<a onClick=commentLike(' + data[i].cid + ') class="btn btn-xs btn-white ' + ((data[i].clid == null) ? "" : "like-select") + '"><i class="fa fa-thumbs-up"></i> Like </a>' +
+                        '<a onCLick=commentHate(' + data[i].cid + ') class="btn btn-xs btn-white '+ ((data[i].chid == null) ? "" : "hate-select") + '"><i class="fa fa-thumbs-down"></i> Hate</a>' +
+                    '</div>' +
+                '</div>'
+                ;
+              }
+              $('.last-child').removeClass('last-child');
+              $('#comments').append(output);
+              $('#comments .project-comment:last-child').addClass('last-child');
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+        }
+
+        function commentLike(cid) {
+            $.ajax({
+              url:'/api/commentLikes/'+cid,
+              type:'post',
+              cache:false,
+              success:function(data){
+                commentReload(cid);
+              },
+              error:function(data){
+                console.log(data);
+                alert('오류가 발생했습니다.');
+              }
+            });
+        }
+
+        function commentHate(cid) {
+            $.ajax({
+              url:'/api/commentHates/'+cid,
+              type:'post',
+              cache:false,
+              success:function(data){
+                commentReload(cid);
+              },
+              error:function(data){
+                console.log(data);
+                alert('오류가 발생했습니다.');
+              }
+            });
+        }
+
+        function commentReload(cid) {
+          $.ajax({
+            url:'/api/comment/'+cid,
+            type:'get',
+            cache:false,
+            success:function(data){
+              $('.project-comment#'+cid+' .like').html('<i class="fa fa-thumbs-up"></i> '+data[0].likeCount);
+              $('.project-comment#'+cid+' .unlike').html('<i class="fa fa-thumbs-down"></i> '+data[0].hateCount);
+              (data[0].clid == null) ? $('.project-comment#'+cid+' .actions a:first-child').removeClass('like-select') : $('.project-comment#'+cid+' .actions a:first-child').addClass('like-select');
+              (data[0].chid == null) ? $('.project-comment#'+cid+' .actions a:last-child').removeClass('hate-select') : $('.project-comment#'+cid+' .actions a:last-child').addClass('hate-select');
+
+            },
+            error:function(data){
+              console.log(data);
+              alert('오류가 발생했습니다.');
+            }
+          });
+        }
+
+        function getFormatDate(date) {
+          	var year = date.getFullYear(); //yyyy
+          	var month = (1 + date.getMonth()); //M
+          	month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+          	var day = date.getDate(); //d
+          	day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+          	return year + '-' + month + '-' + day;
+        }
+
+        function getFullFormatDate(date) {
+            var year = date.getFullYear(); //yyyy
+            var month = (1 + date.getMonth()); //M
+            month = month >= 10 ? month : '0' + month;  // month 두자리로 저장
+            var day = date.getDate(); //d
+            day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+            var hour = date.getHours();
+            hour = hour >= 10 ? hour: '0' + hour;
+            var minute = date.getMinutes();
+            minute = minute >= 10 ? minute : '0' + minute; //minute 두자리로 저장
+            var second = date.getSeconds();
+            second = second >= 10 ? second : '0' + second;
+            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+        }
+
+        function addDays(date, days) {
+            var result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return getFormatDate(result);
+        }
+
+        function getPeriod(startDate, nextStartDate) {
+            return getFormatDate(new Date(startDate)).slice(2) + ' ~ ' + addDays(nextStartDate, -1).slice(2);
+        }
+
+        function progressStateHighlight(state) {
+            switch(state) {
+              case '대기중':
+                $("#waiting").parent().removeClass('unperiod');
+                break;
+              case '모집중':
+                $("#recruiting").parent().removeClass('unperiod');
+                break;
+              case '선정중':
+                $("#selecting").parent().removeClass('unperiod');
+                break;
+              case '진행중':
+                $("#proceeding").parent().removeClass('unperiod');
+                break;
+              case '종료':
+                $("#endDate").parent().removeClass('unperiod');
+                break;
+              default:
+                break;
+            }
+        }
+
+        function validateYouTubeUrl(url) {
+            if (url != undefined && url != '' && url != null) {
+                var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                if (match && match[2].length == 11) {
+                    // Do anything for being valid
+                    // if need to change the url to embed url then use below line
+                    var _src = 'https://www.youtube.com/embed/' + match[2] + '?enablejsapi=1';
+                    $('.video-content').html('<iframe allowfullscreen="" frameborder="0" height="387" src="' + _src + '" width="688"></iframe>');
+                }
+                else {
+                    $('.video-content').remove();
+                }
+            }
+            else {
+                $('.video-content').remove();
+            }
+        }
+
+        function numberWithCommas(x) {
+          return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function convertSystemSourceToHtml(str){
+          str = str.replace(/&/g,"&amp;");
+          str = str.replace(/</g,"&lt;");
+          str = str.replace(/>/g,"&gt;");
+          str = str.replace(/\"/g,"&quot;");
+          str = str.replace(/\'/g,"&#39;");
+          str = str.replace(/\n/g,"<br />");
+          return str;
+        }
+
+    </script>
+
+</body>
+
+</html>

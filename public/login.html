@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="assets/css/plugins/iCheck/purple.css" rel="stylesheet">
+    <link href="assets/css/style-dashBoard.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown" style="padding-top: 150px;">
+        <div>
+            <a href="/">
+                <img src="assets/images/logo.png" alt="" style="width: 100%;">
+            </a>
+            <div id="radio" style="margin-top: 30px;">
+                <input type="radio" name="iCheck" id="square-radio-1" value="cid" checked>
+                <label for="square-radio-1" style="cursor: pointer;"> 기업</label>
+                <input type="radio" name="iCheck" id="square-radio-2" value="uid">
+                <label for="square-radio-2" style="cursor: pointer;"> 테스터</label>
+            </div>
+            <!-- <form class="m-t" role="form" method="post" action="auth/login" style="margin-top: 30px;"> -->
+            <div class="m-t" style="margin-top: 30px;">
+                <div class="form-group">
+                    <input type="email" name="username" class="form-control" placeholder="이메일" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="비밀번호" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">로그인</button>
+            </div>
+
+            <div id="sns-login" style="display: none;">
+              <hr style="margin-top: 40px; margin-bottom: 40px; border-top: 1px solid silver;">
+
+              <p style="margin: auto; margin-top: -50px; background: #f3f3f4; width: 20%; margin-bottom: 30px;">or</p>
+
+              <a class="btn full-width m-b" style="background:#2C4688; color:#ffffff" href="auth/facebook">Facebook 계정으로 로그인</a>
+              <a class="btn full-width m-b" style="background:#D33227; color:#ffffff" href="auth/google">Google 계정으로 로그인</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/iCheck/icheck.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+      $('#radio input').iCheck({
+        checkboxClass: 'icheckbox_square-purple',
+        radioClass: 'iradio_square-purple',
+        increaseArea: '60%' // optional
+      });
+
+      $('#radio div.iradio_square-purple').eq(1).css('margin-left', '60px');
+      $('#radio label').css('font-weight', '500');
+      $('#radio label').css('margin-left', '10px');
+
+      $('#radio #square-radio-1').iCheck('check');
+
+      $('#radio #square-radio-1').on('ifChecked', function(event){
+        $('#sns-login').css('display', 'none');
+      });
+      $('#radio #square-radio-2').on('ifChecked', function(event){
+        $('#sns-login').css('display', '');
+      });
+
+      $('div button.btn').click(function() {
+        login();
+      });
+      $('input').keypress(function(e) {
+        if(e.keyCode == 13){
+          login();
+        }
+      });
+
+      function login() {
+        if(validate()) {
+          $.ajax({
+            url:'/auth/login',
+            type:'post',
+            cache:false,
+            data:{
+              username: $('input[type="email"]').val(),
+              password: $('input[type="password"]').val(),
+              user_id: $('#radio input[type=radio]:checked').val()
+            },
+            success:function(data) {
+              if(data == '로그인') {
+                window.location.replace('/');
+              }
+              else {
+                alert(data);
+              }
+            },
+            error:function(data) {
+              alert('오류가 발생했습니다.');
+            }
+          });
+        }
+      }
+
+      function validate() {
+        if($('.m-t input').eq(0).val() == '') {
+          $('.m-t input').eq(0).focus();
+          alert('이메일 주소를 입력해주세요.');
+          return false;
+        }
+        if($('.m-t input').eq(1).val() == '') {
+          $('.m-t input').eq(1).focus();
+          alert('비밀번호를 입력해주세요.')
+          return false;
+        }
+        return true;
+      }
+    });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+/*
+Pricing tables
+*/
+.pricing-wrapper{
+       
+        padding: 80px 0;
+        padding-bottom: 30px;
+}
+.price-box{
+    background: #fff;
+    text-align: center;
+    border:1px solid #eee;
+    h3{
+        margin: 0px;
+        padding: 20px 15px;
+        border-bottom: 1px solid #eee;
+    }
+    h1{
+        font-size: 6rem;
+    padding: 0px 15px;
+    line-height: 3rem;
+    margin: 34px 0;
+        sup{
+            font-size: 1.4rem;
+            font-family: $default-font;
+            font-weight: 400;
+            vertical-align: top;
+        }
+    }
+    ul{
+        li{
+            border-bottom: 1px solid #eee;
+            padding: 7px 0;
+            &:last-child{
+                border-bottom: 0px;
+            }
+        }
+    }
+}
+.price-footer{
+    padding: 25px 15px;
+}
+.best-label{
+    display: inline-block;
+    margin: 20px 0;
+    padding: 3px 10px;
+    @include border-radius(5px);
+    background: $skin-color;
+    color:#fff;
+}

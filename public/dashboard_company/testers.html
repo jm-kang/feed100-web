@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FEED100</title>
+
+    <link href="/dashboard_company/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard_company/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="/dashboard_company/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- c3 Charts -->
+    <link href="/dashboard_company/css/plugins/c3/c3.min.css" rel="stylesheet">
+
+    <link href="/dashboard_company/css/animate.css" rel="stylesheet">
+    <link href="/dashboard_company/css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-32x32.png">
+
+    <style>
+      .c3 svg {
+        height: 200px;
+      }
+    </style>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100092167-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <div id="page-wrapper" class="gray-bg">
+
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>테스터</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <strong>조건에 맞는 테스터를 선정하고 관리할 수 있습니다.</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>성별</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="ibox float-e-margins">
+
+                          <div class="ibox-title">
+                              <h5>나이별 분포</h5>
+                          </div>
+
+                            <div class="ibox-content">
+                                <canvas id="barChart" height="221px"></canvas>
+                            </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>지역</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h2>테스터 목록 <span class="select-num"></span></h2>
+                            <p>
+                                정확도는 기본 타겟팅 조건에 얼마나 일치하는가를 나타내는 수치이며 테스터를 클릭하면 상세 정보를 볼 수 있습니다.
+                            </p>
+
+                            <div class="clients-list">
+                              <div class="tab-content">
+                                  <div class="tab-pane active">
+                                      <div class="full-height-scroll">
+                                          <div class="table-responsive">
+                                              <table class="table table-striped table-hover">
+                                                  <tbody>
+                                                                                                    </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="ibox tester-detail">
+
+                        <div class="ibox-content">
+                            <div class="tab-content">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="/dashboard_company/js/jquery-3.1.1.min.js"></script>
+    <script src="/dashboard_company/js/bootstrap.min.js"></script>
+    <script src="/dashboard_company/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/dashboard_company/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="/dashboard_company/js/nav.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/dashboard_company/js/inspinia.js"></script>
+    <script src="/dashboard_company/js/plugins/pace/pace.min.js"></script>
+
+    <!-- Sparkline -->
+    <script src="/dashboard_company/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="/dashboard_company/js/demo/sparkline-demo.js"></script>
+
+    <!-- ChartJS-->
+    <script src="/dashboard_company/js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- d3 and c3 charts -->
+    <script src="/dashboard_company/js/plugins/d3/d3.min.js"></script>
+    <script src="/dashboard_company/js/plugins/c3/c3.min.js"></script>
+
+    <!-- Peity -->
+    <script src="/dashboard_company/js/plugins/peity/jquery.peity.min.js"></script>
+
+    <script src="/dashboard_company/js/plugins/timeago/jquery.timeago.js"></script>
+    <script src="/dashboard_company/js/plugins/timeago/jquery.timeago.ko.js"></script> <!-- 한국어로 표시하기 -->
+
+    <script>
+        $(document).ready(function () {
+          var params = document.location.href.split("dashboard_company/testers/");
+          var pid = params[1].split('#')[0];
+          var progressState = '';
+          var numOfRecruitment = 0;
+          var conditions = '';
+
+          $.ajax({
+            url:'/api/projects/'+pid,
+            type:'get',
+            cache:false,
+            async:false,
+            success:function(data){
+              if(data[0] == null) {
+                alert('잘못된 접근입니다.');
+                location.replace('/');
+              }
+              else {
+                progressState = data[0].progressState;
+                numOfRecruitment = data[0].numOfRecruitment;
+                $('.proceeding_color').html(data[0].progressState);
+                conditions = JSON.parse(data[0].conditions);
+              }
+
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+
+          $.ajax({
+            url:'/api/tester-list/'+pid,
+            type:'get',
+            cache:false,
+            success:function(data){
+              var gender = [
+                ['남자', 0],
+                ['여자', 0]
+              ]
+              var region = []
+              var age = [0, 0, 0, 0]
+
+              var checkedTesterCount = 0;
+
+              for(var i=0; i<data.length; i++) {
+                if(data[i].gender == '남자') {
+                  gender[0][1] = gender[0][1] + 1;
+                }
+                else if(data[i].gender == '여자') {
+                  gender[1][1] = gender[1][1] + 1;
+                }
+
+                var isRegionCount = false;
+                for(var j=0; j<region.length; j++) {
+                  if(region[j][0] == data[i].region) {
+                    region[j][1] = region[j][1] + 1;
+                    isRegionCount = true;
+                    break;
+                  }
+                }
+                if(!isRegionCount) {
+                  region.push([data[i].region, 1]);
+                }
+
+                var ages = Math.floor(data[i].age / 10);
+                if(ages >= 4) {
+                  age[3] = age[3] + 1;
+                }
+                else if(ages > 0) {
+                  age[Math.floor(data[i].age / 10) - 1] = age[Math.floor(data[i].age / 10) - 1] + 1;
+                }
+
+                if(data[i].checked == 1) {
+                  checkedTesterCount += 1;
+                }
+
+                $('.clients-list table.table tbody').append(
+                  '<tr id="tester'+ i +'" class="' + ((i == 0) ? 'selected' : '') + '" data-toggle="tab" href="#contact-' + i + '" style="cursor:pointer">' +
+                      '<td class="check-td"><span class="btn btn-checkbox ' + ((data[i].checked == 1) ? 'check' : '' ) + '" onClick=clickCheckbox(' + i + ',"' + progressState + '",' + data[i].tid + ',' + pid + ',' + numOfRecruitment + ')>' + ((data[i].checked == 1) ? '<i class="fa fa-check"></i>' : '' ) + '</span></td>' +
+                      '<td class="client-avatar">' +
+                      '<div class="pull-left" style="margin: auto; width: 39px; height: 39px; border-radius: 120px; padding-top: 2px; background-color: #e1e1e1; margin-bottom: 0; line-height: 33px;">' +
+                          '<div style="position: relative; margin: 0 auto; width: 35px; height: 35px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                              '<img alt="image" src="' + data[i].profileImage + '" style="width: 100%;">' +
+                          '</div>' +
+                      '</div>' +
+                      '</td>' +
+                      '<td class="table-width5">Lv' + data[i].level + '</td>' +
+                      '<td class="client-nickname">' + data[i].nickname + '</td>' +
+                      '<td class="table-width10">참여횟수</td>' +
+                      '<td class="table-width5">' + data[i].testCount + '</td>' +
+                      '<td class="table-width5"><i class="fa fa-trophy trophy-gold"> </i></td>' +
+                      '<td class="trophy-gold">' + data[i].goldCount + '</td>' +
+                      '<td class="table-width5"><i class="fa fa-trophy trophy-silver"> </i></td>' +
+                      '<td class="trophy-silver">' + data[i].silverCount + '</td>' +
+                      '<td class="table-width5"><i class="fa fa-trophy trophy-bronze"> </i></td>' +
+                      '<td class="trophy-bronze">' + data[i].bronzeCount + '</td>' +
+                      '<td class="client-condition"><span>정확도 &ensp;</span><span class="match">' + data[i].accuracyRate + '%</span></td>' +
+                  '</tr>'
+                  );
+                $('div.ibox div.ibox-content div.tab-content').eq(1).append(
+                  '<div id="contact-' + i + '" class="tab-pane ' + ((i == 0) ? 'active' : '') + '">' +
+                      '<div class="row m-b-sm">' +
+                          '<div class="col-xs-12 text-center">' +
+                              '<div style="margin: auto; width: 108px; height: 108px; border-radius: 120px; padding-top: 4px; background-color: #e1e1e1; margin-bottom: 0; line-height: 96px;">' +
+                                  '<div style="position: relative; margin: 0 auto; width: 100px; height: 100px; box-shadow: 0 0 0 0; border-radius: 50%; overflow: hidden;">' +
+                                      '<img alt="image" src="' + data[i].profileImage + '" style="width: 100%;">' +
+                                  '</div>' +
+                              '</div>' +
+                          '</div>' +
+                          '<div class="col-xs-12 text-center">' +
+                            '<h5>Lv' + data[i].level + ' ' + data[i].levelName + '</h5>' +
+                            '<h3>' + data[i].nickname + '</h3>' +
+                            '<h5>정확도 : ' + data[i].accuracyRate + '%</h5>' +
+                            '<h5 style="margin-top: 20px;">프로젝트 참여 횟수 : ' + data[i].testCount + '</h5>' +
+                            '<div class="col-xs-4 text-right">' +
+                                '<i class="fa fa-trophy trophy-gold">&ensp;' + data[i].goldCount + '</i>' +
+                            '</div>' +
+                            '<div class="col-xs-4">' +
+                                '<i class="fa fa-trophy trophy-silver">&ensp;' + data[i].silverCount + '</i>' +
+                            '</div>' +
+                            '<div class="col-xs-4 text-left">' +
+                                '<i class="fa fa-trophy trophy-bronze">&ensp;' + data[i].bronzeCount + '</i>' +
+                            '</div>' +
+                          '</div>' +
+                          '<div class="col-xs-12" style="margin-top: 20px;">' +
+                              '<strong>' +
+                                  'About me' +
+                              '</strong>' +
+
+                              '<p>' +
+                                  ((data[i].introduction == null || data[i].introduction == undefined) ? '' : data[i].introduction) +
+                              '</p>' +
+                          '</div>' +
+                      '</div>' +
+                      '<div class="client-detail">' +
+
+                          '<strong>기본 정보</strong>' +
+
+                          '<ul class="list-group clear-list">' +
+                            '<li class="list-group-item fist-item">' +
+                                '<span class="pull-right">' + ((data[i].name == null || data[i].name == undefined) ? '' : data[i].name) + ' </span>' +
+                                '<i class="fa fa-caret-right condition-checked"></i>&ensp;이&emsp;름' +
+                            '</li>' +
+                              '<li class="list-group-item">' +
+                                  '<span class="pull-right">' + ((data[i].gender == null || data[i].gender == undefined) ? '' : data[i].gender) + ' </span>' +
+                                  '<i class="fa fa-caret-right  condition-checked"></i>&ensp;성&emsp;별' +
+                              '</li>' +
+                              '<li class="list-group-item">' +
+                                  '<span class="pull-right"> ' + ((data[i].age == null || data[i].age == undefined) ? '' : data[i].age) + ' </span>' +
+                                  '<i class="fa fa-caret-right condition-checked"></i>&ensp;나&emsp;이' +
+                              '</li>' +
+                              '<li class="list-group-item">' +
+                                  '<span class="pull-right"> ' + ((data[i].region == null || data[i].region == undefined) ? '' : data[i].region) + ' </span>' +
+                                  '<i class="fa fa-caret-right condition-checked"></i>&ensp;지&emsp;역' +
+                              '</li>' +
+                              '<li class="list-group-item">' +
+                                  '<span class="pull-right"> ' + ((data[i].job == null || data[i].job == undefined) ? '' : data[i].job) + ' </span>' +
+                                  '<i class="fa fa-caret-right condition-checked"></i>&ensp;직&emsp;업' +
+                              '</li>' +
+                              '<li class="list-group-item">' +
+                                  '<span class="pull-right"> ' + ((data[i].interestFields == null || data[i].interestFields == undefined) ? '' : data[i].interestFields) + ' </span>' +
+                                  '<i class="fa fa-caret-right condition-checked"></i>&ensp;관심 분야' +
+                              '</li>' +
+                              '<li class="list-group-item">' +
+                                  '<span class="pull-right">&ensp;' + ((data[i].phoneNumber == null || data[i].phoneNumber == undefined) ? '' : data[i].phoneNumber) + ' </span>' +
+                                  '<i class="fa fa-caret-right condition-checked"></i>&ensp;핸드폰 번호' +
+                              '</li>' +
+                          '</ul>' +
+
+                          '<strong>추가 정보</strong>' +
+                          '<ul class="list-group clear-list">' +
+                          '</ul>' +
+
+                      '</div>' +
+                  '</div>'
+                );
+                for(var j=0; j<conditions.questions.length; j++) {
+                  var questionAnswer = JSON.parse(data[i].questionAnswer);
+                  $('#contact-' + i + ' ul.list-group.clear-list').eq(1).append(
+                    '<li class="list-group-item fist-item">' +
+                        '<i class="fa fa-caret-right condition-checked"></i>&ensp;Q' + (j+1) + '. ' + conditions.questions[j].question +
+                        '<div class="conAns container-flex">A. ' + questionAnswer[j].answer + '</div>' +
+                    '</li>'
+                  );
+                }
+
+              }
+              $('.select-num').html('(' + checkedTesterCount + ' / ' + numOfRecruitment +')');
+
+              $("tr").click(function(){
+                  $(this).addClass("selected").siblings().removeClass("selected");
+              });
+
+              c3.generate({
+                  bindto: '#pie',
+                  data:{
+                      columns: gender,
+                      colors:{
+                      },
+                      type : 'pie'
+                  }
+              });
+              c3.generate({
+                  bindto: '#pie2',
+                  data:{
+                      columns: region,
+                      colors:{
+                      },
+                      type : 'pie'
+                  }
+              });
+              var barData = {
+                  labels: ["10대", "20대", "30대", "40대~"],
+                  datasets: [
+                      {
+                          label: "인원",
+                          backgroundColor: "rgba(26,179,148,0.5)",
+                          borderColor: "rgba(26,179,148,0.7)",
+                          pointBackgroundColor: "rgba(26,179,148,1)",
+                          pointBorderColor: "#fff",
+                          data: age
+                      },
+                  ]
+              };
+
+              var barOptions = {
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero:true
+                      }
+                    }]
+                  },
+                  responsive: true
+              };
+
+              var ctx = $('#barChart').get(0).getContext("2d");
+              new Chart(ctx, {type: 'bar', data: barData, options:barOptions});
+
+            },
+            error:function(data){
+              alert('오류가 발생했습니다.');
+            }
+          });
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        function clickCheckbox(i, progressState, tid, pid, numOfRecruitment) {
+          if(progressState != '선정중') {
+            alert('선정 기간이 아닙니다.');
+          }
+          else {
+            if($('#tester'+i+' .btn-checkbox').hasClass('check')) {
+              if(window.confirm('해당 테스터를 선정 대상에서 제외하시겠습니까?')) {
+                $.ajax({
+                  url:'/api/check/0/'+tid+'/'+pid,
+                  type:'post',
+                  cache:false,
+                  success:function(data){
+                    $('#tester'+i+' .btn-checkbox').removeClass('check');
+                    $('#tester'+i+' .btn-checkbox').html('');
+                    var checkedTesterCount = Number($('.select-num').html().split(' / ')[0].split('(')[1]);
+                    $('.select-num').html('(' + (checkedTesterCount-1) + ' / ' + numOfRecruitment + ')');
+                  },
+                  error:function(data){
+                    alert('오류가 발생했습니다.');
+                  }
+                });
+              }
+            } else {
+              if(window.confirm('해당 테스터를 선정하시겠습니까?')) {
+                $.ajax({
+                  url:'/api/check/1/'+tid+'/'+pid,
+                  type:'post',
+                  cache:false,
+                  success:function(data){
+                    if(data == '0') {
+                      alert('인원이 초과되었습니다.');
+                      window.location.reload();
+                    }
+                    else {
+                      $('#tester'+i+' .btn-checkbox').addClass('check');
+                      $('#tester'+i+' .btn-checkbox').html('<i class="fa fa-check"></i>');
+                      var checkedTesterCount = Number($('.select-num').html().split(' / ')[0].split('(')[1]);
+                      $('.select-num').html('(' + (checkedTesterCount+1) + ' / ' + numOfRecruitment + ')');
+                    }
+                  },
+                  error:function(data){
+                    alert('오류가 발생했습니다.');
+                  }
+                });
+              }
+            }
+          }
+        }
+
+    </script>
+
+
+</body>
+</html>
